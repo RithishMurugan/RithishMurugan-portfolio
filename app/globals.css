@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-start: #f7f9ff;
+    --bg-end: #eef2ff;
+    --text: #0f172a; /* slate-900 */
+    --muted: #475569; /* slate-600 */
+    --border: #e2e8f0; /* slate-200 */
+    --card: #ffffff;
+    --primary: #2563eb; /* blue-600 */
+    --primary-100: #dbeafe; /* blue-100 */
+    --primary-50: #eff6ff; /* blue-50 */
+  }
+
+  body {
+    color: var(--text);
+    background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border shadow-sm bg-white border-slate-200;
+  }
+  .pill {
+    @apply inline-flex items-center rounded-full border px-3 py-1 text-xs;
+    @apply border-slate-200 bg-slate-50 text-slate-700;
+  }
+  .tab-wrap {
+    @apply mx-auto flex max-w-xl gap-2 rounded-full border p-1 text-sm bg-white border-slate-200;
+  }
+  .tab-btn {
+    @apply flex-1 rounded-full py-2 text-slate-700 hover:bg-slate-100;
+  }
+  .tab-btn-active {
+    @apply bg-blue-600 text-white hover:bg-blue-600;
+  }
+  .metric {
+    @apply card p-6 text-center;
+  }
+}
