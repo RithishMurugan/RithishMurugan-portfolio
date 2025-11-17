@@ -77,7 +77,19 @@ export default function Contact() {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
-      const errorMessage = error.message || 'Something went wrong. Please try again later.';
+      
+      let errorMessage = 'Something went wrong. Please try again later.';
+      
+      if (error.message) {
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+          errorMessage = 'Network error: Unable to connect to server. Please check your internet connection and try again. If the problem persists, the Supabase configuration may be incorrect.';
+        } else if (error.message.includes('Supabase is not configured')) {
+          errorMessage = 'Configuration error: Supabase environment variables are missing. Please contact the site administrator.';
+        } else {
+          errorMessage = error.message;
+        }
+      }
+      
       setStatus({ type: 'error', message: errorMessage });
     } finally {
       setIsLoading(false);
