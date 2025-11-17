@@ -43,6 +43,16 @@ export default function Contact() {
     setStatus({ type: null, message: '' });
 
     try {
+      // Log environment check in development
+      if (process.env.NODE_ENV === 'development') {
+        const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+        const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+        console.log('Environment check:', {
+          url: url ? 'Set' : 'Missing',
+          key: key ? 'Set' : 'Missing'
+        });
+      }
+
       const { data, error } = await supabase
         .from('contact_messages')
         .insert([
