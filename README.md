@@ -80,9 +80,6 @@ rithish-portfolio/
 └── package.json        # Dependencies
 ```
 
-## 📝 License
-
-This project is open source and available under the MIT License.
 
 ## 👤 Author
 
@@ -93,4 +90,4 @@ This project is open source and available under the MIT License.
 
 ---
 
-Built with ❤️ using Next.js and Tailwind CSS
+
