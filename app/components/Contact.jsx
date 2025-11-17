@@ -43,14 +43,14 @@ export default function Contact() {
     setStatus({ type: null, message: '' });
 
     try {
-      // Log environment check in development
-      if (process.env.NODE_ENV === 'development') {
-        const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-        const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-        console.log('Environment check:', {
-          url: url ? 'Set' : 'Missing',
-          key: key ? 'Set' : 'Missing'
-        });
+      // Runtime validation - check if Supabase is properly configured
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+      
+      if (!supabaseUrl || !supabaseKey || 
+          supabaseUrl.includes('placeholder') || 
+          supabaseKey.includes('placeholder')) {
+        throw new Error('Supabase environment variables are not configured. Please add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel dashboard and redeploy.');
       }
 
       const { data, error } = await supabase
@@ -79,6 +79,8 @@ export default function Contact() {
           errorMsg = 'Database table not found. Please run the SQL setup script in Supabase.';
         } else if (error.code === '42501') {
           errorMsg = 'Permission denied. Please check Row Level Security policies in Supabase.';
+        } else if (error.message && (error.message.includes('No API key found') || error.message.includes('API key'))) {
+          errorMsg = 'API key not configured. Please add NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel dashboard → Settings → Environment Variables and redeploy.';
         }
         throw new Error(errorMsg);
       }
@@ -93,8 +95,10 @@ export default function Contact() {
       if (error.message) {
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
           errorMessage = 'Network error: Unable to connect to server. Please check your internet connection and try again. If the problem persists, the Supabase configuration may be incorrect.';
-        } else if (error.message.includes('Supabase is not configured')) {
-          errorMessage = 'Configuration error: Supabase environment variables are missing. Please contact the site administrator.';
+        } else if (error.message.includes('Supabase is not configured') || error.message.includes('environment variables')) {
+          errorMessage = 'Configuration error: Supabase environment variables are missing. Please add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel dashboard → Settings → Environment Variables and redeploy.';
+        } else if (error.message.includes('API key')) {
+          errorMessage = 'API key error: Please add NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel dashboard → Settings → Environment Variables, select all environments, and redeploy.';
         } else {
           errorMessage = error.message;
         }
