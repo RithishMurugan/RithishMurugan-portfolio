@@ -1,7 +1,20 @@
 "use client";
 
+import { Github } from "lucide-react";
+
 export default function Projects() {
   const projects = [
+    {
+      title: 'Call Center Analytics Dashboard',
+      date: 'Nov 2025',
+      desc:
+        'A full-stack AI-powered dashboard analyzing 451 call center interactions using TypeScript, Express, React, and Gemini 2.5. Includes heuristic analysis, LLM insights, revenue modeling, pattern mining, funnels, and automated coaching recommendations. Completely built using Cursor for efficient development and AI-assisted coding.',
+      tech: ['React', 'TypeScript', 'Express.js', 'Gemini 2.5', 'Tailwind', 'Recharts', 'Node.js'],
+      gradient: 'from-orange-500 to-red-500',
+      titleColor: 'text-slate-900',
+      techColor: 'bg-orange-100 text-orange-700',
+      githubUrl: 'https://github.com/RithishMurugan/plaibook-call-center-dashboard.git',
+    },
     {
       title: 'RAG-Based Chatbot with AgentCore',
       date: 'Oct 2025',
@@ -11,6 +24,7 @@ export default function Projects() {
       gradient: 'from-indigo-500 to-purple-500',
       titleColor: 'text-slate-900',
       techColor: 'bg-indigo-100 text-indigo-700',
+      githubUrl: 'https://github.com/RithishMurugan/RAG-Based-Chatbot-with-AgentCore.git',
     },
     {
       title: 'AI Guest Concierge Agent',
@@ -21,6 +35,7 @@ export default function Projects() {
       gradient: 'from-green-500 to-blue-500',
       titleColor: 'text-slate-900',
       techColor: 'bg-green-100 text-green-700',
+      githubUrl: 'https://github.com/RithishMurugan/AI-Guest-Concierge-Agent.git',
     },
     {
       title: 'Real-Time Hand Sign Detection System',
@@ -31,6 +46,7 @@ export default function Projects() {
       gradient: 'from-blue-500 to-purple-600',
       titleColor: 'text-blue-600',
       techColor: 'bg-blue-100 text-blue-700',
+      githubUrl: 'https://github.com/RithishMurugan/Real-Time-Hand-Sign-Detection-System.git',
     },
     {
       title: 'Traffic Management System (CLI Analytics Tool)',
@@ -86,7 +102,7 @@ export default function Projects() {
               </p>
 
               {/* Technologies Used */}
-              <div>
+              <div className="mb-4 sm:mb-6">
                 <h4 className="text-xs sm:text-sm font-semibold text-slate-900 mb-2 sm:mb-3">Technologies Used</h4>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {p.tech.map((t) => (
@@ -96,6 +112,21 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
+
+              {/* GitHub Link */}
+              {p.githubUrl && (
+                <div className="pt-2 sm:pt-3 border-t border-slate-200">
+                  <a
+                    href={p.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                  >
+                    <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}

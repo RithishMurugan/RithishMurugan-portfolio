@@ -1,21 +1,37 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Mail, Linkedin, MapPin, Phone, Star } from "lucide-react";
+import { Mail, Linkedin, MapPin, Phone, Star, Github } from "lucide-react";
 
 export default function Hero() {
   const nameText = "Rithish Murugan";
   const [displayedName, setDisplayedName] = useState("");
-  const [index, setIndex] = useState(0);
+  const [nameIndex, setNameIndex] = useState(0);
+  
+  const titleText = "Software Engineer";
+  const [displayedTitle, setDisplayedTitle] = useState("");
+  const [titleIndex, setTitleIndex] = useState(0);
 
+  // Name typewriter effect
   useEffect(() => {
-    if (index < nameText.length) {
+    if (nameIndex < nameText.length) {
       const timer = setTimeout(() => {
-        setDisplayedName(nameText.slice(0, index + 1));
-        setIndex(index + 1);
+        setDisplayedName(nameText.slice(0, nameIndex + 1));
+        setNameIndex(nameIndex + 1);
       }, 120);
       return () => clearTimeout(timer);
     }
-  }, [index, nameText]);
+  }, [nameIndex, nameText]);
+
+  // Title typewriter effect - starts after name completes
+  useEffect(() => {
+    if (nameIndex >= nameText.length && titleIndex < titleText.length) {
+      const timer = setTimeout(() => {
+        setDisplayedTitle(titleText.slice(0, titleIndex + 1));
+        setTitleIndex(titleIndex + 1);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [nameIndex, titleIndex, titleText, nameText.length]);
 
   return (
     <section
@@ -72,11 +88,17 @@ export default function Hero() {
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 sm:mb-6 px-4">
           <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
             {displayedName}
-            {index < nameText.length && <span className="animate-pulse">|</span>}
+            {nameIndex < nameText.length && <span className="animate-pulse">|</span>}
           </span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-blue-200 mb-4 sm:mb-6 px-4">Software Engineer</p>
+        {/* Title with typewriter effect */}
+        <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 px-4">
+          <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+            {displayedTitle}
+            {titleIndex < titleText.length && <span className="animate-pulse">|</span>}
+          </span>
+        </p>
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-blue-200 leading-relaxed mb-4 sm:mb-6 px-4">
           Building scalable, production-ready AI systems with a focus on Agentic AI, RAG pipelines, and seamless ML integrations — delivering automation that actually moves the business forward.
         </p>
@@ -127,6 +149,15 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <Linkedin size={24} />
+          </a>
+          <a
+            href="https://github.com/RithishMurugan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-300 hover:text-blue-200 transition-colors"
+            aria-label="GitHub"
+          >
+            <Github size={24} />
           </a>
           <a
             href="mailto:ritumurug@gmail.com"

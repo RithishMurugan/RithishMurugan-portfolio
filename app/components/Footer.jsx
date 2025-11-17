@@ -31,7 +31,7 @@ export default function Footer() {
               Software Engineer specializing in Agentic AI, RAG pipelines, and backend automation—building scalable, intelligent systems that drive real impact.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://github.com/RithishMurugan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
               </a>
               <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
