@@ -12,7 +12,7 @@ export default function About() {
     {
       icon: Briefcase,
       title: 'Experience',
-      desc: '2+ years in software engineering and AI development'
+      desc: '3+ years in software engineering and AI development'
     },
     {
       icon: Award,
@@ -27,7 +27,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto scroll-mt-20">
+    <section id="about" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto scroll-mt-20 overflow-hidden">
       {/* Title with gradient underline */}
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-8 sm:mb-10 md:mb-12 text-center text-purple-600 px-4">
         Who I am
@@ -37,18 +37,18 @@ export default function About() {
       {/* Main Content Grid */}
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-12">
         {/* Left Section - Main Description */}
-        <div className="space-y-4 text-slate-700 leading-relaxed">
+        <div className="space-y-3 text-slate-700 leading-relaxed">
           <p>
-            I'm a <span className="font-bold text-blue-600">Software Engineer</span> with a Master's in Computer Science, specializing in Python development, data automation, and AI-driven backend systems.
+            I'm a <span className="font-bold text-blue-600">Software Engineer</span> who likes turning messy, human problems into reliable software — from overloaded support teams to high-stakes financial systems.
           </p>
           <p>
-            I build <span className="font-bold text-purple-600">Agentic AI agents and RAG pipelines</span> integrated with Supabase, Pinecone, and n8n to automate complex workflows and orchestrate data reliably.
+            Recently I've focused on <span className="font-bold text-purple-600">AI-first platforms and automation</span>, designing Agentic AI agents and RAG workflows on top of Python, FastAPI, AWS Bedrock, Pinecone, and Supabase.
           </p>
           <p>
-            I'm experienced in <span className="font-bold text-blue-600">developing and debugging REST APIs</span>, optimizing backend pipelines, and applying strong data validation and access controls for accurate, dependable reporting.
+            I enjoy the full stack of backend work: <span className="font-bold text-blue-600">clean APIs, resilient microservices, and data pipelines</span> that move through Kafka, PostgreSQL, MongoDB, and Redis without becoming a black box for the teams that depend on them.
           </p>
           <p>
-            I'm passionate about creating smart, <span className="font-bold text-purple-600">efficient AI solutions that solve real problems</span> and deliver meaningful impact.
+            What matters most to me is impact — <span className="font-bold text-purple-600">shipping systems people trust in production</span> that quietly cut manual work, reduce operational risk, and free teams to focus on more meaningful work.
           </p>
         </div>
 

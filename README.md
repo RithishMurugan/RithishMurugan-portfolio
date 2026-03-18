@@ -86,7 +86,7 @@ rithish-portfolio/
 **Rithish Murugan**
 - GitHub: [@RithishMurugan](https://github.com/RithishMurugan)
 - LinkedIn: [rithishmurugan](https://linkedin.com/in/rithishmurugan)
-- Email: ritumurug@gmail.com
+- Email: muruganrithish4@gmail.com
 
 ---
 

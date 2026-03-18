@@ -11,7 +11,7 @@ import CareerProgression from "./components/CareerProgression";
 
 export default function Page() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden min-h-screen w-full">
       <Navbar />
       <Hero />
       <About />

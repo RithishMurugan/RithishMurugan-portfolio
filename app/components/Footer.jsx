@@ -13,7 +13,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white py-8 sm:py-10 md:py-12">
+    <footer className="bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white py-8 sm:py-10 md:py-12 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8 items-start">
           {/* Left Column - Personal Introduction */}
@@ -31,13 +31,13 @@ export default function Footer() {
               Software Engineer specializing in Agentic AI, RAG pipelines, and backend automation—building scalable, intelligent systems that drive real impact.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com/RithishMurugan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://github.com/RithishMurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="GitHub">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:ritumurug@gmail.com" className="text-slate-400 hover:text-white transition-colors">
+              <a href="mailto:muruganrithish4@gmail.com" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -49,7 +49,7 @@ export default function Footer() {
             <ul className="space-y-2 text-center">
               {quickLinks.map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} className="text-slate-300 hover:text-white transition-colors text-sm">
+                  <a href={link.href} className="inline-block min-h-[44px] leading-[44px] py-1 text-slate-300 hover:text-white active:opacity-80 transition-colors text-sm touch-manipulation">
                     {link.name}
                   </a>
                 </li>
@@ -64,14 +64,14 @@ export default function Footer() {
               <li>
                 <span className="text-slate-300">Email</span>
                 <br />
-                <a href="mailto:ritumurug@gmail.com" className="text-white hover:text-blue-300 transition-colors">
-                  ritumurug@gmail.com
+                <a href="mailto:muruganrithish4@gmail.com" className="text-white hover:text-blue-300 transition-colors break-all touch-manipulation inline-block min-h-[44px] leading-normal py-2">
+                  muruganrithish4@gmail.com
                 </a>
               </li>
               <li>
                 <span className="text-slate-300">Phone</span>
                 <br />
-                <a href="tel:773-930-2475" className="text-white hover:text-blue-300 transition-colors">
+                <a href="tel:773-930-2475" className="text-white hover:text-blue-300 transition-colors inline-block min-h-[44px] leading-normal py-2 touch-manipulation">
                   773-930-2475
                 </a>
               </li>
@@ -84,7 +84,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
-          © 2025 Rithish Murugan — Designed with ❤️ for innovation and AI.
+          © 2026 Rithish Murugan — Crafting AI that ships and scales.
         </div>
       </div>
     </footer>

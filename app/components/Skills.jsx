@@ -6,7 +6,7 @@ const categories = [
   {
     icon: Code,
     title: "Programming & Scripting Languages",
-    chips: ["Python", "SQL", "R", "JavaScript", "HTML, CSS"],
+    chips: ["Python", "Java", "SQL", "R", "JavaScript", "HTML, CSS"],
     gradient: "from-blue-500 to-cyan-500",
   },
   {
@@ -29,9 +29,10 @@ const categories = [
     icon: Cloud,
     title: "Cloud Platforms, Databases & Data Engineering",
     chips: [
-      "AWS (S3, Redshift, Lambda, EC2, Bedrock)",
+      "AWS (S3, Redshift, Lambda, EKS, Bedrock)",
       "Supabase",
       "Pinecone Vector Database",
+      "Apache Kafka",
       "ETL Pipelines",
       "Data Orchestration",
       "Database Optimization",
@@ -43,9 +44,10 @@ const categories = [
     title: "APIs, Integrations & Backend Tools",
     chips: [
       "REST APIs",
+      "FastAPI",
+      "Spring Boot",
       "Postman",
-      "Twilio",
-      "ServiceNow Flow Designer",
+      "Swagger",
       "API Validation",
       "Workflow Automation",
       "Third-Party Integrations",
@@ -85,6 +87,9 @@ const categories = [
     icon: Rocket,
     title: "Deployment & Hosting Platforms",
     chips: [
+      "Docker",
+      "Kubernetes",
+      "Jenkins",
       "Netlify",
       "Vercel",
       "AWS Amplify",
@@ -135,7 +140,7 @@ function Card({ title, chips, icon: Icon, gradient }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-slate-50 scroll-mt-20">
+    <section id="skills" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-slate-50 scroll-mt-20 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
         {/* Skills & Technologies tag */}

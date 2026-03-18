@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white"
+      className="relative min-h-[100dvh] min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white"
     >
       {/* Glowing circles - responsive sizes */}
       <div className="pointer-events-none absolute top-10 left-10 sm:left-20 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-800/25 rounded-full blur-[80px] sm:blur-[120px]"></div>
@@ -72,7 +72,7 @@ export default function Hero() {
       <div className="hidden md:block pointer-events-none absolute bottom-[12%] right-[38%] w-7 h-7 md:w-9 md:h-9 bg-cyan-300/12 rounded-full"></div>
 
       {/* Content */}
-      <div className="relative z-10 px-6 pt-20">
+      <div className="relative z-10 w-full max-w-full px-4 sm:px-6 pt-20 box-border" style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
         {/* Welcome tag with star icon */}
         <div className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 text-xs sm:text-sm text-white border border-slate-700/50">
           <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
@@ -85,7 +85,7 @@ export default function Hero() {
         </h2>
 
         {/* Name with blue-to-cyan gradient - animated letter by letter */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 sm:mb-6 px-4">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 sm:mb-6 px-2 sm:px-4 break-words max-w-full">
           <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
             {displayedName}
             {nameIndex < nameText.length && <span className="animate-pulse">|</span>}
@@ -93,14 +93,14 @@ export default function Hero() {
         </h1>
 
         {/* Title with typewriter effect */}
-        <p className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 px-4">
+        <p className="text-lg sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 px-2 sm:px-4 break-words max-w-full">
           <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
             {displayedTitle}
             {titleIndex < titleText.length && <span className="animate-pulse">|</span>}
           </span>
         </p>
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-blue-200 leading-relaxed mb-4 sm:mb-6 px-4">
-          Building scalable, production-ready AI systems with a focus on Agentic AI, RAG pipelines, and seamless ML integrations — delivering automation that actually moves the business forward.
+          I build AI-first backends, Agentic AI agents, and RAG pipelines that automate real work for real teams — not just demos.
         </p>
 
         {/* Contact Information */}
@@ -114,26 +114,19 @@ export default function Hero() {
             <span className="hidden sm:inline">773-930-2475</span>
             <span className="sm:hidden">773-930-2475</span>
           </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <Mail size={16} className="sm:w-[18px] sm:h-[18px] text-blue-300" />
-            <a href="mailto:ritumurug@gmail.com" className="hover:text-blue-300 transition-colors break-all">
-              <span className="hidden sm:inline">ritumurug@gmail.com</span>
-              <span className="sm:hidden">Email</span>
-            </a>
-          </div>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 w-full sm:w-auto">
           <a
             href="#projects"
-            className="bg-blue-600 hover:bg-blue-700 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base shadow-lg shadow-blue-900/30 transition-all duration-300 text-center"
+            className="min-h-[44px] flex items-center justify-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-5 py-3 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base shadow-lg shadow-blue-900/30 transition-all duration-300 text-center touch-manipulation"
           >
             Explore My Work
           </a>
           <a
-            href="/RITHISH_MURUGAN_SoftwareEngineer_Resume.pdf"
+            href="/Rithish%20Murugan%20Resume.pdf"
             download
-            className="border border-blue-400 hover:bg-blue-500/10 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base text-blue-200 transition-all duration-300 text-center"
+            className="min-h-[44px] flex items-center justify-center border border-blue-400 hover:bg-blue-500/10 active:bg-blue-500/20 px-5 py-3 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base text-blue-200 transition-all duration-300 text-center touch-manipulation"
           >
             Download Resume
           </a>
@@ -145,7 +138,7 @@ export default function Hero() {
             href="https://linkedin.com/in/rithishmurugan"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-300 hover:text-blue-200 transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
             aria-label="LinkedIn"
           >
             <Linkedin size={24} />
@@ -154,14 +147,14 @@ export default function Hero() {
             href="https://github.com/RithishMurugan"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-300 hover:text-blue-200 transition-colors"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
             aria-label="GitHub"
           >
             <Github size={24} />
           </a>
           <a
-            href="mailto:ritumurug@gmail.com"
-            className="text-blue-300 hover:text-blue-200 transition-colors"
+            href="mailto:muruganrithish4@gmail.com"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
             aria-label="Email"
           >
             <Mail size={24} />

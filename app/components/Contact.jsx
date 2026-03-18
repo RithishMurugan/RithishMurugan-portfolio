@@ -113,8 +113,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'ritumurug@gmail.com',
-      href: 'mailto:ritumurug@gmail.com'
+      value: 'muruganrithish4@gmail.com',
+      href: 'mailto:muruganrithish4@gmail.com'
     },
     {
       icon: Phone,
@@ -137,7 +137,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-24 md:pb-32 max-w-6xl mx-auto bg-white scroll-mt-20">
+    <section id="contact" className="px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-24 md:pb-32 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12">
         <div className="inline-block bg-blue-100 border border-blue-300 rounded-lg px-3 py-1 mb-3 sm:mb-4">
@@ -247,7 +247,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="John Doe"
                   required
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 min-h-[48px] border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 />
               </div>
               <div>
@@ -262,7 +262,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="john@example.com"
                   required
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 min-h-[48px] border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 />
               </div>
               <div>
@@ -277,7 +277,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="Project Collaboration"
                   required
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 min-h-[48px] border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                 />
               </div>
               <div>
@@ -292,13 +292,13 @@ export default function Contact() {
                   rows={6}
                   placeholder="Tell me about your project, requirements, or any questions you have..."
                   required
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  className="w-full px-4 py-3 min-h-[120px] border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none text-base"
                 />
               </div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full min-h-[48px] bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 active:opacity-90 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
               >
                 {isLoading ? (
                   <>

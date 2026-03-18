@@ -13,12 +13,21 @@
     --primary: #2563eb; /* blue-600 */
     --primary-100: #dbeafe; /* blue-100 */
     --primary-50: #eff6ff; /* blue-50 */
+    --safe-area-inset-top: env(safe-area-inset-top, 0px);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     color: var(--text);
     background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
     overflow-x: hidden;
+    min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

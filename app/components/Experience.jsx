@@ -7,20 +7,19 @@ export default function Experience() {
     {
       title: 'Software Engineer',
       company: 'eAlliance Corporation',
-      location: 'IL, USA (Remote)',
-      date: 'Jul 2025 - Present',
+      location: 'Remote, USA',
+      date: 'Jul 2025 – Present',
       employmentType: 'Full-time',
       employmentTypeColor: 'bg-green-500',
       details: [
-        'Engineered Agentic AI agents with RAG pipelines for automated reasoning and business workflows',
-        'Built a guest concierge AI agent, integrating frontend apps, n8n workflows, and backend databases',
-        'Built a vendor-matching agent simulating Q2C workflows, applying distributed ETL and data integrity checks',
-        'Automated data flows and integrations across APIs and cloud systems, ensuring fault-tolerance and scalability',
-        'Applied access control principles and data validation to ensure secure and accurate reporting pipelines',
-        'Debugged and optimized Python scripts across workflows, reducing execution errors by 20%',
-        'Explored LLM APIs (OpenAI, Hugging Face) by testing simple Python-based integrations for internal learning'
+        'Designed an AI automation platform with Python, FastAPI, and AWS Bedrock that handles 500+ support requests per day',
+        'Shipped a production RAG pipeline on Bedrock + Pinecone for semantic search and document classification',
+        'Built autonomous AI agents with multi-step reasoning and RBAC to remove manual vendor-matching decisions',
+        'Owned RESTful APIs on AWS Lambda and S3, cutting latency across internal AI inference pipelines',
+        'Shipped real-time dashboards with JavaScript and Supabase, halving manual lookup time for operations teams',
+        'Maintained production services across environments with CI/CD, model evaluation, and automated workflows'
       ],
-      skills: ['Python', 'RAG', 'AI Agents', 'n8n', 'Supabase', 'Pinecone', 'AWS']
+      skills: ['Python', 'FastAPI', 'AWS Bedrock', 'Pinecone', 'Supabase', 'LLMs', 'RAG', 'CI/CD']
     },
     {
       title: 'Research Assistant',
@@ -39,54 +38,40 @@ export default function Experience() {
     {
       title: 'Software Engineer',
       company: 'Virtualan Software LLC',
-      location: 'IL, USA',
-      date: 'May 2024 - Aug 2024',
+      location: 'Chicago, IL, USA',
+      date: 'May 2024 – Aug 2024',
       employmentType: 'Internship',
       employmentTypeColor: 'bg-blue-500',
       details: [
-        'Automated backend pipelines using Python + SQL to consolidate and validate large datasets',
-        'Configured and tested REST APIs with Postman & Swagger, ensuring reliable system integrations',
-        'Integrated AWS (S3, Redshift) with backend workflows, increasing scalability of reporting systems',
-        'Worked with QA teams to implement data integrity checks and access controls',
-        'Participated in Agile sprints, contributing to design discussions on workflow configuration and integrations',
-        'Assisted with Tableau dashboards for system performance and telemetry-driven insights'
+        'Automated backend data pipelines with Python and SQL, cutting processing time for high-volume reporting data',
+        'Designed and validated RESTful APIs with Postman and Swagger, raising reliability and test coverage',
+        'Integrated AWS S3 and Redshift into core workflows to improve data scalability and query performance',
+        'Worked with QA teams to enforce RBAC and validate pipelines before production rollout',
+        'Contributed to sprint planning, architecture discussions, and code reviews for backend feature releases'
       ],
-      skills: ['Python', 'SQL', 'REST APIs', 'AWS', 'Tableau', 'Agile']
+      skills: ['Python', 'SQL', 'REST APIs', 'AWS S3', 'AWS Redshift', 'RBAC', 'Agile']
     },
     {
-      title: 'Junior Software Engineer',
-      company: 'ZoomRx Healthcare Technology Solutions',
-      location: 'India',
-      date: 'Jan 2023 - Jul 2023',
+      title: 'Software Developer',
+      company: 'Hexaware Technologies',
+      location: 'Chennai, India',
+      date: 'Mar 2021 – Jul 2023',
       employmentType: 'Full-time',
       employmentTypeColor: 'bg-green-500',
       details: [
-        'Developed Python pipelines to process 1M+ survey records, improving data accuracy and reliability',
-        'Optimized backend workflows, reducing update cycles by 40% and delivering insights faster to stakeholders',
-        'Designed Tableau dashboards visualizing provider engagement, survey outcomes, and participation trends',
-        'Conducted participation trend analysis across surveys, uncovering patterns that guided data driven strategies'
+        'Engineered Java Spring Boot microservices for a Fortune 500 US bank, securing 1M+ daily transactions',
+        'Co-built an ML fraud risk engine with OpenAI, LangChain, and Transformers to improve detection accuracy',
+        'Implemented Kafka event streams processing 500K+ transactions per hour with sub-second latency',
+        'Containerized services with Docker and deployed to AWS EKS via Jenkins CI/CD for 99.9% uptime',
+        'Tuned PostgreSQL and MongoDB queries and added Redis caching, cutting database load and improving performance',
+        'Supported a React.js fraud analyst dashboard with reliable backend APIs and strong test coverage'
       ],
-      skills: ['Python', 'Data Pipelines', 'Tableau', 'Healthcare Tech']
-    },
-    {
-      title: 'Python Developer Intern',
-      company: 'Madras Networking Company',
-      location: 'India',
-      date: 'Jan 2022 – Jan 2023',
-      employmentType: 'Internship',
-      employmentTypeColor: 'bg-orange-500',
-      details: [
-        'Built Python scripts to automate reporting and validation, reducing manual work by 30%',
-        'Designed a basic employee tracking system (Python + SQL) managing 200+ records with accuracy',
-        'Developed a lightweight dashboard prototype (HTML + Python + SQL) for weekly reporting',
-        'Boosted DB performance by 60% via SQL optimization and team collaboration'
-      ],
-      skills: ['Python', 'SQL', 'Automation', 'Dashboard Development']
+      skills: ['Java', 'Spring Boot', 'Apache Kafka', 'PostgreSQL', 'MongoDB', 'Redis', 'Docker', 'Kubernetes', 'Jenkins']
     }
   ];
 
   return (
-    <section id="experience" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20">
+    <section id="experience" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
       {/* Title section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
         {/* Experience tag */}
@@ -141,7 +126,7 @@ export default function Experience() {
                     {/* Responsibilities with blue angle brackets */}
                     <ul className="ml-3 sm:ml-5 text-slate-700 text-xs sm:text-sm space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
                       {exp.details.map((detail, idx) => (
-                        <li key={idx} className="leading-relaxed flex items-start gap-2">
+                        <li key={idx} className="leading-relaxed flex items-start gap-2 break-words">
                           <span className="text-blue-600 font-bold mt-0.5 flex-shrink-0">&gt;</span>
                           <span>{detail}</span>
                         </li>

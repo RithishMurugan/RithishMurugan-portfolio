@@ -8,7 +8,7 @@ export default function Projects() {
       title: 'Call Center Analytics Dashboard',
       date: 'Nov 2025',
       desc:
-        'A full-stack AI-powered dashboard analyzing 451 call center interactions using TypeScript, Express, React, and Gemini 2.5. Includes heuristic analysis, LLM insights, revenue modeling, pattern mining, funnels, and automated coaching recommendations. Completely built using Cursor for efficient development and AI-assisted coding.',
+        'Full-stack AI dashboard that analyzes 451 call center interactions using TypeScript, Express, React, and Gemini 2.5. Surfaces LLM insights, funnels, and revenue modeling so teams can spot patterns and coaching opportunities quickly. Built end-to-end with Cursor to iterate fast with AI-assisted development.',
       tech: ['React', 'TypeScript', 'Express.js', 'Gemini 2.5', 'Tailwind', 'Recharts', 'Node.js'],
       gradient: 'from-orange-500 to-red-500',
       titleColor: 'text-slate-900',
@@ -19,7 +19,7 @@ export default function Projects() {
       title: 'RAG-Based Chatbot with AgentCore',
       date: 'Oct 2025',
       desc:
-        'Developed a custom RAG chatbot using AWS Bedrock and AgentCore, enabling domain-specific Q&A over ingested PDFs and text files. Built document-embedding pipelines and retrieval logic to deliver accurate, context-aware responses based on the knowledge base. Integrated the chatbot with a Python interface to support real-time agent invocation and scalable reasoning workflows.',
+        'Custom RAG chatbot on AWS Bedrock and AgentCore for domain-specific Q&A over PDFs and text files. Built embedding pipelines and retrieval logic to keep answers grounded in the knowledge base. Exposed a Python interface for real-time agent invocation and scalable reasoning workflows.',
       tech: ['Python', 'AWS Bedrock', 'AgentCore', 'Embeddings', 'Retrieval Pipelines'],
       gradient: 'from-indigo-500 to-purple-500',
       titleColor: 'text-slate-900',
@@ -30,7 +30,7 @@ export default function Projects() {
       title: 'AI Guest Concierge Agent',
       date: 'Jul 2025',
       desc:
-        'Built an AI concierge agent that answers guest queries, retrieves event/vendor information, and automates end-to-end workflows. Implemented a RAG pipeline using Pinecone + Supabase to improve context accuracy and reduce manual support load. Integrated frontend components with backend APIs to enable seamless real-time interaction and task automation.',
+        'AI concierge agent that answers guest questions, retrieves event/vendor info, and automates end-to-end workflows. Uses a RAG pipeline on Pinecone + Supabase to keep responses relevant and reduce manual support load. Connects frontend UI to backend APIs for smooth, real-time interaction.',
       tech: ['Python', 'RAG', 'Pinecone', 'Supabase', 'n8n', 'REST APIs'],
       gradient: 'from-green-500 to-blue-500',
       titleColor: 'text-slate-900',
@@ -41,7 +41,7 @@ export default function Projects() {
       title: 'Real-Time Hand Sign Detection System',
       date: 'Jan 2025',
       desc:
-        'Developed a real-time gesture recognition system capable of detecting 36 hand signs with over 90% accuracy. Combined MediaPipe hand landmark extraction with a TensorFlow classifier for fast and reliable inference. Designed a modular, optimized pipeline supporting efficient retraining, tuning, and deployment.',
+        'Real-time gesture recognition system that detects 36 hand signs with 90%+ accuracy. Combines MediaPipe hand landmarks with a TensorFlow classifier for fast inference. Designed as a modular pipeline so models can be retrained, tuned, and deployed with minimal friction.',
       tech: ['Python', 'TensorFlow', 'MediaPipe', 'OpenCV'],
       gradient: 'from-blue-500 to-purple-600',
       titleColor: 'text-blue-600',
@@ -52,7 +52,7 @@ export default function Projects() {
       title: 'Traffic Management System (CLI Analytics Tool)',
       date: 'Mar 2024',
       desc:
-        'Built a Python + SQL CLI analytics tool to generate insights from traffic incident, vehicle, road, and signal datasets. Designed normalized relational schemas and modular, query-driven workflows to analyze violation density, coverage gaps, and route-level throughput. Delivered a scalable analytics framework for efficient trend detection and data-driven insights.',
+        'Python + SQL CLI analytics tool for traffic incident, vehicle, road, and signal datasets. Uses normalized schemas and query-driven workflows to analyze violation density, coverage gaps, and route throughput. Gives operators a simple way to surface trends and make data-driven decisions.',
       tech: ['Python', 'SQL', 'Data Modeling', 'Software Development'],
       gradient: 'from-purple-500 to-pink-500',
       titleColor: 'text-slate-900',
@@ -61,7 +61,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20">
+    <section id="projects" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
         {/* Projects tag */}
@@ -120,7 +120,7 @@ export default function Projects() {
                     href={p.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors"
+                    className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 bg-slate-900 hover:bg-slate-800 active:bg-slate-700 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors touch-manipulation"
                   >
                     <Github className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     <span>View on GitHub</span>
