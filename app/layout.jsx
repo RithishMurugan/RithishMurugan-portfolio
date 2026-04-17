@@ -4,8 +4,25 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Rithish Murugan | Software Engineer',
-  description: 'Software Engineer specializing in AI-driven automation and workflow orchestration',
+  title: 'Rithish Murugan | Software Engineer — Backend, AI/LLM, Distributed Systems',
+  description:
+    'Software engineer (Rubrik, Razorpay) — LLM agents, RAG, Java/Spring Boot, Python/FastAPI, Kafka, AWS, React/Next.js. M.S. Computer Science, Illinois Institute of Technology.',
+  keywords: [
+    'Software Engineer',
+    'Backend Engineer',
+    'AI Engineer',
+    'LLM',
+    'LangChain',
+    'Java',
+    'Python',
+    'Spring Boot',
+    'Kafka',
+    'AWS',
+    'React',
+    'Next.js',
+    'Distributed Systems',
+    'Fintech',
+  ],
 };
 
 export const viewport = {

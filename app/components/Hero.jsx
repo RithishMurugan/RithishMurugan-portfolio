@@ -1,6 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Mail, Linkedin, MapPin, Phone, Star, Github } from "lucide-react";
+import { Mail, Linkedin, MapPin, Phone, Github } from "lucide-react";
+
+const keywordPills = [
+  "Java & Spring Boot",
+  "Python & FastAPI",
+  "LLM agents & RAG",
+  "Kafka & events",
+  "AWS & Kubernetes",
+];
 
 export default function Hero() {
   const nameText = "Rithish Murugan";
@@ -73,12 +81,6 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-full px-4 sm:px-6 pt-20 box-border" style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
-        {/* Welcome tag with star icon */}
-        <div className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm px-3 py-1.5 sm:px-4 sm:py-2 rounded-full mb-4 sm:mb-6 text-xs sm:text-sm text-white border border-slate-700/50">
-          <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-yellow-400" />
-          <span>Welcome to my portfolio</span>
-        </div>
-
         {/* Hi, I'm text */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-white px-4">
           Hi, I'm
@@ -99,9 +101,20 @@ export default function Hero() {
             {titleIndex < titleText.length && <span className="animate-pulse">|</span>}
           </span>
         </p>
-        <p className="max-w-2xl mx-auto text-sm sm:text-base text-blue-200 leading-relaxed mb-4 sm:mb-6 px-4">
-          I build AI-first backends, Agentic AI agents, and RAG pipelines that automate real work for real teams — not just demos.
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-blue-100/95 leading-relaxed mb-6 sm:mb-8 px-4">
+          Software Engineer building distributed systems and AI-powered tooling — from high-scale payments to LLM-driven automation. Focused on reliability, cost, and developer productivity.
         </p>
+
+        <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-8 px-4">
+          {keywordPills.map((pill) => (
+            <span
+              key={pill}
+              className="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3 py-1 text-[11px] sm:text-xs font-medium text-cyan-100"
+            >
+              {pill}
+            </span>
+          ))}
+        </div>
 
         {/* Contact Information */}
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 text-blue-200 text-xs sm:text-sm px-4">
@@ -116,19 +129,25 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 w-full sm:w-auto">
-          <a
-            href="#projects"
-            className="min-h-[44px] flex items-center justify-center bg-blue-600 hover:bg-blue-700 active:bg-blue-800 px-5 py-3 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base shadow-lg shadow-blue-900/30 transition-all duration-300 text-center touch-manipulation"
-          >
-            Explore My Work
-          </a>
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 w-full max-w-lg sm:max-w-none mx-auto sm:w-auto">
           <a
             href="/Rithish%20Murugan%20Resume.pdf"
             download
-            className="min-h-[44px] flex items-center justify-center border border-blue-400 hover:bg-blue-500/10 active:bg-blue-500/20 px-5 py-3 sm:px-6 sm:py-3 rounded-lg font-medium text-sm sm:text-base text-blue-200 transition-all duration-300 text-center touch-manipulation"
+            className="min-h-[48px] flex items-center justify-center rounded-xl bg-white px-6 py-3.5 font-semibold text-sm sm:text-base text-slate-900 shadow-lg shadow-black/20 transition hover:bg-blue-50 active:scale-[0.99] text-center touch-manipulation"
           >
-            Download Resume
+            Download resume
+          </a>
+          <a
+            href="#experience"
+            className="min-h-[48px] flex items-center justify-center rounded-xl border-2 border-white/35 bg-white/5 px-6 py-3.5 font-semibold text-sm sm:text-base text-white backdrop-blur-sm transition hover:bg-white/10 text-center touch-manipulation"
+          >
+            View experience
+          </a>
+          <a
+            href="#projects"
+            className="min-h-[48px] flex items-center justify-center rounded-xl border border-blue-400/40 px-6 py-3.5 font-medium text-sm sm:text-base text-blue-100 transition hover:border-blue-300 hover:bg-blue-500/10 text-center touch-manipulation sm:hidden"
+          >
+            Projects
           </a>
         </div>
 
@@ -153,7 +172,7 @@ export default function Hero() {
             <Github size={24} />
           </a>
           <a
-            href="mailto:muruganrithish4@gmail.com"
+            href="mailto:muruganrithish01@gmail.com"
             className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
             aria-label="Email"
           >

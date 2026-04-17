@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Linkedin, Phone, MapPin, MessageCircle, Clock, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Linkedin, Phone, MapPin, MessageCircle, Clock, Send, CheckCircle, AlertCircle, FileText, Github } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 
 export default function Contact() {
@@ -113,8 +113,8 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'muruganrithish4@gmail.com',
-      href: 'mailto:muruganrithish4@gmail.com'
+      value: 'muruganrithish01@gmail.com',
+      href: 'mailto:muruganrithish01@gmail.com'
     },
     {
       icon: Phone,
@@ -137,20 +137,59 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-24 md:pb-32 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
+    <section id="contact" className="section-fade-in px-4 sm:px-6 pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-24 md:pb-32 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12">
         <div className="inline-block bg-blue-100 border border-blue-300 rounded-lg px-3 py-1 mb-3 sm:mb-4">
-          <span className="text-blue-700 font-medium text-xs sm:text-sm">Get In Touch</span>
+          <span className="text-blue-700 font-medium text-xs sm:text-sm">Hiring &amp; collaborations</span>
         </div>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 px-4">
           <span className="text-slate-900">Let's</span>{" "}
-          <span className="text-blue-600">Connect</span>
+          <span className="text-blue-600">talk</span>
         </h2>
         <div className="h-1 w-20 sm:w-24 mx-auto mb-2 sm:mb-3 bg-blue-600 rounded-full"></div>
-        <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
-          I'm always interested in discussing new opportunities, AI projects, or potential collaborations. Feel free to reach out!
-        </p>
+        <div className="max-w-2xl mx-auto px-4 space-y-3 text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">
+          <p>Open to backend, platform, and AI/LLM opportunities.</p>
+          <p>
+            The fastest way to connect is via{" "}
+            <a href="/Rithish%20Murugan%20Resume.pdf" download className="font-semibold text-blue-600 hover:underline">
+              my resume
+            </a>{" "}
+            or{" "}
+            <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 hover:underline">
+              LinkedIn
+            </a>{" "}
+            — I typically respond within a day.
+          </p>
+        </div>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4">
+          <a
+            href="/Rithish%20Murugan%20Resume.pdf"
+            download
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-blue-700"
+          >
+            <FileText className="h-4 w-4 shrink-0" aria-hidden />
+            Download resume
+          </a>
+          <a
+            href="https://linkedin.com/in/rithishmurugan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-300 hover:bg-blue-50/50"
+          >
+            <Linkedin className="h-4 w-4 shrink-0" aria-hidden />
+            LinkedIn profile
+          </a>
+          <a
+            href="https://github.com/RithishMurugan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition hover:border-blue-300 hover:bg-blue-50/50"
+          >
+            <Github className="h-4 w-4 shrink-0" aria-hidden />
+            GitHub
+          </a>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">

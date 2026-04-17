@@ -5,6 +5,31 @@ import { Github } from "lucide-react";
 export default function Projects() {
   const projects = [
     {
+      title: "Autonomous Code Review & Engineering Intelligence",
+      date: "2025 – Present",
+      desc:
+        "Production platform for AI-assisted code review: LangChain agents and GPT-4o on FastAPI, Node/Express webhook pipelines for GitHub PRs, RAG over repositories for contextual diffs, PostgreSQL-backed audit and analytics, and React/Next.js dashboards—paired with Docker, AWS (ECS, Lambda, EKS), Slack integrations, and GitHub Actions CI/CD with quality gates.",
+      tech: [
+        "Python",
+        "FastAPI",
+        "LangChain",
+        "OpenAI GPT-4o",
+        "Node.js",
+        "Express",
+        "React",
+        "Next.js",
+        "PostgreSQL",
+        "Vector DB",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "GitHub Actions",
+      ],
+      gradient: "from-blue-600 to-cyan-500",
+      titleColor: "text-slate-900",
+      techColor: "bg-blue-100 text-blue-800",
+    },
+    {
       title: 'Call Center Analytics Dashboard',
       date: 'Nov 2025',
       desc:
@@ -61,7 +86,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
+    <section id="projects" className="section-fade-in px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
       {/* Header Section */}
       <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
         {/* Projects tag */}
@@ -75,6 +100,9 @@ export default function Projects() {
         </h2>
         {/* Gradient underline */}
         <div className="h-1 w-24 sm:w-32 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+        <p className="mt-4 text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          Production-style work sample at the top; open-source and academic projects below — each lists stack so screeners can match reqs fast.
+        </p>
       </div>
       
       <div className="space-y-4 sm:space-y-6">

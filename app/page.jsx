@@ -15,10 +15,10 @@ export default function Page() {
       <Navbar />
       <Hero />
       <About />
-      <Skills />
       <Experience />
-      <CareerProgression />
+      <Skills />
       <Projects />
+      <CareerProgression />
       <Education />
       <Contact />
       <Footer />

@@ -24,11 +24,11 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold">Rithish Murugan</h3>
-                <p className="text-slate-400 text-sm">AI Engineer</p>
+                <p className="text-slate-400 text-sm">Software Engineer</p>
               </div>
             </div>
             <p className="text-slate-300 text-sm mb-4 leading-relaxed">
-              Software Engineer specializing in Agentic AI, RAG pipelines, and backend automation—building scalable, intelligent systems that drive real impact.
+              Software engineer — Rubrik (AI/LLM), Razorpay (payments). M.S. CS, IIT. Open to conversations about backend, platform, and AI engineering roles.
             </p>
             <div className="flex gap-4">
               <a href="https://github.com/RithishMurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="GitHub">
@@ -37,7 +37,7 @@ export default function Footer() {
               <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:muruganrithish4@gmail.com" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="Email">
+              <a href="mailto:muruganrithish01@gmail.com" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -64,8 +64,8 @@ export default function Footer() {
               <li>
                 <span className="text-slate-300">Email</span>
                 <br />
-                <a href="mailto:muruganrithish4@gmail.com" className="text-white hover:text-blue-300 transition-colors break-all touch-manipulation inline-block min-h-[44px] leading-normal py-2">
-                  muruganrithish4@gmail.com
+                <a href="mailto:muruganrithish01@gmail.com" className="text-white hover:text-blue-300 transition-colors break-all touch-manipulation inline-block min-h-[44px] leading-normal py-2">
+                  muruganrithish01@gmail.com
                 </a>
               </li>
               <li>
@@ -84,7 +84,14 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
-          © 2026 Rithish Murugan — Crafting AI that ships and scales.
+          © 2026 Rithish Murugan — Thanks for reviewing;{" "}
+          <a href="/Rithish%20Murugan%20Resume.pdf" download className="text-blue-300 hover:text-white underline-offset-2 hover:underline">
+            resume
+          </a>{" "}
+          ·{" "}
+          <a href="#contact" className="text-blue-300 hover:text-white underline-offset-2 hover:underline">
+            contact
+          </a>
         </div>
       </div>
     </footer>
