@@ -42,16 +42,22 @@ export default function Contact() {
     setStatus({ type: null, message: '' });
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      });
+      const res = await fetch(
+        typeof window !== 'undefined'
+          ? new URL('/api/contact', window.location.origin).toString()
+          : '/api/contact',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+          }),
+        }
+      );
 
       const payload = await res.json().catch(() => ({}));
 
@@ -68,7 +74,8 @@ export default function Contact() {
       
       if (error.message) {
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-          errorMessage = 'Network error: Unable to connect to server. Please check your internet connection and try again. If the problem persists, the Supabase configuration may be incorrect.';
+          errorMessage =
+            'Could not reach the contact server. If you are on the live site, confirm the latest deploy finished on Vercel, disable extensions that block requests, and ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SECRET_KEY are set (then redeploy). You can also email me directly from the address in the contact section.';
         } else if (error.message.includes('not configured') || error.message.includes('SUPABASE_SECRET')) {
           errorMessage = 'Configuration error: add SUPABASE_SECRET_KEY (server-only) and your Supabase project URL in Vercel → Environment Variables, then redeploy.';
         } else if (error.message.includes('API key')) {
