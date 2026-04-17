@@ -37,13 +37,14 @@ A modern, responsive portfolio website built with Next.js, React, and Tailwind C
    Create a `.env.local` file in the root directory:
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SECRET_KEY=your_service_role_or_secret_key
    ```
+   The contact form uses a **server-only** key (`SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY` on Vercel). Do not expose it with `NEXT_PUBLIC_`.
 
 4. **Set up Supabase** (for contact form)
    - Create a Supabase project
    - Run the SQL script in `supabase-setup.sql` in your Supabase SQL Editor
-   - Add your Supabase credentials to `.env.local`
+   - Add your Supabase URL and server key to `.env.local`
 
 5. **Run the development server**
    ```bash
@@ -69,12 +70,11 @@ The project is configured for Vercel deployment with `vercel.json`.
 ```
 rithish-portfolio/
 ├── app/
+│   ├── api/contact/    # Contact form API (Supabase insert)
 │   ├── components/     # React components
 │   ├── globals.css     # Global styles
 │   ├── layout.jsx      # Root layout
 │   └── page.jsx        # Home page
-├── lib/
-│   └── supabase.js     # Supabase client
 ├── public/             # Static assets
 ├── supabase-setup.sql  # Database setup script
 └── package.json        # Dependencies
@@ -86,7 +86,7 @@ rithish-portfolio/
 **Rithish Murugan**
 - GitHub: [@RithishMurugan](https://github.com/RithishMurugan)
 - LinkedIn: [rithishmurugan](https://linkedin.com/in/rithishmurugan)
-- Email: muruganrithish4@gmail.com
+- Email: muruganrithish01@gmail.com
 
 ---
 

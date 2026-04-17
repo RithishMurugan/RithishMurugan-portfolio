@@ -75,7 +75,7 @@ export default function Contact() {
       if (error.message) {
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
           errorMessage =
-            'Could not reach /api/contact from your browser. Open /api/contact in a new tab — you should see JSON with serverEnv flags. If that page fails too, the deployment may not be Vercel or the route is blocked (VPN, extension, or DNS). If serverEnv shows serviceRoleOrSecretKey: false, redeploy Production after the Supabase integration syncs SUPABASE_SERVICE_ROLE_KEY and SUPABASE_URL. You can also use the email address in this section.';
+            'Could not reach the server. Try again, check your connection, or use the email address in this section.';
         } else if (error.message.includes('not configured') || error.message.includes('SUPABASE_SECRET')) {
           errorMessage = 'Configuration error: add SUPABASE_SECRET_KEY (server-only) and your Supabase project URL in Vercel → Environment Variables, then redeploy.';
         } else if (error.message.includes('API key')) {
