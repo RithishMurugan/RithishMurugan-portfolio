@@ -102,6 +102,17 @@
     @apply interactive inline-flex min-h-[44px] items-center justify-center rounded-xl border-2 border-zinc-300 bg-white px-6 py-3 font-semibold text-ink transition duration-200 hover:border-cta hover:bg-zinc-50;
   }
 
+  .glass-pill {
+    @apply border border-white/10 bg-white/5 shadow-inner backdrop-blur-md;
+    @apply transition-[border-color,background-color,transform] duration-300 ease-out;
+  }
+
+  .glass-btn {
+    @apply rounded-xl border border-white/20 bg-white/10 backdrop-blur-md;
+    @apply transition-[border-color,background-color,box-shadow,transform] duration-300 ease-out;
+    @apply hover:border-white/35 hover:bg-white/15 hover:shadow-lg hover:shadow-blue-900/20;
+  }
+
   .section-fade-in {
     animation: sectionFadeIn 0.5s ease-out both;
   }

@@ -1,4 +1,5 @@
 import MotionProvider from "./components/MotionProvider";
+import ScrollProgress from "./components/ScrollProgress";
 import Navbar from "./components/Navbar";
 import SkipLink from "./components/SkipLink";
 import Hero from "./components/Hero";
@@ -14,6 +15,7 @@ import CareerProgression from "./components/CareerProgression";
 export default function Page() {
   return (
     <MotionProvider>
+      <ScrollProgress />
       <SkipLink />
       <Navbar />
       <main id="main-content" className="min-h-screen w-full overflow-x-hidden">

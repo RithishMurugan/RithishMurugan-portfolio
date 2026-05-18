@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeUp, viewportOnce } from "../lib/motion";
+import { fadeUp, badgeReveal, lineExpand, staggerFast, viewportOnce } from "../lib/motion";
 
 export function SectionReveal({ children, className = "", delay = 0 }) {
   return (
@@ -20,11 +20,23 @@ export function SectionReveal({ children, className = "", delay = 0 }) {
 
 export function SectionHeader({ badge, title, titleAccent, subtitle, className = "" }) {
   return (
-    <SectionReveal className={`text-center mb-8 sm:mb-10 md:mb-12 px-4 ${className}`}>
+    <motion.div
+      className={`mb-8 px-4 text-center sm:mb-10 md:mb-12 ${className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+      variants={staggerFast}
+    >
       {badge && (
-        <span className="section-badge mb-3 sm:mb-4 inline-block">{badge}</span>
+        <motion.span variants={badgeReveal} className="section-badge mb-3 inline-block sm:mb-4">
+          {badge}
+        </motion.span>
       )}
-      <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3 tracking-tight text-ink">
+      <motion.h2
+        variants={fadeUp}
+        custom={0}
+        className="font-heading mb-2 text-3xl font-extrabold tracking-tight text-ink sm:mb-3 sm:text-4xl md:text-5xl"
+      >
         <span>{title}</span>
         {titleAccent && (
           <>
@@ -32,19 +44,20 @@ export function SectionHeader({ badge, title, titleAccent, subtitle, className =
             <span className="gradient-text">{titleAccent}</span>
           </>
         )}
-      </h2>
+      </motion.h2>
       <motion.div
-        className="mx-auto mb-3 h-1 w-24 rounded-full bg-cta sm:w-32"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={viewportOnce}
-        transition={{ duration: 0.6, delay: 0.15 }}
+        variants={lineExpand}
+        className="mx-auto mb-3 h-1 w-24 origin-center rounded-full bg-gradient-to-r from-cta via-blue-500 to-cyan-500 sm:w-32"
       />
       {subtitle && (
-        <p className="mx-auto max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base md:text-lg">
+        <motion.p
+          variants={fadeUp}
+          custom={1}
+          className="mx-auto max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base md:text-lg"
+        >
           {subtitle}
-        </p>
+        </motion.p>
       )}
-    </SectionReveal>
+    </motion.div>
   );
 }

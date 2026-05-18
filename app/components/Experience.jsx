@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Calendar, Building2, MapPin } from "lucide-react";
 import { SectionHeader } from "./SectionReveal";
-import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { fadeUp, staggerContainer, viewportOnce, springSnappy } from "../lib/motion";
 
 const experiences = [
   {
@@ -120,26 +120,26 @@ export default function Experience() {
           <motion.article
             key={exp.company}
             variants={fadeUp}
-            custom={i * 0.1}
-            className="card card-hover group overflow-hidden border-l-4 border-l-cta bg-gradient-to-br from-white to-zinc-50/80 p-5 ring-1 ring-zinc-100 sm:p-6 md:p-7"
+            custom={i}
+            whileHover={{ y: -6, transition: springSnappy }}
+            className="card group overflow-hidden border-l-4 border-l-cta bg-gradient-to-br from-white to-zinc-50/80 p-5 shadow-card ring-1 ring-zinc-100 transition-shadow duration-300 hover:shadow-card-hover sm:p-6 md:p-7"
           >
-            <motion.div whileHover={{ x: 2 }} transition={{ type: "spring", stiffness: 400 }}>
-              <motion.div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
-                <motion.div>
+              <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{exp.title}</h3>
                   <div className="flex items-center gap-2 text-blue-600">
                     <Building2 className="w-4 h-4 shrink-0" />
                     <span className="font-semibold">{exp.company}</span>
                   </div>
-                </motion.div>
+                </div>
                 <span
-                  className={`${exp.employmentTypeColor} text-white px-3 py-1 rounded-lg text-xs font-semibold self-start`}
+                  className={`${exp.employmentTypeColor} self-start rounded-lg px-3 py-1 text-xs font-semibold text-white`}
                 >
                   {exp.employmentType}
                 </span>
-              </motion.div>
+              </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mb-5 text-slate-600 text-sm">
+              <div className="mb-5 flex flex-col gap-2 text-sm text-slate-600 sm:flex-row sm:items-center sm:gap-5">
                 <span className="inline-flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   {exp.date}
@@ -184,7 +184,6 @@ export default function Experience() {
                   </span>
                 ))}
               </div>
-            </motion.div>
           </motion.article>
         ))}
       </motion.div>

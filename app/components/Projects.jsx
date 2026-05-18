@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import { SectionHeader } from "./SectionReveal";
-import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { staggerContainer, viewportOnce, springSnappy } from "../lib/motion";
+import AnimatedCard from "./AnimatedCard";
 
 const projects = [
   {
@@ -95,18 +96,22 @@ export default function Projects() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        {projects.map((p) => (
-          <motion.article
+        {projects.map((p, i) => (
+          <AnimatedCard
             key={p.title}
-            variants={fadeUp}
-            whileHover={{ y: -3 }}
-            className={`card overflow-hidden transition duration-200 ${
-              p.featured
-                ? "border-cta/30 ring-2 ring-blue-100 shadow-card-hover"
-                : "card-hover"
+            index={i}
+            className={`card overflow-hidden ${
+              p.featured ? "border-cta/30 ring-2 ring-blue-100" : ""
             }`}
           >
-            <motion.div className={`h-1.5 bg-gradient-to-r ${p.gradient}`} layoutId={`bar-${p.title}`} />
+            <motion.div
+              className={`h-1.5 bg-gradient-to-r ${p.gradient}`}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              style={{ transformOrigin: "left" }}
+            />
             <div className="p-5 sm:p-6 md:p-7">
               <div className="mb-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                 <div>
@@ -135,19 +140,22 @@ export default function Projects() {
               </motion.div>
 
               {p.githubUrl && (
-                <a
+                <motion.a
                   href={p.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800"
+                  className="interactive inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={springSnappy}
                 >
                   <Github className="h-4 w-4" />
                   View on GitHub
                   <ExternalLink className="h-3.5 w-3.5 opacity-60" />
-                </a>
+                </motion.a>
               )}
             </div>
-          </motion.article>
+          </AnimatedCard>
         ))}
       </motion.div>
     </section>

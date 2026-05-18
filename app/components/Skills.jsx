@@ -12,7 +12,7 @@ import {
   Settings,
 } from "lucide-react";
 import { SectionHeader } from "./SectionReveal";
-import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { fadeUp, staggerContainer, viewportOnce, springSnappy, cardHover } from "../lib/motion";
 
 const categories = [
   {
@@ -94,11 +94,17 @@ const categories = [
 function SkillCard({ title, chips, icon: Icon, gradient }) {
   return (
     <motion.div
-      variants={fadeUp}
-      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm card-hover"
+      variants={{
+        hidden: fadeUp.hidden,
+        visible: fadeUp.visible,
+        rest: cardHover.rest,
+        hover: cardHover.hover,
+      }}
+      whileHover="hover"
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 shadow-sm sm:p-6"
     >
       <motion.div
-        className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.06]`}
+        className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.08]`}
       />
       <div className="relative mb-4 flex items-center gap-3">
         <div

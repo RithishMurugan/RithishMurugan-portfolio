@@ -1,39 +1,130 @@
-/** Motion presets — respect prefers-reduced-motion via Framer Motion reducedMotion */
+/** Shared motion presets — pair with MotionConfig reducedMotion="user" */
+
+export const easeOutExpo = [0.22, 1, 0.36, 1];
+
+export const springSmooth = {
+  type: "spring",
+  stiffness: 100,
+  damping: 22,
+  mass: 0.8,
+};
+
+export const springSnappy = {
+  type: "spring",
+  stiffness: 280,
+  damping: 26,
+};
+
+export const springGentle = {
+  type: "spring",
+  stiffness: 70,
+  damping: 18,
+};
+
 export const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      ...springSmooth,
+      delay: i * 0.07,
+    },
   }),
 };
 
 export const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35 } },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.5, ease: easeOutExpo },
+  },
 };
 
 export const staggerContainer = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.06, delayChildren: 0.04 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+};
+
+export const staggerFast = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.05, delayChildren: 0.05 },
   },
 };
 
 export const scaleIn = {
-  hidden: { opacity: 0, scale: 0.98 },
+  hidden: { opacity: 0, scale: 0.94 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: springSmooth,
   },
 };
 
-export const viewportOnce = { once: true, margin: "-48px", amount: 0.12 };
+export const cardReveal = {
+  hidden: { opacity: 0, y: 36, scale: 0.97 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      ...springSmooth,
+      delay: i * 0.1,
+    },
+  }),
+};
 
-/** Subtle hero blob drift — disabled when user prefers reduced motion */
+export const cardHover = {
+  rest: { y: 0, scale: 1 },
+  hover: {
+    y: -6,
+    scale: 1.01,
+    transition: springSnappy,
+  },
+};
+
+export const pillPop = {
+  hidden: { opacity: 0, scale: 0.85, y: 8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: springSnappy,
+  },
+};
+
+export const lineExpand = {
+  hidden: { scaleX: 0, opacity: 0 },
+  visible: {
+    scaleX: 1,
+    opacity: 1,
+    transition: { duration: 0.7, ease: easeOutExpo },
+  },
+};
+
+export const badgeReveal = {
+  hidden: { opacity: 0, y: 12, scale: 0.92 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: springSnappy,
+  },
+};
+
+export const viewportOnce = { once: true, margin: "-80px", amount: 0.15 };
+
 export const heroBlobTransition = {
-  duration: 14,
+  duration: 18,
   repeat: Infinity,
   ease: "easeInOut",
+};
+
+export const buttonMotion = {
+  whileHover: { scale: 1.03, y: -2 },
+  whileTap: { scale: 0.98 },
+  transition: springSnappy,
 };
