@@ -1,55 +1,74 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Mail, Linkedin, Github } from "lucide-react";
 
-export default function Footer() {
-  const quickLinks = [
-    { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Contact", href: "#contact" }
-  ];
+const RESUME_PATH = "/Rithish_Murugan_Resume.pdf";
+const EMAIL = "rithishmurugan52@gmail.com";
 
+const quickLinks = [
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Education", href: "#education" },
+  { name: "Contact", href: "#contact" },
+];
+
+export default function Footer() {
   return (
-    <footer className="bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white py-8 sm:py-10 md:py-12 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8 items-start">
-          {/* Left Column - Personal Introduction */}
+    <footer className="relative overflow-hidden bg-gradient-to-br from-[#070f1f] via-[#0d1b3d] to-[#162d5c] text-white py-12 sm:py-14">
+      <div className="pointer-events-none absolute inset-0 opacity-30">
+        <div className="absolute top-0 left-1/4 h-48 w-48 rounded-full bg-blue-600/30 blur-[80px]" />
+        <motion.div
+          className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-cyan-500/20 blur-[90px]"
+          animate={{ opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+      </div>
+
+      <motion.div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white text-xl font-bold">&lt;/&gt;</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500">
+                <span className="text-lg font-bold">&lt;/&gt;</span>
               </div>
               <div>
-                <h3 className="text-xl font-bold">Rithish Murugan</h3>
+                <h3 className="text-lg font-bold">Rithish Murugan</h3>
                 <p className="text-slate-400 text-sm">Software Engineer</p>
               </div>
             </div>
-            <p className="text-slate-300 text-sm mb-4 leading-relaxed">
-              Software engineer — Rubrik (AI/LLM), Razorpay (payments). M.S. CS, IIT. Open to conversations about backend, platform, and AI engineering roles.
+            <p className="text-slate-300 text-sm mb-5 leading-relaxed max-w-sm">
+              Healthcare &amp; supply chain backend engineer — Abridge, Hexaware, IIT. Open to backend,
+              platform, and AI engineering roles in the U.S.
             </p>
-            <div className="flex gap-4">
-              <a href="https://github.com/RithishMurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="GitHub">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="https://linkedin.com/in/rithishmurugan" target="_blank" rel="noopener noreferrer" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="mailto:muruganrithish01@gmail.com" className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-400 hover:text-white active:scale-95 transition-colors touch-manipulation" aria-label="Email">
-                <Mail className="w-5 h-5" />
-              </a>
+            <div className="flex gap-3">
+              {[
+                { href: "https://github.com/RithishMurugan", Icon: Github, label: "GitHub" },
+                { href: "https://linkedin.com/in/rithishmurugan", Icon: Linkedin, label: "LinkedIn" },
+                { href: `mailto:${EMAIL}`, Icon: Mail, label: "Email" },
+              ].map(({ href, Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-400 transition hover:border-cyan-400/40 hover:text-white"
+                  aria-label={label}
+                >
+                  <Icon className="h-5 w-5" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Middle Column - Quick Links */}
-          <div className="flex flex-col items-center">
-            <h4 className="text-lg font-bold mb-4 text-white text-center">Quick Links</h4>
-            <ul className="space-y-2 text-center">
-              {quickLinks.map((link, i) => (
-                <li key={i}>
-                  <a href={link.href} className="inline-block min-h-[44px] leading-[44px] py-1 text-slate-300 hover:text-white active:opacity-80 transition-colors text-sm touch-manipulation">
+          <div className="sm:text-center">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Links</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="text-sm text-slate-300 hover:text-cyan-300 transition">
                     {link.name}
                   </a>
                 </li>
@@ -57,46 +76,39 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Right Column - Get in Touch */}
-          <div className="flex flex-col items-center">
-            <h4 className="text-lg font-bold mb-4 text-white text-center">Get in Touch</h4>
-            <ul className="space-y-2 text-sm text-center">
+          <div className="sm:text-center md:text-right">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Get in Touch</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <span className="text-slate-300">Email</span>
-                <br />
-                <a href="mailto:muruganrithish01@gmail.com" className="text-white hover:text-blue-300 transition-colors break-all touch-manipulation inline-block min-h-[44px] leading-normal py-2">
-                  muruganrithish01@gmail.com
+                <a href={`mailto:${EMAIL}`} className="text-slate-200 hover:text-cyan-300 transition break-all">
+                  {EMAIL}
                 </a>
               </li>
               <li>
-                <span className="text-slate-300">Phone</span>
-                <br />
-                <a href="tel:773-930-2475" className="text-white hover:text-blue-300 transition-colors inline-block min-h-[44px] leading-normal py-2 touch-manipulation">
-                  773-930-2475
+                <a href="tel:+17739302475" className="text-slate-200 hover:text-cyan-300 transition">
+                  +1 (773) 930-2475
                 </a>
               </li>
-              <li>
-                <span className="text-slate-300">Location</span>
-                <br />
-                <span className="text-white">USA</span>
-              </li>
+              <li className="text-slate-400">USA</li>
             </ul>
           </div>
         </div>
-        <div className="border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
-          © 2026 Rithish Murugan — Thanks for reviewing;{" "}
-          <a href="/Rithish%20Murugan%20Resume.pdf" download className="text-blue-300 hover:text-white underline-offset-2 hover:underline">
+
+        <div className="border-t border-white/10 pt-8 text-center text-slate-400 text-sm">
+          © {new Date().getFullYear()} Rithish Murugan —{" "}
+          <a
+            href={RESUME_PATH}
+            download
+            className="text-cyan-400/90 hover:text-cyan-300 underline-offset-2 hover:underline"
+          >
             resume
           </a>{" "}
           ·{" "}
-          <a href="#contact" className="text-blue-300 hover:text-white underline-offset-2 hover:underline">
+          <a href="#contact" className="text-cyan-400/90 hover:text-cyan-300 underline-offset-2 hover:underline">
             contact
           </a>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }
-
-
-

@@ -1,108 +1,132 @@
 "use client";
 
-import { GraduationCap, Briefcase, Award, Code, Brain } from "lucide-react";
+import { motion } from "framer-motion";
+import { GraduationCap, Briefcase, Award, Code, HeartPulse } from "lucide-react";
+import { SectionHeader } from "./SectionReveal";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+
+const summaryCards = [
+  {
+    icon: GraduationCap,
+    title: "Education",
+    desc: "M.S. in Computer Science, Illinois Institute of Technology (Aug 2023 – May 2025)",
+  },
+  {
+    icon: Briefcase,
+    title: "Experience",
+    desc: "4+ years across healthcare tech, supply chain logistics, and cloud data platforms",
+  },
+  {
+    icon: HeartPulse,
+    title: "Healthcare",
+    desc: "EHR/FHIR integrations, clinical AI copilots, HIPAA-compliant distributed systems",
+  },
+  {
+    icon: Award,
+    title: "Impact",
+    desc: "Owning complex systems end-to-end — latency, cost, compliance, and cross-functional delivery",
+  },
+];
 
 export default function About() {
-  const summaryCards = [
-    {
-      icon: GraduationCap,
-      title: "Education",
-      desc: "M.S. in Computer Science, Illinois Institute of Technology (Aug 2023 – May 2025)",
-    },
-    {
-      icon: Briefcase,
-      title: "Experience",
-      desc: "3+ years building distributed systems and AI-powered developer tooling",
-    },
-    {
-      icon: Award,
-      title: "Expertise",
-      desc: "Microservices, event-driven systems, Java, Python, Node.js, Kafka, LangChain, and RAG",
-    },
-    {
-      icon: Code,
-      title: "Focus",
-      desc: "Measurable impact—performance, cost, and helping teams ship faster with confidence",
-    },
-  ];
-
   return (
-    <section id="about" className="section-fade-in px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto scroll-mt-20 overflow-hidden">
-      <div className="text-center mb-6 sm:mb-8 px-4">
-        <div className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-800">
-          Profile
-        </div>
-      </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 text-center text-slate-900 px-4">
-        How I work &amp; what I bring
-      </h2>
-      <p className="text-center text-slate-600 text-sm sm:text-base max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4 leading-relaxed">
-        A quick snapshot for hiring managers — details in{" "}
-        <a href="#experience" className="font-semibold text-blue-600 hover:underline">
-          experience
-        </a>{" "}
-        and{" "}
-        <a href="#skills" className="font-semibold text-blue-600 hover:underline">
-          skills
-        </a>
-        .
-      </p>
-      <div className="h-1 w-24 sm:w-32 mx-auto mb-8 sm:mb-10 md:mb-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></div>
+    <section id="about" className="px-4 sm:px-6 py-16 sm:py-20 md:py-24 max-w-6xl mx-auto scroll-mt-24">
+      <SectionHeader
+        badge="Profile"
+        title="How I work &"
+        titleAccent="what I bring"
+        subtitle={
+          <>
+            A quick snapshot for hiring managers — details in{" "}
+            <a href="#experience" className="font-semibold text-blue-600 hover:underline">
+              experience
+            </a>{" "}
+            and{" "}
+            <a href="#skills" className="font-semibold text-blue-600 hover:underline">
+              skills
+            </a>
+            .
+          </>
+        }
+      />
 
-      {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-12">
-        {/* Left Section - Main Description */}
-        <div className="space-y-4 text-slate-700 leading-relaxed">
-          <p>
-            I&apos;m a <span className="font-bold text-blue-600">Software Engineer</span> with 3+ years of experience building distributed systems and AI-powered developer tooling—growing from backend engineering to AI-driven platforms.
-          </p>
-          <p>
-            I build <span className="font-bold text-purple-600">LLM-powered applications</span>, working across product, infrastructure, and security to deliver reliable and scalable systems—from payment pipelines to autonomous code review agents.
-          </p>
-          <p>
-            My core strengths are{" "}
-            <span className="font-bold text-blue-600">microservices, event-driven systems, and automation</span>, with hands-on experience in Java, Python, Node.js, Kafka, and modern AI stacks like LangChain and RAG.
-          </p>
-          <p>
-            I focus on <span className="font-bold text-purple-600">measurable impact</span>—improving system performance, reducing costs, and enabling teams to ship faster with confidence.
-          </p>
-        </div>
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+        <motion.div
+          className="space-y-4 text-slate-700 leading-relaxed text-sm sm:text-base"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+        >
+          <motion.p variants={fadeUp}>
+            I&apos;m a <span className="font-bold text-blue-600">Software Engineer</span> with 4+ years of experience
+            building scalable backend platforms across supply chain logistics and healthcare technology.
+          </motion.p>
+          <motion.p variants={fadeUp}>
+            I began my career modernizing inventory, forecasting, routing, and warehouse systems — automating operations
+            across <span className="font-bold text-indigo-600">10+ warehouses</span> and reducing logistics costs while
+            improving fulfillment efficiency.
+          </motion.p>
+          <motion.p variants={fadeUp}>
+            I progressed into healthcare engineering at{" "}
+            <span className="font-bold text-cyan-700">Abridge</span>, building distributed platforms that centralize
+            patient records and AI copilots that reduce physician documentation workload.
+          </motion.p>
+          <motion.p variants={fadeUp}>
+            I&apos;m known for owning complex systems, partnering cross-functionally, and delivering{" "}
+            <span className="font-bold text-blue-600">measurable impact</span> on reliability, latency, and cost.
+          </motion.p>
+        </motion.div>
 
-        {/* Right Section - Software Engineer Icon Card */}
-        <div className="flex items-center justify-center">
-          <div className="relative w-full max-w-sm rounded-2xl bg-gradient-to-br from-blue-50 to-white p-6 sm:p-8 shadow-lg overflow-hidden">
-            {/* Background decorative circles */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl"></div>
-
-            {/* Icon and text */}
+        <motion.div
+          className="flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.55 }}
+        >
+          <motion.div
+            className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-cyan-50/50 p-8 shadow-xl shadow-blue-900/5"
+            whileHover={{ y: -4 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <motion.div
+              className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-blue-400/20 blur-2xl"
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            />
             <div className="relative z-10 flex flex-col items-center text-center">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                <Brain className="w-8 h-8 sm:w-10 sm:h-10 text-white" strokeWidth={2} />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Software Engineer</h3>
-              <p className="text-sm sm:text-base text-slate-600">Illinois Institute of Technology</p>
+              <motion.div className="mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 shadow-lg shadow-blue-600/30">
+                <Code className="h-10 w-10 text-white" strokeWidth={2} />
+              </motion.div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-1">Software Engineer</h3>
+              <p className="text-slate-600">Healthcare · Supply Chain · AI</p>
+              <p className="mt-2 text-sm text-blue-600 font-medium">Illinois Institute of Technology</p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* Summary Cards - Horizontal Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-        {summaryCards.map((card, i) => {
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        {summaryCards.map((card) => {
           const Icon = card.icon;
           return (
-            <div
-              key={i}
-              className="card p-5 transition-all duration-200 hover:shadow-md hover:border-blue-200 hover:-translate-y-0.5"
-            >
-              <Icon className="w-6 h-6 text-blue-600 mb-3" />
+            <motion.div key={card.title} variants={fadeUp} className="card card-hover p-5">
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50">
+                <Icon className="h-5 w-5 text-blue-600" />
+              </div>
               <h3 className="font-semibold text-lg text-slate-900 mb-2">{card.title}</h3>
-              <p className="text-sm text-slate-600">{card.desc}</p>
-            </div>
+              <p className="text-sm text-slate-600 leading-relaxed">{card.desc}</p>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }

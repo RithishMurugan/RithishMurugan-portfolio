@@ -1,66 +1,75 @@
 "use client";
 
-export default function CareerProgression() {
-  const stages = [
-    {
-      title: "2021 – 2023",
-      heading: "Payments at Scale — Razorpay",
-      points: [
-        "Built and scaled backend systems for payments handling 500K+ daily transactions using microservices and event-driven architecture.",
-        "Improved reliability and enabled real-time workflows across payments, refunds, and reconciliation systems.",
-      ],
-    },
-    {
-      title: "2023 – 2025",
-      heading: "Graduate Studies — Illinois Institute of Technology",
-      points: [
-        "Strengthened expertise in distributed systems, machine learning, and scalable engineering.",
-        "Transitioned focus from backend development to AI-driven product engineering.",
-      ],
-    },
-    {
-      title: "2025+",
-      heading: "AI & Developer Tooling — Rubrik",
-      points: [
-        "Building LLM-powered agents and RAG systems to automate code reviews and enhance developer productivity.",
-        "Designing scalable systems with modern cloud and microservices architecture, driving efficiency and quality at scale.",
-      ],
-    },
-  ];
+import { motion } from "framer-motion";
+import { SectionHeader } from "./SectionReveal";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 
+const stages = [
+  {
+    title: "2021 – 2023",
+    heading: "Supply Chain & Logistics — Hexaware",
+    points: [
+      "Architected inventory, forecasting, and route optimization systems across 10+ warehouses.",
+      "Built event-driven platforms with Kafka and AWS — $100K annual savings and 40% faster logistics visibility.",
+    ],
+  },
+  {
+    title: "2023 – 2025",
+    heading: "Graduate Studies — Illinois Institute of Technology",
+    points: [
+      "M.S. in Computer Science while strengthening distributed systems, ML, and scalable engineering.",
+      "Internship at Virtualan: ETL pipelines and REST APIs on AWS (10K+ daily records).",
+    ],
+  },
+  {
+    title: "2025 – Present",
+    heading: "Healthcare Platforms — Abridge",
+    points: [
+      "Integrating EHR, lab, imaging, and pharmacy systems — 400K+ patient records centralized.",
+      "Building clinical AI copilots, RAG pipelines, and HIPAA-compliant infrastructure at 99.99% uptime.",
+    ],
+  },
+];
+
+export default function CareerProgression() {
   return (
-    <section className="section-fade-in px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-slate-50 overflow-hidden">
-      <div className="text-center mb-6 px-4">
-        <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
-          Timeline
-        </span>
-      </div>
-      <h3 className="mb-2 text-center text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 px-4">
-        Career Progression
-      </h3>
-      <p className="mb-8 sm:mb-10 md:mb-12 text-center text-sm sm:text-base text-slate-600 max-w-3xl mx-auto px-4 leading-relaxed">
-        From scalable backend systems to AI-powered developer tooling.
-      </p>
-      <div className="grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-        {stages.map((s) => (
-          <div
+    <section className="px-4 sm:px-6 py-16 sm:py-20 md:py-24 max-w-6xl mx-auto scroll-mt-24">
+      <SectionHeader
+        badge="Timeline"
+        title="Career"
+        titleAccent="Progression"
+        subtitle="From supply chain modernization to healthcare AI — a clear arc of backend ownership and impact."
+      />
+
+      <motion.div
+        className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        {stages.map((s, i) => (
+          <motion.div
             key={s.title}
-            className="group rounded-xl border border-slate-200 bg-white p-4 sm:p-5 md:p-6 shadow-sm transition duration-200 hover:border-blue-200 hover:shadow-md"
+            variants={fadeUp}
+            custom={i * 0.1}
+            whileHover={{ y: -6 }}
+            className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm card-hover"
           >
-            <div className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-              {s.title}
-            </div>
-            <div className="text-base sm:text-lg font-semibold text-slate-800 mb-3">{s.heading}</div>
-            <div className="space-y-2.5">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-500" />
+            <p className="text-2xl sm:text-3xl font-bold gradient-text mb-2">{s.title}</p>
+            <h3 className="text-lg font-semibold text-slate-800 mb-4">{s.heading}</h3>
+            <ul className="space-y-3">
               {s.points.map((point) => (
-                <p key={point} className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {point}
-                </p>
+                <li key={point} className="text-sm text-slate-600 leading-relaxed flex gap-2">
+                  <span className="text-cyan-600 font-bold shrink-0">•</span>
+                  <span>{point}</span>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

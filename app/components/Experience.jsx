@@ -1,189 +1,193 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Calendar, Building2, MapPin } from "lucide-react";
+import { SectionHeader } from "./SectionReveal";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+
+const experiences = [
+  {
+    title: "Software Engineer",
+    company: "Abridge",
+    location: "Remote, USA",
+    date: "Jan 2025 – Present",
+    employmentType: "Full-time",
+    employmentTypeColor: "bg-emerald-600",
+    impactHighlights: [
+      { label: "Patient records", value: "400K+" },
+      { label: "Clinical events / day", value: "300K+" },
+      { label: "Monthly interactions", value: "50K+" },
+      { label: "Uptime", value: "99.99%" },
+    ],
+    details: [
+      "Architect scalable microservices and backend platforms integrating fragmented EHR, lab, imaging, pharmacy, and insurance systems using Python, FastAPI, Apache Spark, SQL, FHIR, and HL7, centralizing 400K+ patient records.",
+      "Engineer high-throughput distributed systems using Amazon S3, PostgreSQL, Snowflake, Redis, Apache Kafka, and ETL frameworks to process 300K+ clinical events daily, reducing retrieval latency and eliminating manual workflows.",
+      "Build low-latency REST APIs and AI healthcare copilots using OpenAI GPT-4o, Anthropic Claude, Llama 3, LangChain, RAG, and Pinecone, reducing physician documentation workload while accelerating treatment recommendations.",
+      "Develop event-driven backend systems using LangGraph, function calling, asynchronous workflows, caching layers, and distributed orchestration frameworks to automate patient summaries across 50K+ monthly clinical interactions.",
+      "Partner with physicians, product leaders, and compliance teams to deploy predictive healthcare models using XGBoost, TensorFlow, and Scikit-learn, improving diagnosis speed and increasing hospital throughput.",
+      "Lead cloud infrastructure scalability using AWS EKS, Docker, Kubernetes, Terraform, CI/CD, CloudWatch, encryption, audit logging, and HIPAA compliance, maintaining 99.99% uptime while reducing infrastructure costs 25%.",
+    ],
+    skills: [
+      "Python",
+      "FastAPI",
+      "FHIR",
+      "HL7",
+      "LangChain",
+      "LangGraph",
+      "OpenAI GPT-4o",
+      "Kafka",
+      "PostgreSQL",
+      "Snowflake",
+      "AWS EKS",
+      "Kubernetes",
+      "Terraform",
+    ],
+  },
+  {
+    title: "Software Engineer",
+    company: "Virtualan Software LLC",
+    location: "Chicago, IL",
+    date: "May 2024 – Aug 2024",
+    employmentType: "Internship",
+    employmentTypeColor: "bg-blue-600",
+    impactHighlights: [
+      { label: "Daily records", value: "10K+" },
+      { label: "Test coverage", value: "+35%" },
+      { label: "Stack", value: "ETL + APIs" },
+      { label: "Cloud", value: "AWS S3" },
+    ],
+    details: [
+      "Engineered scalable backend ETL pipelines using Python, SQL, AWS S3, and Redshift, processing 10K+ daily records, optimizing cloud data workflows, and reducing reporting latency across critical analytics systems.",
+      "Built and optimized RESTful APIs using Python, SQL, Postman, and Swagger, improving API reliability, increasing test coverage by 35%, and accelerating backend integrations across cross-functional engineering teams.",
+      "Implemented secure backend systems through RBAC, data validation, code reviews, and Agile deployment workflows, reducing production defects while accelerating feature releases across production environments.",
+    ],
+    skills: ["Python", "SQL", "AWS S3", "Redshift", "REST APIs", "Postman", "Swagger", "RBAC", "Agile"],
+  },
+  {
+    title: "Software Engineer",
+    company: "Hexaware Technologies",
+    location: "Chennai, India",
+    date: "Mar 2021 – Jul 2023",
+    employmentType: "Full-time",
+    employmentTypeColor: "bg-green-600",
+    impactHighlights: [
+      { label: "Warehouses", value: "10+" },
+      { label: "Inventory visibility", value: "+60%" },
+      { label: "Shipment events", value: "50K+/yr" },
+      { label: "Annual savings", value: "$100K" },
+    ],
+    details: [
+      "Architected scalable inventory management microservices using Java, Spring Boot, REST APIs, and PostgreSQL across 10+ warehouses, replacing manual planning workflows and improving inventory visibility by 60%.",
+      "Engineered demand forecasting pipelines using Python, Apache Spark, SQL, and statistical models to analyze 150K+ historical orders, reducing stockouts while improving inventory utilization.",
+      "Built event-driven distributed systems using Java, Spring Boot, Apache Kafka, Redis, and AWS to process 50K+ annual shipment events, reducing logistics visibility delays by 40%.",
+      "Designed real-time route optimization services using Python, optimization algorithms, SQL, and geospatial APIs to automate delivery planning, reducing transportation costs and improving delivery efficiency.",
+      "Led warehouse modernization initiatives using Docker, Kubernetes, RabbitMQ, and AWS automation workflows, streamlining fulfillment operations and improving scalability during demand spikes.",
+      "Partnered with operations, logistics, and supply chain leadership to modernize manual fulfillment workflows through cloud automation platforms, reducing delivery delays and saving $100K annually.",
+    ],
+    skills: [
+      "Java",
+      "Spring Boot",
+      "Python",
+      "Apache Spark",
+      "Kafka",
+      "PostgreSQL",
+      "Redis",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+    ],
+  },
+];
 
 export default function Experience() {
-  const experiences = [
-    {
-      title: "AI Software Engineer",
-      company: "Rubrik",
-      location: "Remote, USA",
-      date: "Jan 2025 – Present",
-      employmentType: "Full-time",
-      employmentTypeColor: "bg-green-500",
-      impactHighlights: [
-        { label: "PR turnaround", value: "18h → 2.5h" },
-        { label: "Engineers on reviews", value: "200" },
-        { label: "Review cost / PR", value: "$50 → $0.40" },
-        { label: "Pipeline reliability", value: "99.8%" },
-      ],
-      details: [
-        "Lead development of an autonomous code review agent using LangChain Agents and OpenAI GPT-4o on FastAPI, orchestrating parallel security and performance scans that reduce PR turnaround from 18 h to 2.5 h.",
-        "Engineer event-driven webhook pipeline in Node.js and Express within a microservices architecture, processing GitHub PR events and dispatching payloads to the Python agent service via REST APIs, enabling real-time reviews for 200 engineers.",
-        "Implement RAG-based codebase search using a vector database and LangChain retrieval chains integrated with the GitHub REST API, providing contextual diff analysis that identifies 34 critical security vulnerabilities missed during manual review cycles.",
-        "Develop confidence-scored suggestion engine with automated test generation using LangChain structured outputs, mentoring 3 juniors on evaluation patterns while persisting audit trails in PostgreSQL with SQL analytics achieving 67% acceptance rate.",
-        "Build admin analytics dashboard in React and Next.js with product and engineering leadership to define acceptance-rate, false-positive, and cost-per-PR metrics, reducing review cost from $50 to $0.40 per PR.",
-        "Containerize microservices with Docker and deploy to AWS ECS, Lambda, and Kubernetes (EKS), integrating Slack REST API notifications with risk scoring that improves developer satisfaction from 3.2 to 4.6 out of 5.0.",
-        "Orchestrate end-to-end CI/CD pipelines using GitHub Actions with automated integration tests and agent quality gates, deploying across AWS infrastructure in Agile sprints with 99.8% pipeline reliability processing 600+ monthly PRs.",
-      ],
-      skills: [
-        "Python",
-        "FastAPI",
-        "LangChain",
-        "OpenAI GPT-4o",
-        "Node.js",
-        "Express",
-        "React",
-        "Next.js",
-        "PostgreSQL",
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "GitHub Actions",
-      ],
-    },
-    {
-      title: "Software Engineer",
-      company: "Razorpay",
-      location: "India",
-      date: "May 2021 – Jul 2023",
-      employmentType: "Full-time",
-      employmentTypeColor: "bg-green-500",
-      impactHighlights: [
-        { label: "Daily transactions", value: "500K+" },
-        { label: "Payment failures", value: "12% → 4%" },
-        { label: "Annual recovery", value: "$2.1M" },
-        { label: "Reconciliation", value: "48h → 2h" },
-      ],
-      details: [
-        "Led a 4-engineer squad to architect payment processing core in Java, Spring Boot, and Hibernate, implementing intelligent retry and multi-gateway routing across UPI rails reducing failure rates from 12% to 4%, recovering $2.1M annually.",
-        "Drove system design of event-driven microservices using Apache Kafka, streaming payment events, settlement triggers, and refund workflows across 6 consumer services processing 500K+ daily transactions with guaranteed ordering.",
-        "Built settlement reconciliation engine in Python and FastAPI, consuming Kafka events and automating bank file matching against PostgreSQL and MySQL ledgers with optimized indexing, reducing reconciliation turnaround from 48 h to 2 h.",
-        "Developed merchant transaction dashboard in React and TypeScript with real-time payment tracking, settlement summaries, and GMV analytics via REST APIs, collaborating with product and design to serve 25K+ merchants.",
-        "Engineered refund orchestration and webhook services in Node.js and Express, managing state machines with idempotency keys and Redis-backed rate limiting via REST APIs, reducing refund processing from 7 days to under 24 h.",
-        "Established comprehensive JUnit test suites achieving 90%+ coverage across Spring Boot payment-critical services, containerized with Docker, and deployed to AWS ECS via Jenkins and GitHub Actions CI/CD pipelines in Agile sprints.",
-        "Streamed transaction lifecycle events from Kafka into DynamoDB audit trails with TTL retention, enforced Git review gates with mandatory approvals for payment-critical paths, enabling PCI-DSS compliance across 500K+ daily transactions.",
-      ],
-      skills: [
-        "Java",
-        "Spring Boot",
-        "Hibernate",
-        "Python",
-        "FastAPI",
-        "React",
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "Kafka",
-        "PostgreSQL",
-        "MySQL",
-        "DynamoDB",
-        "Redis",
-        "AWS ECS",
-        "Docker",
-        "Jenkins",
-      ],
-    },
-  ];
-
   return (
-    <section id="experience" className="section-fade-in px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-white scroll-mt-20 overflow-hidden">
-      {/* Title section */}
-      <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
-        {/* Experience tag */}
-        <div className="inline-block bg-blue-100 border border-blue-300 rounded-lg px-3 py-1 mb-3 sm:mb-4">
-          <span className="text-blue-700 font-medium text-xs sm:text-sm">Experience</span>
-        </div>
-        {/* Main title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3">
-          <span className="text-slate-900">Professional</span>{" "}
-          <span className="text-blue-600">Journey</span>
-        </h2>
-        {/* Blue underline */}
-        <div className="h-1 w-20 sm:w-24 mx-auto mb-2 sm:mb-3 bg-blue-600 rounded-full"></div>
-        {/* Subtitle */}
-        <p className="text-slate-600 text-sm sm:text-base md:text-lg px-4 max-w-2xl mx-auto leading-relaxed">
-          Full-time roles only — each card starts with impact metrics recruiters can skim in under a minute.
-        </p>
-      </div>
+    <section id="experience" className="px-4 sm:px-6 py-16 sm:py-20 md:py-24 max-w-6xl mx-auto scroll-mt-24">
+      <SectionHeader
+        badge="Experience"
+        title="Professional"
+        titleAccent="Journey"
+        subtitle="Full-time and internship roles — impact metrics up front so recruiters can skim in under a minute."
+      />
 
-      <div className="relative mx-auto max-w-5xl">
-        <div className="space-y-8 sm:space-y-10 md:space-y-12">
-          {experiences.map((exp, i) => {
-            return (
-              <div key={i} className="relative">
-                {/* Experience card */}
-                <div>
-                  <div className="overflow-hidden rounded-xl border border-slate-200/90 border-l-4 border-l-blue-600 bg-gradient-to-br from-slate-50/90 to-white p-4 sm:p-5 md:p-6 shadow-sm ring-1 ring-slate-100">
-                    {/* Header row with title and employment type */}
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-0 mb-3">
-                      <div className="flex-1">
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{exp.title}</h3>
-                        <div className="flex items-center gap-2 text-blue-600">
-                          <Building2 className="w-4 h-4" />
-                          <span className="font-medium text-sm sm:text-base">{exp.company}</span>
-                        </div>
-                      </div>
-                      <div className={`${exp.employmentTypeColor} text-white px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs font-semibold whitespace-nowrap sm:ml-4 self-start`}>
-                        {exp.employmentType}
-                      </div>
-                    </div>
-
-                    {/* Date and location */}
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 text-slate-600 text-xs sm:text-sm">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        <span>{exp.date}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        <span>{exp.location}</span>
-                      </div>
-                    </div>
-
-                    {exp.impactHighlights && (
-                      <div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                        {exp.impactHighlights.map((h) => (
-                          <div
-                            key={h.label}
-                            className="rounded-lg border border-blue-100 bg-blue-50/60 px-2.5 py-2 sm:px-3 sm:py-2.5"
-                          >
-                            <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-blue-800/80">
-                              {h.label}
-                            </p>
-                            <p className="mt-0.5 text-sm font-bold text-slate-900">{h.value}</p>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Highlights &amp; scope</p>
-
-                    {/* Responsibilities with blue angle brackets */}
-                    <ul className="ml-3 sm:ml-5 text-slate-700 text-xs sm:text-sm space-y-1.5 sm:space-y-2 mb-4 sm:mb-5">
-                      {exp.details.map((detail, idx) => (
-                        <li key={idx} className="leading-relaxed flex items-start gap-2 break-words">
-                          <span className="text-blue-600 font-bold mt-0.5 flex-shrink-0">&gt;</span>
-                          <span>{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Skills tags - light gray */}
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                      {exp.skills.map((skill, idx) => (
-                        <span key={idx} className="bg-slate-200 text-slate-700 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-md text-xs font-medium">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
+      <motion.div
+        className="relative mx-auto max-w-5xl space-y-8 sm:space-y-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
+        {experiences.map((exp, i) => (
+          <motion.article
+            key={exp.company}
+            variants={fadeUp}
+            custom={i * 0.1}
+            className="group overflow-hidden rounded-2xl border border-slate-200/90 border-l-4 border-l-blue-600 bg-gradient-to-br from-white to-slate-50/80 p-5 sm:p-6 md:p-7 shadow-sm ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-blue-100"
+          >
+            <motion.div whileHover={{ x: 2 }} transition={{ type: "spring", stiffness: 400 }}>
+              <motion.div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                <motion.div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">{exp.title}</h3>
+                  <div className="flex items-center gap-2 text-blue-600">
+                    <Building2 className="w-4 h-4 shrink-0" />
+                    <span className="font-semibold">{exp.company}</span>
                   </div>
-                </div>
+                </motion.div>
+                <span
+                  className={`${exp.employmentTypeColor} text-white px-3 py-1 rounded-lg text-xs font-semibold self-start`}
+                >
+                  {exp.employmentType}
+                </span>
+              </motion.div>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 mb-5 text-slate-600 text-sm">
+                <span className="inline-flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  {exp.date}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  {exp.location}
+                </span>
               </div>
-            );
-          })}
-        </div>
-      </div>
+
+              <div className="mb-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {exp.impactHighlights.map((h) => (
+                  <div key={h.label} className="metric-chip">
+                    <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-blue-800/80">
+                      {h.label}
+                    </p>
+                    <p className="mt-0.5 text-sm font-bold text-slate-900">{h.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                Highlights &amp; scope
+              </p>
+
+              <ul className="ml-1 space-y-2 mb-5 text-slate-700 text-sm">
+                {exp.details.map((detail, idx) => (
+                  <li key={idx} className="flex items-start gap-2 leading-relaxed">
+                    <span className="mt-1 text-cyan-600 font-bold shrink-0">›</span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {exp.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-lg bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 transition group-hover:bg-blue-50 group-hover:text-blue-800"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </motion.article>
+        ))}
+      </motion.div>
     </section>
   );
 }

@@ -1,142 +1,150 @@
 "use client";
 
-import { Code, Brain, Cloud, Plug, Settings, BarChart3, Layers, FolderGit2 } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Code,
+  Brain,
+  Cloud,
+  Plug,
+  Database,
+  HeartPulse,
+  Truck,
+  Settings,
+} from "lucide-react";
+import { SectionHeader } from "./SectionReveal";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 
 const categories = [
   {
     icon: Code,
     title: "Programming Languages",
-    chips: ["Java", "Python", "JavaScript (Node.js)", "TypeScript", "SQL"],
+    chips: ["Java", "Python", "SQL", "JavaScript", "TypeScript", "Go"],
     gradient: "from-blue-500 to-cyan-500",
   },
   {
     icon: Plug,
-    title: "Backend & API Development",
-    chips: ["Spring Boot", "Hibernate", "FastAPI", "Express.js", "REST APIs", "Microservices Architecture"],
+    title: "Backend Engineering",
+    chips: [
+      "Spring Boot",
+      "FastAPI",
+      "REST APIs",
+      "Microservices",
+      "Distributed Systems",
+      "Event-Driven Architecture",
+      "Asynchronous Processing",
+      "System Design",
+    ],
     gradient: "from-green-500 to-emerald-500",
   },
   {
-    icon: Layers,
-    title: "Frontend Development",
-    chips: ["React.js", "Next.js", "HTML5", "CSS3"],
-    gradient: "from-indigo-500 to-purple-500",
-  },
-  {
     icon: Brain,
-    title: "AI/ML & LLM Engineering",
-    chips: ["LangChain", "OpenAI GPT-4o", "RAG", "LLM Agents", "Prompt Engineering"],
+    title: "AI & Machine Learning",
+    chips: [
+      "OpenAI GPT-4o",
+      "Anthropic Claude",
+      "Llama 3",
+      "LangChain",
+      "LangGraph",
+      "RAG",
+      "Pinecone",
+      "XGBoost",
+      "TensorFlow",
+      "Scikit-learn",
+    ],
     gradient: "from-purple-500 to-pink-500",
   },
   {
+    icon: Database,
+    title: "Data Engineering",
+    chips: ["Apache Spark", "ETL", "PostgreSQL", "Snowflake", "Redis", "Data Pipelines"],
+    gradient: "from-indigo-500 to-blue-600",
+  },
+  {
     icon: Cloud,
-    title: "Databases & Event-Driven Systems",
+    title: "Cloud & DevOps",
+    chips: ["AWS", "EKS", "Amazon S3", "Docker", "Kubernetes", "Terraform", "CI/CD", "CloudWatch"],
+    gradient: "from-orange-500 to-amber-500",
+  },
+  {
+    icon: HeartPulse,
+    title: "Healthcare Technologies",
+    chips: ["FHIR", "HL7", "EHR", "EMR", "HIPAA", "Audit Logging", "Encryption"],
+    gradient: "from-rose-500 to-red-500",
+  },
+  {
+    icon: Truck,
+    title: "Supply Chain & Logistics",
     chips: [
-      "PostgreSQL",
-      "MySQL",
-      "DynamoDB",
-      "Redis",
-      "Vector Databases",
-      "Apache Kafka",
-      "Event-Driven Architecture",
-      "Webhooks",
+      "Inventory Management",
+      "Demand Forecasting",
+      "Route Optimization",
+      "Geospatial APIs",
+      "Warehouse Automation",
     ],
-    gradient: "from-blue-600 to-indigo-600",
+    gradient: "from-teal-500 to-cyan-600",
   },
   {
     icon: Settings,
-    title: "Cloud & DevOps",
-    chips: [
-      "AWS (ECS, EKS, Lambda)",
-      "Docker",
-      "Kubernetes",
-      "CI/CD Pipelines",
-      "GitHub Actions",
-      "Jenkins",
-    ],
-    gradient: "from-orange-500 to-red-500",
-  },
-  {
-    icon: BarChart3,
-    title: "Testing, Quality & Observability",
-    chips: [
-      "JUnit",
-      "Integration Testing",
-      "Test Automation",
-      "Code Quality Gates",
-      "System Metrics",
-      "Cost Optimization",
-      "Performance Tuning",
-      "Logging & Observability",
-    ],
-    gradient: "from-cyan-500 to-blue-500",
-  },
-  {
-    icon: FolderGit2,
-    title: "Tools & Collaboration",
-    chips: ["Git", "GitHub", "Agile/Scrum", "Slack API Integrations"],
-    gradient: "from-teal-500 to-cyan-500",
+    title: "Streaming & Engineering",
+    chips: ["Apache Kafka", "RabbitMQ", "Agile", "Performance Optimization", "Scalability"],
+    gradient: "from-slate-600 to-slate-800",
   },
 ];
 
-function Card({ title, chips, icon: Icon, gradient }) {
+function SkillCard({ title, chips, icon: Icon, gradient }) {
   return (
-    <div className="group relative bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm border border-slate-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-      {/* Gradient background effect on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 rounded-xl transition-opacity duration-300`}></div>
-
-      <div className="relative mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-        <div className={`h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
-          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+    <motion.div
+      variants={fadeUp}
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white p-5 sm:p-6 shadow-sm card-hover"
+    >
+      <motion.div
+        className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 transition-opacity duration-300 group-hover:opacity-[0.06]`}
+      />
+      <div className="relative mb-4 flex items-center gap-3">
+        <div
+          className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} shadow-md`}
+        >
+          <Icon className="h-5 w-5 text-white" />
         </div>
-        <h3 className="text-base sm:text-lg font-bold text-slate-900 flex-1 group-hover:text-blue-600 transition-colors duration-300">
+        <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">
           {title}
         </h3>
       </div>
-      <div className="flex flex-wrap gap-1.5 sm:gap-2 relative">
+      <motion.div className="relative flex flex-wrap gap-2">
         {chips.map((c) => (
           <span
             key={c}
-            className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-slate-100 text-slate-700 rounded-lg text-xs sm:text-sm font-medium hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700 hover:border hover:border-blue-200 transition-all duration-200 cursor-default"
+            className="rounded-lg bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-100 transition hover:bg-blue-50 hover:text-blue-800 hover:ring-blue-100"
           >
             {c}
           </span>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-fade-in px-4 sm:px-6 py-12 sm:py-16 md:py-20 max-w-6xl mx-auto bg-slate-50 scroll-mt-20 overflow-hidden">
-      {/* Header Section */}
-      <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
-        {/* Skills & Technologies tag */}
-        <div className="inline-block bg-blue-100 border border-blue-300 rounded-lg px-3 py-1 mb-3 sm:mb-4">
-          <span className="text-blue-700 font-medium text-xs sm:text-sm">Skills & Technologies</span>
-        </div>
-        {/* Main title */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 sm:mb-3">
-          <span className="text-slate-900">Technical</span>{" "}
-          <span className="text-blue-600">Expertise</span>
-        </h2>
-        {/* Blue underline */}
-        <div className="h-1 w-24 sm:w-32 mx-auto mb-2 sm:mb-3 bg-blue-600 rounded-full"></div>
-        {/* Subtitle */}
-        <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-          Keyword-aligned for ATS and recruiter search — maps directly to the stacks in my{" "}
-          <a href="#experience" className="font-semibold text-blue-600 hover:underline">
-            experience
-          </a>
-          .
-        </p>
-      </div>
+    <section id="skills" className="px-4 sm:px-6 py-16 sm:py-20 md:py-24 max-w-6xl mx-auto bg-slate-50/80 scroll-mt-24 rounded-none">
+      <SectionHeader
+        badge="Skills & Technologies"
+        title="Technical"
+        titleAccent="Expertise"
+        subtitle="Keyword-aligned for ATS and recruiter search — maps directly to the stacks in my experience."
+      />
 
-      <div className="grid gap-4 sm:gap-5 md:gap-6 md:grid-cols-2">
+      <motion.div
+        className="grid gap-4 sm:gap-5 md:grid-cols-2"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
+      >
         {categories.map((c) => (
-          <Card key={c.title} title={c.title} chips={c.chips} icon={c.icon} gradient={c.gradient} />
+          <SkillCard key={c.title} {...c} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -94,7 +94,7 @@ export default function Navbar() {
             })}
           </ul>
           <a
-            href="/Rithish%20Murugan%20Resume.pdf"
+            href="/Rithish_Murugan_Resume.pdf"
             download
             className="ml-2 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-md shadow-blue-900/20 transition hover:bg-blue-700 active:bg-blue-800"
           >
@@ -105,7 +105,7 @@ export default function Navbar() {
 
         <div className="flex md:hidden items-center gap-2">
           <a
-            href="/Rithish%20Murugan%20Resume.pdf"
+            href="/Rithish_Murugan_Resume.pdf"
             download
             className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold transition ${
               scrolled
@@ -162,7 +162,7 @@ export default function Navbar() {
               })}
               <li className="px-3 pt-2 pb-3">
                 <a
-                  href="/Rithish%20Murugan%20Resume.pdf"
+                  href="/Rithish_Murugan_Resume.pdf"
                   download
                   onClick={() => setOpen(false)}
                   className="flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white"

@@ -4,24 +4,25 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Rithish Murugan | Software Engineer — Backend, AI/LLM, Distributed Systems',
+  title: 'Rithish Murugan | Software Engineer — Healthcare, Backend, AI/LLM',
   description:
-    'Software engineer (Rubrik, Razorpay) — LLM agents, RAG, Java/Spring Boot, Python/FastAPI, Kafka, AWS, React/Next.js. M.S. Computer Science, Illinois Institute of Technology.',
+    'Software Engineer (Abridge, Hexaware) — healthcare platforms, EHR/FHIR integrations, LLM copilots, Java/Spring Boot, Python/FastAPI, Kafka, AWS. M.S. Computer Science, Illinois Institute of Technology.',
   keywords: [
     'Software Engineer',
     'Backend Engineer',
-    'AI Engineer',
+    'Healthcare Engineer',
+    'FHIR',
+    'HL7',
     'LLM',
     'LangChain',
     'Java',
     'Python',
+    'FastAPI',
     'Spring Boot',
     'Kafka',
     'AWS',
-    'React',
-    'Next.js',
     'Distributed Systems',
-    'Fintech',
+    'Supply Chain',
   ],
 };
 
@@ -39,4 +40,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

@@ -4,15 +4,19 @@
 
 @layer base {
   :root {
-    --bg-start: #f7f9ff;
-    --bg-end: #eef2ff;
-    --text: #0f172a; /* slate-900 */
-    --muted: #475569; /* slate-600 */
-    --border: #e2e8f0; /* slate-200 */
+    --bg-start: #f4f7ff;
+    --bg-end: #e8eeff;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #e2e8f0;
     --card: #ffffff;
-    --primary: #2563eb; /* blue-600 */
-    --primary-100: #dbeafe; /* blue-100 */
-    --primary-50: #eff6ff; /* blue-50 */
+    --primary: #2563eb;
+    --primary-100: #dbeafe;
+    --primary-50: #eff6ff;
+    --accent: #06b6d4;
+    --hero-from: #070f1f;
+    --hero-via: #0d1b3d;
+    --hero-to: #162d5c;
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   }
@@ -45,23 +49,32 @@
 
 @layer components {
   .card {
-    @apply rounded-xl border shadow-sm bg-white border-slate-200;
+    @apply rounded-2xl border shadow-sm bg-white border-slate-200/90;
   }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:border-blue-200/80 hover:-translate-y-0.5;
+  }
+
+  .section-badge {
+    @apply inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50/90 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-800;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent;
+  }
+
+  .glass-panel {
+    @apply rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md;
+  }
+
   .pill {
     @apply inline-flex items-center rounded-full border px-3 py-1 text-xs;
     @apply border-slate-200 bg-slate-50 text-slate-700;
   }
-  .tab-wrap {
-    @apply mx-auto flex max-w-xl gap-2 rounded-full border p-1 text-sm bg-white border-slate-200;
-  }
-  .tab-btn {
-    @apply flex-1 rounded-full py-2 text-slate-700 hover:bg-slate-100;
-  }
-  .tab-btn-active {
-    @apply bg-blue-600 text-white hover:bg-blue-600;
-  }
-  .metric {
-    @apply card p-6 text-center;
+
+  .metric-chip {
+    @apply rounded-xl border border-blue-100/90 bg-gradient-to-br from-blue-50/90 to-white px-3 py-2.5;
   }
 
   .section-fade-in {
@@ -79,8 +92,23 @@
     }
   }
 
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .section-fade-in {
+    .section-fade-in,
+    .animate-float {
       animation: none;
     }
   }

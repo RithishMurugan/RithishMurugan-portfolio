@@ -1,12 +1,18 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import { Mail, Linkedin, MapPin, Phone, Github } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, MapPin, Phone, Github, ChevronDown } from "lucide-react";
+import { fadeUp, staggerContainer } from "../lib/motion";
+
+const RESUME_PATH = "/Rithish_Murugan_Resume.pdf";
+const EMAIL = "rithishmurugan52@gmail.com";
 
 const keywordPills = [
-  "Java & Spring Boot",
+  "Healthcare & FHIR",
   "Python & FastAPI",
-  "LLM agents & RAG",
-  "Kafka & events",
+  "LLM & RAG",
+  "Kafka & Spark",
   "AWS & Kubernetes",
 ];
 
@@ -14,29 +20,27 @@ export default function Hero() {
   const nameText = "Rithish Murugan";
   const [displayedName, setDisplayedName] = useState("");
   const [nameIndex, setNameIndex] = useState(0);
-  
+
   const titleText = "Software Engineer";
   const [displayedTitle, setDisplayedTitle] = useState("");
   const [titleIndex, setTitleIndex] = useState(0);
 
-  // Name typewriter effect
   useEffect(() => {
     if (nameIndex < nameText.length) {
       const timer = setTimeout(() => {
         setDisplayedName(nameText.slice(0, nameIndex + 1));
         setNameIndex(nameIndex + 1);
-      }, 120);
+      }, 100);
       return () => clearTimeout(timer);
     }
   }, [nameIndex, nameText]);
 
-  // Title typewriter effect - starts after name completes
   useEffect(() => {
     if (nameIndex >= nameText.length && titleIndex < titleText.length) {
       const timer = setTimeout(() => {
         setDisplayedTitle(titleText.slice(0, titleIndex + 1));
         setTitleIndex(titleIndex + 1);
-      }, 100);
+      }, 85);
       return () => clearTimeout(timer);
     }
   }, [nameIndex, titleIndex, titleText, nameText.length]);
@@ -44,142 +48,153 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100dvh] min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-r from-[#0a1628] via-[#0d1b3d] to-[#1a2f5c] text-white"
+      className="relative min-h-[100dvh] flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-br from-[#070f1f] via-[#0d1b3d] to-[#162d5c] text-white"
     >
-      {/* Glowing circles - responsive sizes */}
-      <div className="pointer-events-none absolute top-10 left-10 sm:left-20 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-blue-800/25 rounded-full blur-[80px] sm:blur-[120px]"></div>
-      <div className="pointer-events-none absolute top-[200px] right-10 sm:right-[150px] w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-blue-700/30 rounded-full blur-[90px] sm:blur-[130px]"></div>
-      <div className="pointer-events-none absolute bottom-[100px] left-10 sm:left-[200px] w-36 h-36 sm:w-60 sm:h-60 md:w-80 md:h-80 bg-cyan-700/20 rounded-full blur-[100px] sm:blur-[140px]"></div>
-      <div className="pointer-events-none absolute bottom-[50px] right-10 sm:right-[250px] w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-indigo-700/25 rounded-full blur-[110px] sm:blur-[150px]"></div>
-      <div className="pointer-events-none absolute bottom-[0px] left-[50%] -translate-x-1/2 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-blue-900/20 rounded-full blur-[120px] sm:blur-[160px]"></div>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute -top-20 left-[10%] h-72 w-72 rounded-full bg-blue-600/20 blur-[100px]"
+          animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-[5%] h-80 w-80 rounded-full bg-cyan-500/15 blur-[110px]"
+          animate={{ x: [0, -25, 0], y: [0, 30, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-indigo-600/15 blur-[120px]"
+          animate={{ scale: [1, 1.08, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+      </div>
 
-      {/* Minimal circular patterns - hidden on mobile, visible on larger screens */}
-      <div className="hidden sm:block pointer-events-none absolute top-[15%] left-[12%] w-8 h-8 md:w-12 md:h-12 bg-blue-400/15 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[25%] left-[35%] w-6 h-6 md:w-10 md:h-10 bg-cyan-400/12 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute top-[18%] left-[58%] w-10 h-10 md:w-14 md:h-14 bg-blue-300/18 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[22%] right-[25%] w-7 h-7 md:w-11 md:h-11 bg-indigo-400/14 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[30%] right-[12%] w-9 h-9 md:w-13 md:h-13 bg-blue-500/16 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[8%] right-[8%] w-8 h-8 md:w-12 md:h-12 bg-cyan-400/15 rounded-full"></div>
-      
-      <div className="hidden sm:block pointer-events-none absolute top-[42%] left-[15%] w-6 h-6 md:w-10 md:h-10 bg-cyan-500/13 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[48%] left-[42%] w-8 h-8 md:w-12 md:h-12 bg-blue-400/15 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute top-[45%] left-[68%] w-7 h-7 md:w-9 md:h-9 bg-indigo-300/12 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[50%] right-[20%] w-7 h-7 md:w-11 md:h-11 bg-blue-300/14 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute top-[55%] right-[8%] w-9 h-9 md:w-13 md:h-13 bg-cyan-400/16 rounded-full"></div>
-      
-      <div className="hidden sm:block pointer-events-none absolute bottom-[35%] left-[10%] w-8 h-8 md:w-12 md:h-12 bg-blue-500/15 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute bottom-[30%] left-[38%] w-6 h-6 md:w-10 md:h-10 bg-indigo-400/13 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute bottom-[38%] left-[62%] w-10 h-10 md:w-14 md:h-14 bg-cyan-500/17 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute bottom-[32%] right-[18%] w-7 h-7 md:w-11 md:h-11 bg-blue-400/14 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute bottom-[40%] right-[32%] w-7 h-7 md:w-9 md:h-9 bg-indigo-300/12 rounded-full"></div>
-      
-      <div className="hidden sm:block pointer-events-none absolute bottom-[20%] left-[22%] w-9 h-9 md:w-13 md:h-13 bg-blue-400/16 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute bottom-[15%] left-[48%] w-7 h-7 md:w-11 md:h-11 bg-cyan-400/14 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute bottom-[25%] left-[72%] w-6 h-6 md:w-10 md:h-10 bg-indigo-500/13 rounded-full"></div>
-      <div className="hidden sm:block pointer-events-none absolute bottom-[18%] right-[15%] w-8 h-8 md:w-12 md:h-12 bg-blue-300/15 rounded-full"></div>
-      <div className="hidden md:block pointer-events-none absolute bottom-[12%] right-[38%] w-7 h-7 md:w-9 md:h-9 bg-cyan-300/12 rounded-full"></div>
+      <motion.div
+        className="relative z-10 w-full max-w-4xl px-4 sm:px-6 pt-24 pb-28"
+        variants={staggerContainer}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.p variants={fadeUp} custom={0} className="text-sm sm:text-base font-medium text-cyan-300/90 mb-3 tracking-wide">
+          Hi, I&apos;m
+        </motion.p>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-full px-4 sm:px-6 pt-20 box-border" style={{ paddingBottom: 'calc(5rem + env(safe-area-inset-bottom, 0px))' }}>
-        {/* Hi, I'm text */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-white px-4">
-          Hi, I'm
-        </h2>
-
-        {/* Name with blue-to-cyan gradient - animated letter by letter */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 sm:mb-6 px-2 sm:px-4 break-words max-w-full">
-          <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+        <motion.h1
+          variants={fadeUp}
+          custom={1}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-3 tracking-tight"
+        >
+          <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
             {displayedName}
             {nameIndex < nameText.length && <span className="animate-pulse">|</span>}
           </span>
-        </h1>
+        </motion.h1>
 
-        {/* Title with typewriter effect */}
-        <p className="text-lg sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 px-2 sm:px-4 break-words max-w-full">
-          <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
+        <motion.p variants={fadeUp} custom={2} className="text-xl sm:text-2xl md:text-3xl font-semibold mb-5">
+          <span className="text-blue-100/95">
             {displayedTitle}
             {titleIndex < titleText.length && <span className="animate-pulse">|</span>}
           </span>
-        </p>
-        <p className="max-w-2xl mx-auto text-sm sm:text-base text-blue-100/95 leading-relaxed mb-6 sm:mb-8 px-4">
-          Software Engineer building distributed systems and AI-powered tooling — from high-scale payments to LLM-driven automation. Focused on reliability, cost, and developer productivity.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-8 px-4">
+        <motion.p
+          variants={fadeUp}
+          custom={3}
+          className="max-w-2xl mx-auto text-sm sm:text-base text-blue-100/90 leading-relaxed mb-7"
+        >
+          Software Engineer with 4+ years building scalable backend platforms across healthcare and supply chain —
+          from EHR integrations and clinical AI copilots to inventory, forecasting, and logistics automation.
+        </motion.p>
+
+        <motion.div variants={fadeUp} custom={4} className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-8">
           {keywordPills.map((pill) => (
             <span
               key={pill}
-              className="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3 py-1 text-[11px] sm:text-xs font-medium text-cyan-100"
+              className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1.5 text-[11px] sm:text-xs font-medium text-cyan-100 backdrop-blur-sm"
             >
               {pill}
             </span>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Contact Information */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8 text-blue-200 text-xs sm:text-sm px-4">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <MapPin size={16} className="sm:w-[18px] sm:h-[18px] text-blue-300" />
-            <span>USA</span>
-          </div>
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <Phone size={16} className="sm:w-[18px] sm:h-[18px] text-blue-300" />
-            <span className="hidden sm:inline">773-930-2475</span>
-            <span className="sm:hidden">773-930-2475</span>
-          </div>
-        </div>
+        <motion.div
+          variants={fadeUp}
+          custom={5}
+          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-8 text-blue-200/90 text-xs sm:text-sm"
+        >
+          <span className="inline-flex items-center gap-2">
+            <MapPin size={16} className="text-cyan-400" />
+            USA
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <Phone size={16} className="text-cyan-400" />
+            +1 (773) 930-2475
+          </span>
+        </motion.div>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8 px-4 w-full max-w-lg sm:max-w-none mx-auto sm:w-auto">
+        <motion.div
+          variants={fadeUp}
+          custom={6}
+          className="flex flex-col sm:flex-row justify-center gap-3 mb-8"
+        >
           <a
-            href="/Rithish%20Murugan%20Resume.pdf"
+            href={RESUME_PATH}
             download
-            className="min-h-[48px] flex items-center justify-center rounded-xl bg-white px-6 py-3.5 font-semibold text-sm sm:text-base text-slate-900 shadow-lg shadow-black/20 transition hover:bg-blue-50 active:scale-[0.99] text-center touch-manipulation"
+            className="min-h-[48px] inline-flex items-center justify-center rounded-xl bg-white px-7 py-3.5 font-semibold text-slate-900 shadow-xl shadow-black/25 transition hover:bg-blue-50 hover:scale-[1.02] active:scale-[0.99]"
           >
             Download resume
           </a>
           <a
             href="#experience"
-            className="min-h-[48px] flex items-center justify-center rounded-xl border-2 border-white/35 bg-white/5 px-6 py-3.5 font-semibold text-sm sm:text-base text-white backdrop-blur-sm transition hover:bg-white/10 text-center touch-manipulation"
+            className="min-h-[48px] inline-flex items-center justify-center rounded-xl border-2 border-white/30 bg-white/5 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition hover:bg-white/10 hover:border-white/50"
           >
             View experience
           </a>
           <a
-            href="#projects"
-            className="min-h-[48px] flex items-center justify-center rounded-xl border border-blue-400/40 px-6 py-3.5 font-medium text-sm sm:text-base text-blue-100 transition hover:border-blue-300 hover:bg-blue-500/10 text-center touch-manipulation sm:hidden"
+            href="#contact"
+            className="min-h-[48px] inline-flex items-center justify-center rounded-xl border border-cyan-400/40 px-7 py-3.5 font-medium text-cyan-100 transition hover:bg-cyan-500/10"
           >
-            Projects
+            Get in touch
           </a>
-        </div>
+        </motion.div>
 
-        {/* Social Icons */}
-        <div className="flex items-center justify-center gap-4 mb-20">
-          <a
-            href="https://linkedin.com/in/rithishmurugan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={24} />
-          </a>
-          <a
-            href="https://github.com/RithishMurugan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
-            aria-label="GitHub"
-          >
-            <Github size={24} />
-          </a>
-          <a
-            href="mailto:muruganrithish01@gmail.com"
-            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-blue-300 hover:text-blue-200 active:scale-95 transition-colors touch-manipulation"
-            aria-label="Email"
-          >
-            <Mail size={24} />
-          </a>
-        </div>
-      </div>
+        <motion.div variants={fadeUp} custom={7} className="flex items-center justify-center gap-5">
+          {[
+            { href: "https://linkedin.com/in/rithishmurugan", Icon: Linkedin, label: "LinkedIn" },
+            { href: "https://github.com/RithishMurugan", Icon: Github, label: "GitHub" },
+            { href: `mailto:${EMAIL}`, Icon: Mail, label: "Email" },
+          ].map(({ href, Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-blue-200 transition hover:border-cyan-400/50 hover:bg-cyan-500/10 hover:text-white"
+              aria-label={label}
+            >
+              <Icon size={22} />
+            </a>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      <motion.a
+        href="#about"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-blue-300/70 hover:text-cyan-300 transition"
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 0.5 }}
+        aria-label="Scroll to about"
+      >
+        <ChevronDown className="animate-bounce" size={28} />
+      </motion.a>
     </section>
   );
 }
