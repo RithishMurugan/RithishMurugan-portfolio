@@ -4,19 +4,20 @@
 
 @layer base {
   :root {
-    --bg-start: #f4f7ff;
-    --bg-end: #e8eeff;
-    --text: #0f172a;
-    --muted: #475569;
-    --border: #e2e8f0;
-    --card: #ffffff;
-    --primary: #2563eb;
-    --primary-100: #dbeafe;
-    --primary-50: #eff6ff;
-    --accent: #06b6d4;
-    --hero-from: #070f1f;
-    --hero-via: #0d1b3d;
-    --hero-to: #162d5c;
+    --color-primary: #18181b;
+    --color-secondary: #3f3f46;
+    --color-cta: #2563eb;
+    --color-cta-hover: #1d4ed8;
+    --color-background: #fafafa;
+    --color-text: #09090b;
+    --color-muted: #3f3f46;
+    --color-border: #e4e4e7;
+    --color-card: #ffffff;
+    --bg-start: #fafafa;
+    --bg-end: #f4f4f5;
+    --hero-from: #0f1419;
+    --hero-via: #18181b;
+    --hero-to: #27272a;
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   }
@@ -31,60 +32,84 @@
     html {
       scroll-behavior: auto;
     }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   body {
-    color: var(--text);
+    color: var(--color-text);
     background: linear-gradient(180deg, var(--bg-start), var(--bg-end));
     overflow-x: hidden;
     min-height: 100dvh;
     -webkit-tap-highlight-color: transparent;
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), Figtree, system-ui, sans-serif;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-cta);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-cta focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg;
+  }
+
+  .interactive {
+    @apply cursor-pointer transition-colors duration-200 ease-out;
+  }
+
   .card {
-    @apply rounded-2xl border shadow-sm bg-white border-slate-200/90;
+    @apply rounded-2xl border bg-white shadow-card border-zinc-200/90;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:border-blue-200/80 hover:-translate-y-0.5;
+    @apply transition-[box-shadow,border-color,transform] duration-200 ease-out;
+    @apply hover:shadow-card-hover hover:border-zinc-300;
+    @apply motion-safe:hover:-translate-y-0.5;
   }
 
   .section-badge {
-    @apply inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50/90 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-800;
+    @apply inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-zinc-700;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent;
-  }
-
-  .glass-panel {
-    @apply rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md;
-  }
-
-  .pill {
-    @apply inline-flex items-center rounded-full border px-3 py-1 text-xs;
-    @apply border-slate-200 bg-slate-50 text-slate-700;
+    @apply bg-gradient-to-r from-cta to-blue-700 bg-clip-text text-transparent;
   }
 
   .metric-chip {
-    @apply rounded-xl border border-blue-100/90 bg-gradient-to-br from-blue-50/90 to-white px-3 py-2.5;
+    @apply rounded-xl border border-zinc-200 bg-zinc-50/80 px-3 py-2.5;
+  }
+
+  .btn-primary {
+    @apply interactive inline-flex min-h-[44px] items-center justify-center rounded-xl bg-cta px-6 py-3 font-semibold text-white shadow-md transition duration-200 hover:bg-cta-hover;
+  }
+
+  .btn-secondary {
+    @apply interactive inline-flex min-h-[44px] items-center justify-center rounded-xl border-2 border-zinc-300 bg-white px-6 py-3 font-semibold text-ink transition duration-200 hover:border-cta hover:bg-zinc-50;
   }
 
   .section-fade-in {
-    animation: sectionFadeIn 0.65s ease-out both;
+    animation: sectionFadeIn 0.5s ease-out both;
   }
 
   @keyframes sectionFadeIn {
     from {
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -92,23 +117,8 @@
     }
   }
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-12px);
-    }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .section-fade-in,
-    .animate-float {
+    .section-fade-in {
       animation: none;
     }
   }

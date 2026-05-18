@@ -34,16 +34,17 @@ export default function Navbar() {
   }, []);
 
   const navLinkClass = scrolled
-    ? "text-slate-700 hover:text-blue-600"
+    ? "text-ink-muted hover:text-cta"
     : "text-white hover:text-blue-200";
 
   return (
     <>
       <nav
-        className={`fixed w-full py-3 px-4 sm:py-3.5 sm:px-6 flex justify-between items-center z-50 transition-all duration-300 left-0 right-0 ${
+        aria-label="Main navigation"
+        className={`fixed z-50 flex items-center justify-between transition-all duration-200 ease-out ${
           scrolled
-            ? "bg-white/92 backdrop-blur-md shadow-sm border-b border-slate-200/90"
-            : "bg-transparent"
+            ? "top-3 left-3 right-3 max-w-6xl mx-auto rounded-2xl border border-zinc-200/90 bg-white/95 px-4 py-3 shadow-card backdrop-blur-md sm:left-6 sm:right-6"
+            : "top-0 left-0 right-0 w-full bg-transparent px-4 py-3 sm:px-6 sm:py-3.5"
         }`}
         style={{
           paddingLeft: "max(1rem, calc(1rem + env(safe-area-inset-left)))",
@@ -84,7 +85,7 @@ export default function Navbar() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className={`flex items-center gap-1.5 rounded-lg px-2.5 py-2 transition-colors ${navLinkClass}`}
+                    className={`interactive flex min-h-[44px] items-center gap-1.5 rounded-lg px-2.5 py-2 ${navLinkClass}`}
                   >
                     <Icon size={17} aria-hidden />
                     <span>{link.name}</span>
@@ -96,7 +97,7 @@ export default function Navbar() {
           <a
             href="/Rithish_Murugan_Resume.pdf"
             download
-            className="ml-2 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3.5 py-2 text-sm font-semibold text-white shadow-md shadow-blue-900/20 transition hover:bg-blue-700 active:bg-blue-800"
+            className="btn-primary ml-2 gap-2 px-3.5 py-2 text-sm shadow-md"
           >
             <FileText size={17} aria-hidden />
             Resume

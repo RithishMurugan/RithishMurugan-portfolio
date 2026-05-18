@@ -1,7 +1,17 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
+import { Figtree, Noto_Sans } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const figtree = Figtree({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+});
+
+const notoSans = Noto_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
 
 export const metadata = {
   title: 'Rithish Murugan | Software Engineer — Healthcare, Backend, AI/LLM',
@@ -30,13 +40,15 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#0d1b3d',
+  themeColor: '#18181B',
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body suppressHydrationWarning className={inter.className}>{children}</body>
+    <html lang="en" className={`${figtree.variable} ${notoSans.variable}`}>
+      <body suppressHydrationWarning className={`${notoSans.className} font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

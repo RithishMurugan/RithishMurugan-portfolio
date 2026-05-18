@@ -1,4 +1,6 @@
+import MotionProvider from "./components/MotionProvider";
 import Navbar from "./components/Navbar";
+import SkipLink from "./components/SkipLink";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Experience from "./components/Experience";
@@ -11,17 +13,20 @@ import CareerProgression from "./components/CareerProgression";
 
 export default function Page() {
   return (
-    <main className="overflow-x-hidden min-h-screen w-full">
+    <MotionProvider>
+      <SkipLink />
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Skills />
-      <Projects />
-      <CareerProgression />
-      <Education />
-      <Contact />
+      <main id="main-content" className="min-h-screen w-full overflow-x-hidden">
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <Projects />
+        <CareerProgression />
+        <Education />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </MotionProvider>
   );
 }

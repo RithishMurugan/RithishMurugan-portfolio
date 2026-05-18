@@ -121,7 +121,7 @@ export default function Experience() {
             key={exp.company}
             variants={fadeUp}
             custom={i * 0.1}
-            className="group overflow-hidden rounded-2xl border border-slate-200/90 border-l-4 border-l-blue-600 bg-gradient-to-br from-white to-slate-50/80 p-5 sm:p-6 md:p-7 shadow-sm ring-1 ring-slate-100 transition hover:shadow-lg hover:ring-blue-100"
+            className="card card-hover group overflow-hidden border-l-4 border-l-cta bg-gradient-to-br from-white to-zinc-50/80 p-5 ring-1 ring-zinc-100 sm:p-6 md:p-7"
           >
             <motion.div whileHover={{ x: 2 }} transition={{ type: "spring", stiffness: 400 }}>
               <motion.div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">

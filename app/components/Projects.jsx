@@ -100,10 +100,10 @@ export default function Projects() {
             key={p.title}
             variants={fadeUp}
             whileHover={{ y: -3 }}
-            className={`overflow-hidden rounded-2xl border bg-white shadow-sm transition ${
+            className={`card overflow-hidden transition duration-200 ${
               p.featured
-                ? "border-cyan-200/80 ring-2 ring-cyan-100/80 shadow-md"
-                : "border-slate-200/90 hover:shadow-lg hover:border-blue-100"
+                ? "border-cta/30 ring-2 ring-blue-100 shadow-card-hover"
+                : "card-hover"
             }`}
           >
             <motion.div className={`h-1.5 bg-gradient-to-r ${p.gradient}`} layoutId={`bar-${p.title}`} />
