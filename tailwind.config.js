@@ -1,7 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
+    screens: {
+      xs: "375px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
     extend: {
       fontFamily: {
         sans: ["var(--font-body)", "Noto Sans", "system-ui", "sans-serif"],
@@ -17,8 +26,8 @@ module.exports = {
           foreground: "#FAFAFA",
         },
         cta: {
-          DEFAULT: "#2563EB",
-          hover: "#1D4ED8",
+          DEFAULT: "var(--color-cta)",
+          hover: "var(--color-cta-hover)",
         },
         surface: {
           DEFAULT: "#FAFAFA",
@@ -28,6 +37,14 @@ module.exports = {
           DEFAULT: "#09090B",
           muted: "#3F3F46",
         },
+        foreground: "var(--color-foreground)",
+        background: "var(--color-background)",
+        card: "var(--color-card)",
+        muted: {
+          DEFAULT: "var(--color-muted)",
+          foreground: "var(--color-muted-foreground)",
+        },
+        border: "var(--color-border)",
         hero: {
           from: "#0f1419",
           via: "#18181B",

@@ -1,0 +1,156 @@
+export type ProjectCategory = "all" | "ai-ml" | "agentic" | "full-stack" | "backend" | "web";
+
+export interface Project {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+  longDescription: string;
+  features: string[];
+  tech: string[];
+  categories: Exclude<ProjectCategory, "all">[];
+  gradient: string;
+  techColor: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  featured?: boolean;
+}
+
+export const PROJECT_CATEGORIES: { id: ProjectCategory; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "ai-ml", label: "AI/ML" },
+  { id: "agentic", label: "Agentic Systems" },
+  { id: "full-stack", label: "Full-Stack" },
+  { id: "backend", label: "Backend" },
+  { id: "web", label: "Web Apps" },
+];
+
+export const projects: Project[] = [
+  {
+    id: "healthcare-copilot",
+    title: "Healthcare AI Copilot & Clinical Data Platform",
+    date: "2025 – Present",
+    description:
+      "Clinician-facing AI copilot platform at Abridge — FastAPI backends, React/TypeScript review interfaces, LangChain RAG, and FHIR/HL7 clinical integrations.",
+    longDescription:
+      "Full-stack healthcare AI platform integrating five clinical domains with Python, FastAPI, FHIR, HL7, and PostgreSQL — centralizing 400K+ patient records. Built clinician-facing copilot APIs and React/TypeScript review interfaces with LangChain, RAG, GPT-4o, Claude, and Llama 3. Event-driven pipelines on Kafka, Redis, S3, and Snowflake with LangGraph workflows, HITL review, and PII safeguards across 50K+ monthly interactions on AWS EKS.",
+    features: [
+      "Clinician-facing AI copilot APIs with citation review and feedback capture",
+      "React + TypeScript review interfaces with secure approval workflows",
+      "LangGraph orchestration with HITL, groundedness, and PII validation",
+      "99.99% uptime on AWS EKS with Terraform, CI/CD, and audit logging",
+    ],
+    tech: ["Python", "FastAPI", "React", "TypeScript", "FHIR", "LangChain", "LangGraph", "RAG", "Kafka", "PostgreSQL", "Snowflake", "AWS EKS"],
+    categories: ["ai-ml", "agentic", "backend"],
+    gradient: "from-cyan-600 to-blue-600",
+    techColor: "bg-cyan-50 text-cyan-900 ring-cyan-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:ring-cyan-800",
+    featured: true,
+  },
+  {
+    id: "call-center-dashboard",
+    title: "Call Center Analytics Dashboard",
+    date: "Nov 2025",
+    description:
+      "Full-stack AI dashboard analyzing 451 call center interactions with Gemini 2.5 — LLM insights, funnels, and revenue modeling.",
+    longDescription:
+      "Built a full-stack AI analytics dashboard that processes 451 call center interactions using TypeScript, Express, React, and Gemini 2.5. Surfaces LLM-driven insights, conversion funnels, and revenue modeling to support coaching and pattern detection.",
+    features: [
+      "LLM-powered insight extraction from call transcripts",
+      "Interactive funnels and revenue modeling dashboards",
+      "REST API layer with Express and React frontend",
+    ],
+    tech: ["React", "TypeScript", "Express.js", "Gemini 2.5", "Tailwind", "Recharts", "Node.js"],
+    categories: ["ai-ml", "full-stack", "web"],
+    gradient: "from-orange-500 to-red-500",
+    techColor: "bg-orange-50 text-orange-800 ring-orange-100 dark:bg-orange-950/50 dark:text-orange-200 dark:ring-orange-800",
+    githubUrl: "https://github.com/RithishMurugan/plaibook-call-center-dashboard.git",
+  },
+  {
+    id: "rag-agentcore",
+    title: "RAG-Based Chatbot with AgentCore",
+    date: "Oct 2025",
+    description:
+      "Custom RAG chatbot on AWS Bedrock and AgentCore for domain-specific Q&A over PDFs and text files.",
+    longDescription:
+      "Developed a custom RAG chatbot on AWS Bedrock and AgentCore for domain-specific Q&A over PDFs and text files. Includes embedding pipelines, retrieval logic, and a Python interface for real-time agent invocation.",
+    features: [
+      "AWS Bedrock + AgentCore agent orchestration",
+      "Embedding and retrieval pipeline over documents",
+      "Real-time Python invocation interface",
+    ],
+    tech: ["Python", "AWS Bedrock", "AgentCore", "Embeddings", "Retrieval Pipelines"],
+    categories: ["ai-ml", "agentic", "backend"],
+    gradient: "from-indigo-500 to-purple-500",
+    techColor: "bg-indigo-50 text-indigo-800 ring-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-200 dark:ring-indigo-800",
+    githubUrl: "https://github.com/RithishMurugan/RAG-Based-Chatbot-with-AgentCore.git",
+  },
+  {
+    id: "guest-concierge",
+    title: "AI Guest Concierge Agent",
+    date: "Jul 2025",
+    description:
+      "AI concierge with RAG pipeline on Pinecone + Supabase, automating guest workflows via REST APIs.",
+    longDescription:
+      "Built an AI concierge that answers guest questions and automates workflows with a RAG pipeline on Pinecone and Supabase, reducing manual support load through REST API integrations and n8n automation.",
+    features: [
+      "RAG pipeline with Pinecone vector search",
+      "Supabase backend and n8n workflow automation",
+      "REST API integrations for guest services",
+    ],
+    tech: ["Python", "RAG", "Pinecone", "Supabase", "n8n", "REST APIs"],
+    categories: ["ai-ml", "agentic", "backend"],
+    gradient: "from-green-500 to-teal-500",
+    techColor: "bg-green-50 text-green-800 ring-green-100 dark:bg-green-950/50 dark:text-green-200 dark:ring-green-800",
+    githubUrl: "https://github.com/RithishMurugan/AI-Guest-Concierge-Agent.git",
+  },
+  {
+    id: "hand-sign-detection",
+    title: "Real-Time Hand Sign Detection System",
+    date: "Jan 2025",
+    description:
+      "Real-time gesture recognition detecting 36 hand signs at 90%+ accuracy with MediaPipe and TensorFlow.",
+    longDescription:
+      "Real-time gesture recognition system detecting 36 hand signs at 90%+ accuracy using MediaPipe landmarks and a TensorFlow classifier — modular pipeline designed for retraining and deployment.",
+    features: [
+      "36-class hand sign classification at 90%+ accuracy",
+      "MediaPipe landmark extraction pipeline",
+      "Modular TensorFlow classifier for retraining",
+    ],
+    tech: ["Python", "TensorFlow", "MediaPipe", "OpenCV"],
+    categories: ["ai-ml", "backend"],
+    gradient: "from-blue-500 to-purple-600",
+    techColor: "bg-blue-50 text-blue-800 ring-blue-100 dark:bg-blue-950/50 dark:text-blue-200 dark:ring-blue-800",
+    githubUrl: "https://github.com/RithishMurugan/Real-Time-Hand-Sign-Detection-System.git",
+  },
+  {
+    id: "traffic-cli",
+    title: "Traffic Management System (CLI Analytics Tool)",
+    date: "Mar 2024",
+    description:
+      "Python + SQL CLI analytics tool for traffic incident, vehicle, road, and signal datasets.",
+    longDescription:
+      "Python and SQL CLI analytics tool for traffic incident, vehicle, road, and signal datasets. Normalized schemas and query-driven workflows for violation density and route throughput analysis.",
+    features: [
+      "Normalized SQL schemas for multi-dataset analysis",
+      "CLI-driven query workflows",
+      "Violation density and route throughput reports",
+    ],
+    tech: ["Python", "SQL", "Data Modeling"],
+    categories: ["backend"],
+    gradient: "from-purple-500 to-pink-500",
+    techColor: "bg-purple-50 text-purple-800 ring-purple-100 dark:bg-purple-950/50 dark:text-purple-200 dark:ring-purple-800",
+  },
+];
+
+export function filterProjects(
+  category: ProjectCategory,
+  skill: string | null
+): Project[] {
+  return projects.filter((p) => {
+    const categoryMatch =
+      category === "all" || p.categories.includes(category as Exclude<ProjectCategory, "all">);
+    const skillMatch =
+      !skill || p.tech.some((t) => t.toLowerCase().includes(skill.toLowerCase()));
+    return categoryMatch && skillMatch;
+  });
+}

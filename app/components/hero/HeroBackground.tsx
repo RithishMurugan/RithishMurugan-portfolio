@@ -1,0 +1,98 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { heroBlobTransition } from "@/lib/motion";
+
+const networkPaths = [
+  "M0 420 Q 220 380 440 400 T 880 360",
+  "M0 520 Q 280 480 520 500 T 960 460",
+  "M0 180 L 320 220 L 520 160 L 880 200",
+];
+
+const nodes = [
+  { cx: "12%", cy: "38%", delay: 0 },
+  { cx: "44%", cy: "41%", delay: 0.15 },
+  { cx: "72%", cy: "36%", delay: 0.3 },
+  { cx: "50%", cy: "72%", delay: 0.45 },
+];
+
+const HeroMesh = dynamic(() => import("./HeroMesh"), { ssr: false });
+
+export default function HeroBackground() {
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(165deg, #070b12 0%, #0d1522 38%, #111827 62%, #0a0f18 100%)",
+        }}
+      />
+
+      <Suspense fallback={null}>
+        <HeroMesh />
+      </Suspense>
+
+      <motion.div
+        className="absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          background: `
+            radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
+            radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
+            radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.14) 0%, transparent 50%)
+          `,
+        }}
+      />
+
+      {!prefersReducedMotion && (
+        <>
+          <motion.div
+            className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-blue-600/20 blur-[100px]"
+            animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+            transition={heroBlobTransition}
+          />
+          <motion.div
+            className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-cyan-500/15 blur-[90px]"
+            animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
+            transition={{ ...heroBlobTransition, delay: 2 }}
+          />
+        </>
+      )}
+
+      <svg className="absolute inset-0 h-full w-full opacity-30" preserveAspectRatio="none">
+        {networkPaths.map((d, i) => (
+          <motion.path
+            key={d}
+            d={d}
+            fill="none"
+            stroke="rgba(96, 165, 250, 0.35)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 2, delay: i * 0.3, ease: "easeOut" }}
+          />
+        ))}
+        {nodes.map((node) => (
+          <motion.circle
+            key={`${node.cx}-${node.cy}`}
+            cx={node.cx}
+            cy={node.cy}
+            r="3"
+            fill="rgba(96, 165, 250, 0.8)"
+            initial={{ scale: 0 }}
+            animate={{ scale: [1, 1.4, 1] }}
+            transition={{ duration: 3, repeat: Infinity, delay: node.delay }}
+          />
+        ))}
+      </svg>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-[#070b12] via-transparent to-transparent" />
+    </div>
+  );
+}
