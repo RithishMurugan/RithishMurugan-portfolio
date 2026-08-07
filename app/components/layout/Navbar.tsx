@@ -56,12 +56,18 @@ export default function Navbar() {
     };
   }, [open]);
 
+  const onHero = !scrolled;
+
   const navLinkClass = (id: string) =>
     cn(
       "interactive flex min-h-[44px] items-center gap-1.5 rounded-lg px-2 py-2 text-sm transition-colors xl:px-2.5",
-      activeSection === id
-        ? scrolled ? "font-semibold text-cta" : "font-semibold text-white"
-        : scrolled ? "text-muted-foreground hover:text-cta" : "text-white/80 hover:text-white"
+      onHero
+        ? activeSection === id
+          ? "font-semibold text-foreground dark:text-white"
+          : "text-muted-foreground hover:text-cta dark:text-white/80 dark:hover:text-white"
+        : activeSection === id
+          ? "font-semibold text-cta"
+          : "text-muted-foreground hover:text-cta"
     );
 
   return (
@@ -82,10 +88,10 @@ export default function Navbar() {
             <span className="text-base font-bold text-white sm:text-xl">&lt;/&gt;</span>
           </div>
           <div className="min-w-0 text-left">
-            <p className={cn("truncate text-sm font-bold leading-tight sm:text-lg", scrolled ? "text-foreground" : "text-white")}>
+            <p className={cn("truncate text-sm font-bold leading-tight sm:text-lg", onHero ? "text-foreground dark:text-white" : "text-foreground")}>
               {SITE.name}
             </p>
-            <p className={cn("hidden truncate text-[11px] font-medium uppercase tracking-wide lg:block", scrolled ? "text-muted-foreground" : "text-blue-200/90")}>
+            <p className={cn("hidden truncate text-[11px] font-medium uppercase tracking-wide lg:block", onHero ? "text-muted-foreground dark:text-blue-200/90" : "text-muted-foreground")}>
               {SITE.title}
             </p>
           </div>
@@ -105,7 +111,7 @@ export default function Navbar() {
               );
             })}
           </ul>
-          <ThemeToggle scrolled={scrolled} className="ml-1" />
+          <ThemeToggle scrolled={scrolled} onHero={onHero} className="ml-1" />
           <motion.a
             href={SITE.resumePath}
             download
@@ -120,13 +126,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 lg:hidden">
-          <ThemeToggle scrolled={scrolled} />
+          <ThemeToggle scrolled={scrolled} onHero={onHero} />
           <motion.a
             href={SITE.resumePath}
             download
             className={cn(
               "inline-flex min-h-[44px] items-center gap-1.5 rounded-lg px-2.5 py-2 text-sm font-semibold sm:px-3",
-              scrolled ? "bg-cta text-white" : "bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-sm"
+              onHero ? "bg-cta text-white" : "bg-cta text-white"
             )}
             whileTap={{ scale: 0.97 }}
             aria-label="Download resume"
@@ -136,7 +142,7 @@ export default function Navbar() {
           </motion.a>
           <motion.button
             type="button"
-            className={cn("touch-target flex items-center justify-center rounded-lg text-2xl", scrolled ? "text-foreground" : "text-white")}
+            className={cn("touch-target flex items-center justify-center rounded-lg text-2xl", onHero ? "text-foreground dark:text-white" : "text-foreground")}
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-label="Toggle menu"

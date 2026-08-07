@@ -24,34 +24,24 @@ export default function HeroBackground() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(165deg, #070b12 0%, #0d1522 38%, #111827 62%, #0a0f18 100%)",
-        }}
-      />
+    <div className="pointer-events-none absolute inset-0 overflow-hidden transition-colors duration-300" aria-hidden="true">
+      <div className="hero-bg-base absolute inset-0 transition-[background] duration-300" />
 
       <Suspense fallback={null}>
-        <HeroMesh />
+        <div className="hidden dark:block">
+          <HeroMesh />
+        </div>
       </Suspense>
 
       <motion.div
-        className="absolute inset-0"
+        className="hero-bg-overlay absolute inset-0 transition-[background] duration-300"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          background: `
-            radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
-            radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
-            radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.14) 0%, transparent 50%)
-          `,
-        }}
       />
 
       {!prefersReducedMotion && (
-        <>
+        <div className="hidden dark:contents">
           <motion.div
             className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-blue-600/20 blur-[100px]"
             animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
@@ -62,37 +52,49 @@ export default function HeroBackground() {
             animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
             transition={{ ...heroBlobTransition, delay: 2 }}
           />
-        </>
+        </div>
       )}
 
-      <svg className="absolute inset-0 h-full w-full opacity-30" preserveAspectRatio="none">
+      <svg className="absolute inset-0 h-full w-full opacity-25 dark:opacity-30" preserveAspectRatio="none">
         {networkPaths.map((d, i) => (
           <motion.path
             key={d}
             d={d}
             fill="none"
-            stroke="rgba(96, 165, 250, 0.35)"
+            stroke="var(--hero-network-stroke)"
             strokeWidth="1"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
             transition={{ duration: 2, delay: i * 0.3, ease: "easeOut" }}
           />
         ))}
-        {nodes.map((node) => (
-          <motion.circle
-            key={`${node.cx}-${node.cy}`}
-            cx={node.cx}
-            cy={node.cy}
-            r="3"
-            fill="rgba(96, 165, 250, 0.8)"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.4, 1] }}
-            transition={{ duration: 3, repeat: Infinity, delay: node.delay }}
-          />
-        ))}
+        {nodes.map((node) =>
+          prefersReducedMotion ? (
+            <circle
+              key={`${node.cx}-${node.cy}`}
+              cx={node.cx}
+              cy={node.cy}
+              r="3"
+              fill="var(--hero-network-node)"
+              className="hidden dark:block"
+            />
+          ) : (
+            <motion.circle
+              key={`${node.cx}-${node.cy}`}
+              cx={node.cx}
+              cy={node.cy}
+              r="3"
+              fill="var(--hero-network-node)"
+              className="hidden dark:block"
+              initial={{ scale: 0 }}
+              animate={{ scale: [1, 1.4, 1] }}
+              transition={{ duration: 3, repeat: Infinity, delay: node.delay }}
+            />
+          )
+        )}
       </svg>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#070b12] via-transparent to-transparent" />
+      <div className="hero-bg-bottom-fade absolute inset-0 transition-[background] duration-300" />
     </div>
   );
 }

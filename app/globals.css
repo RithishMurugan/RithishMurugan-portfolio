@@ -16,6 +16,32 @@
     --color-border: #e4e4e7;
     --bg-start: #fafafa;
     --bg-end: #f4f4f5;
+    --hero-gradient: linear-gradient(165deg, #f0f5ff 0%, #e8f0fe 38%, #f1f5f9 62%, #f8fafc 100%);
+    --hero-overlay: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.14) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+    --hero-bottom-fade: #f8fafc;
+    --hero-network-stroke: rgba(37, 99, 235, 0.28);
+    --hero-network-node: rgba(37, 99, 235, 0.65);
+    --hero-foreground: #09090b;
+    --hero-muted: #52525b;
+    --hero-subtle: #71717a;
+    --hero-accent: #2563eb;
+    --hero-name-from: #09090b;
+    --hero-name-via: #3f3f46;
+    --hero-name-to: #2563eb;
+    --hero-pill-border: rgba(0, 0, 0, 0.08);
+    --hero-pill-bg: rgba(255, 255, 255, 0.72);
+    --hero-social-border: rgba(0, 0, 0, 0.1);
+    --hero-social-bg: rgba(255, 255, 255, 0.65);
+    --hero-social-text: #3f3f46;
+    --footer-gradient: linear-gradient(to bottom right, #f8fafc, #eef2ff, #e0e7ff);
+    --footer-text: #09090b;
+    --footer-muted: #52525b;
+    --footer-subtle: #71717a;
+    --footer-border: rgba(0, 0, 0, 0.08);
+    --footer-link: #2563eb;
+    --footer-link-hover: #1d4ed8;
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   }
@@ -33,6 +59,32 @@
     --color-border: #27272a;
     --bg-start: #09090b;
     --bg-end: #111113;
+    --hero-gradient: linear-gradient(165deg, #070b12 0%, #0d1522 38%, #111827 62%, #0a0f18 100%);
+    --hero-overlay: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
+    --hero-bottom-fade: #070b12;
+    --hero-network-stroke: rgba(96, 165, 250, 0.35);
+    --hero-network-node: rgba(96, 165, 250, 0.8);
+    --hero-foreground: #fafafa;
+    --hero-muted: #d4d4d8;
+    --hero-subtle: #a1a1aa;
+    --hero-accent: #60a5fa;
+    --hero-name-from: #ffffff;
+    --hero-name-via: #f4f4f5;
+    --hero-name-to: #bfdbfe;
+    --hero-pill-border: rgba(255, 255, 255, 0.1);
+    --hero-pill-bg: rgba(255, 255, 255, 0.05);
+    --hero-social-border: rgba(255, 255, 255, 0.15);
+    --hero-social-bg: rgba(24, 24, 27, 0.4);
+    --hero-social-text: #d4d4d8;
+    --footer-gradient: linear-gradient(to bottom right, #070f1f, #0d1b3d, #162d5c);
+    --footer-text: #fafafa;
+    --footer-muted: #94a3b8;
+    --footer-subtle: #64748b;
+    --footer-border: rgba(255, 255, 255, 0.1);
+    --footer-link: #22d3ee;
+    --footer-link-hover: #67e8f9;
   }
 
   html {
@@ -197,6 +249,80 @@
     content: "";
     @apply h-2 w-2 rounded-full bg-emerald-400;
     animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  .hero-bg-base {
+    background: var(--hero-gradient);
+  }
+
+  .hero-bg-overlay {
+    background: var(--hero-overlay);
+  }
+
+  .hero-bg-bottom-fade {
+    background: linear-gradient(to top, var(--hero-bottom-fade), transparent);
+  }
+
+  .hero-text {
+    color: var(--hero-foreground);
+  }
+
+  .hero-text-muted {
+    color: var(--hero-muted);
+  }
+
+  .hero-text-subtle {
+    color: var(--hero-subtle);
+  }
+
+  .hero-name-gradient {
+    background: linear-gradient(to bottom right, var(--hero-name-from), var(--hero-name-via), var(--hero-name-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-pill {
+    border: 1px solid var(--hero-pill-border);
+    background-color: var(--hero-pill-bg);
+    color: var(--hero-muted);
+  }
+
+  .hero-social-btn {
+    border: 1px solid var(--hero-social-border);
+    background-color: var(--hero-social-bg);
+    color: var(--hero-social-text);
+  }
+
+  .footer-surface {
+    background: var(--footer-gradient);
+    color: var(--footer-text);
+  }
+
+  .footer-text-muted {
+    color: var(--footer-muted);
+  }
+
+  .footer-text-subtle {
+    color: var(--footer-subtle);
+  }
+
+  .footer-border {
+    border-color: var(--footer-border);
+  }
+
+  .footer-link {
+    color: var(--footer-link);
+  }
+
+  .footer-link:hover {
+    color: var(--footer-link-hover);
+  }
+
+  .terminal-surface {
+    @apply shadow-2xl backdrop-blur-xl;
+    border: 1px solid var(--hero-pill-border);
+    background-color: color-mix(in srgb, var(--color-card) 82%, transparent);
   }
 
   .section-shell {

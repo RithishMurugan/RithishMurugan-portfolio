@@ -37,28 +37,28 @@ export default function TerminalWidget() {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.6 }}
-      className="w-full max-w-md rounded-2xl border border-white/10 bg-black/40 shadow-2xl backdrop-blur-xl"
+      className="terminal-surface w-full max-w-md rounded-2xl"
       aria-label="Interactive terminal showing skills and focus areas"
     >
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-red-500/80" />
         <span className="h-3 w-3 rounded-full bg-yellow-500/80" />
         <span className="h-3 w-3 rounded-full bg-green-500/80" />
-        <span className="ml-2 font-mono text-xs text-zinc-400">rithish@portfolio ~</span>
+        <span className="ml-2 font-mono text-xs text-muted-foreground">rithish@portfolio ~</span>
       </div>
-      <div className="min-h-[200px] space-y-2 p-4 font-mono text-xs leading-relaxed sm:text-sm">
+      <div className="min-h-[200px] space-y-2 p-4 font-mono text-xs leading-relaxed text-muted-foreground sm:text-sm">
         {history.map((line, i) => (
-          <div key={`${line.prompt}-${i}`} className="text-zinc-400">
-            <span className="text-cyan-400">$</span> {line.prompt}{" "}
-            <span className="text-zinc-200">{line.text}</span>
+          <div key={`${line.prompt}-${i}`}>
+            <span className="text-cyan-600 dark:text-cyan-400">$</span> {line.prompt}{" "}
+            <span className="text-foreground">{line.text}</span>
           </div>
         ))}
         <div>
-          <span className="text-cyan-400">$</span> {currentLine.prompt}{" "}
-          <span className="text-emerald-300">{displayed}</span>
+          <span className="text-cyan-600 dark:text-cyan-400">$</span> {currentLine.prompt}{" "}
+          <span className="text-emerald-600 dark:text-emerald-300">{displayed}</span>
           {!prefersReducedMotion && (
             <motion.span
-              className="inline-block w-2 bg-emerald-400"
+              className="inline-block w-2 bg-emerald-500 dark:bg-emerald-400"
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 0.8, repeat: Infinity }}
             >

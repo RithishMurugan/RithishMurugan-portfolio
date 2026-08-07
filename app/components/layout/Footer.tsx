@@ -15,11 +15,11 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#070f1f] via-[#0d1b3d] to-[#162d5c] py-10 text-white safe-bottom sm:py-14">
+    <footer className="footer-surface relative overflow-hidden py-10 transition-colors duration-300 safe-bottom sm:py-14">
       <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden>
-        <div className="absolute top-0 left-1/4 h-48 w-48 rounded-full bg-blue-600/30 blur-[80px]" />
+        <div className="absolute top-0 left-1/4 h-48 w-48 rounded-full bg-blue-500/20 blur-[80px] dark:bg-blue-600/30" />
         <motion.div
-          className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-cyan-500/20 blur-[90px]"
+          className="absolute bottom-0 right-1/4 h-56 w-56 rounded-full bg-cyan-500/15 blur-[90px] dark:bg-cyan-500/20"
           animate={{ opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -29,15 +29,15 @@ export default function Footer() {
         <div className="mb-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white">
                 <span className="text-lg font-bold">&lt;/&gt;</span>
               </div>
               <div>
                 <h3 className="text-lg font-bold">{SITE.name}</h3>
-                <p className="text-sm text-slate-400">{SITE.title}</p>
+                <p className="footer-text-muted text-sm">{SITE.title}</p>
               </div>
             </div>
-            <p className="mb-5 max-w-sm text-sm leading-relaxed text-slate-300">
+            <p className="footer-text-muted mb-5 max-w-sm text-sm leading-relaxed">
               AI Full Stack Software Engineer — healthcare AI platforms at Abridge, cloud data engineering at Virtualan, enterprise Java at Hexaware. M.S. CS, IIT.
             </p>
             <div className="flex gap-3">
@@ -51,7 +51,7 @@ export default function Footer() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-slate-400 transition hover:border-cyan-400/40 hover:text-white"
+                  className="footer-border footer-text-muted flex h-10 w-10 items-center justify-center rounded-lg border bg-black/5 transition hover:border-cta/40 hover:text-cta dark:bg-white/5 dark:hover:text-cta"
                   aria-label={label}
                 >
                   <Icon className="h-5 w-5" />
@@ -61,11 +61,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400">Quick Links</h4>
+            <h4 className="footer-text-subtle mb-4 text-sm font-bold uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-sm text-slate-300 transition hover:text-cyan-300">
+                  <a href={link.href} className="footer-text-muted text-sm transition hover:text-cta">
                     {link.name}
                   </a>
                 </li>
@@ -74,30 +74,30 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-400">Get in Touch</h4>
+            <h4 className="footer-text-subtle mb-4 text-sm font-bold uppercase tracking-wider">Get in Touch</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href={`mailto:${SITE.email}`} className="break-all text-slate-200 transition hover:text-cyan-300">
+                <a href={`mailto:${SITE.email}`} className="break-all transition hover:text-cta">
                   {SITE.email}
                 </a>
               </li>
               <li>
-                <a href={`tel:${SITE.phone.replace(/\D/g, "")}`} className="text-slate-200 transition hover:text-cyan-300">
+                <a href={`tel:${SITE.phone.replace(/\D/g, "")}`} className="transition hover:text-cta">
                   {SITE.phone}
                 </a>
               </li>
-              <li className="text-slate-400">{SITE.location}</li>
+              <li className="footer-text-muted">{SITE.location}</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center text-sm text-slate-400">
+        <div className="footer-border border-t pt-8 text-center text-sm footer-text-muted">
           © {new Date().getFullYear()} {SITE.name} —{" "}
-          <a href={SITE.resumePath} download className="text-cyan-400/90 underline-offset-2 hover:text-cyan-300 hover:underline">
+          <a href={SITE.resumePath} download className="footer-link underline-offset-2 hover:underline">
             resume
           </a>{" "}
           ·{" "}
-          <a href="#contact" className="text-cyan-400/90 underline-offset-2 hover:text-cyan-300 hover:underline">
+          <a href="#contact" className="footer-link underline-offset-2 hover:underline">
             contact
           </a>
         </div>

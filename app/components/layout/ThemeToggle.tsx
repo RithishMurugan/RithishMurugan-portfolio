@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export function ThemeToggle({ className, scrolled }: { className?: string; scrolled?: boolean }) {
+export function ThemeToggle({ className, scrolled, onHero }: { className?: string; scrolled?: boolean; onHero?: boolean }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -26,7 +26,9 @@ export function ThemeToggle({ className, scrolled }: { className?: string; scrol
         "interactive flex h-10 w-10 items-center justify-center rounded-xl transition-colors",
         scrolled
           ? "text-foreground hover:bg-muted"
-          : "text-white/90 hover:bg-white/10",
+          : onHero
+            ? "text-foreground hover:bg-muted dark:text-white/90 dark:hover:bg-white/10"
+            : "text-foreground hover:bg-muted",
         className
       )}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
