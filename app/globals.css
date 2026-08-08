@@ -1,3 +1,5 @@
+@import "lenis/dist/lenis.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,7 +37,7 @@
     --hero-social-border: rgba(0, 0, 0, 0.1);
     --hero-social-bg: rgba(255, 255, 255, 0.65);
     --hero-social-text: #3f3f46;
-    --footer-gradient: linear-gradient(to bottom right, #f8fafc, #eef2ff, #e0e7ff);
+    --footer-gradient: linear-gradient(to bottom, #f8fafc, #f1f5f9, #eef2ff);
     --footer-text: #09090b;
     --footer-muted: #52525b;
     --footer-subtle: #71717a;
@@ -44,6 +46,12 @@
     --footer-link-hover: #1d4ed8;
     --safe-area-inset-top: env(safe-area-inset-top, 0px);
     --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+    --graphic-accent: #2563eb;
+    --graphic-signal: rgba(37, 99, 235, 0.9);
+    --graphic-node: rgba(37, 99, 235, 0.8);
+    --graphic-line: rgba(37, 99, 235, 0.45);
+    --graphic-glow: rgba(37, 99, 235, 0.12);
+    --surface-elevated: #ffffff;
   }
 
   .dark {
@@ -51,19 +59,19 @@
     --color-secondary: #a1a1aa;
     --color-cta: #3b82f6;
     --color-cta-hover: #2563eb;
-    --color-background: #09090b;
-    --color-foreground: #fafafa;
-    --color-muted: #18181b;
-    --color-muted-foreground: #a1a1aa;
-    --color-card: #111113;
-    --color-border: #27272a;
-    --bg-start: #09090b;
-    --bg-end: #111113;
-    --hero-gradient: linear-gradient(165deg, #070b12 0%, #0d1522 38%, #111827 62%, #0a0f18 100%);
+    --color-background: #0f1219;
+    --color-foreground: #f4f4f5;
+    --color-muted: #1a1f2e;
+    --color-muted-foreground: #94a3b8;
+    --color-card: #161b26;
+    --color-border: #2a3142;
+    --bg-start: #0f1219;
+    --bg-end: #161b26;
+    --hero-gradient: linear-gradient(165deg, #0c1018 0%, #111827 38%, #1a2332 62%, #0f141f 100%);
     --hero-overlay: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
       radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
       radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
-    --hero-bottom-fade: #070b12;
+    --hero-bottom-fade: #0f1219;
     --hero-network-stroke: rgba(96, 165, 250, 0.35);
     --hero-network-node: rgba(96, 165, 250, 0.8);
     --hero-foreground: #fafafa;
@@ -78,13 +86,41 @@
     --hero-social-border: rgba(255, 255, 255, 0.15);
     --hero-social-bg: rgba(24, 24, 27, 0.4);
     --hero-social-text: #d4d4d8;
-    --footer-gradient: linear-gradient(to bottom right, #070f1f, #0d1b3d, #162d5c);
+    --footer-gradient: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, #0f1219 40%, #111827) 40%, #111827 100%);
     --footer-text: #fafafa;
     --footer-muted: #94a3b8;
     --footer-subtle: #64748b;
     --footer-border: rgba(255, 255, 255, 0.1);
     --footer-link: #22d3ee;
     --footer-link-hover: #67e8f9;
+    --graphic-accent: #3b82f6;
+    --graphic-signal: rgba(59, 130, 246, 0.95);
+    --graphic-node: rgba(96, 165, 250, 0.85);
+    --graphic-line: rgba(96, 165, 250, 0.35);
+    --graphic-glow: rgba(59, 130, 246, 0.15);
+    --surface-elevated: #1c2230;
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-out;
+  }
+
+  canvas,
+  svg,
+  [data-no-theme-transition] {
+    transition: none !important;
   }
 
   html {
@@ -377,6 +413,38 @@
 
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-scroll-track {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-scroll-track .project-card {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  @media (min-width: 640px) {
+    .project-scroll-track {
+      scroll-padding-inline: max(1rem, calc((100vw - 640px) / 2));
+    }
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
   }
 
   .text-foreground {

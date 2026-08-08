@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Vercel automatically optimizes Next.js builds
-  // No special configuration needed
-}
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
+  experimental: {
+    optimizePackageImports: ["lucide-react", "@react-three/drei"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 

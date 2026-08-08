@@ -53,13 +53,15 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section-shell safe-bottom">
-      <SectionHeader
-        badge="Hiring & collaborations"
-        title="Let's"
-        titleAccent="talk"
-        subtitle="Open to AI Full Stack, healthcare AI, and platform engineering roles. I typically respond within a day."
-      />
+    <section id="contact" className="relative overflow-x-hidden safe-bottom">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cta/5 to-cta/10" />
+      <div className="section-shell relative">
+        <SectionHeader
+          badge="Connect"
+          title="Let's build"
+          titleAccent="something remarkable"
+          subtitle="Open to AI Full Stack, healthcare AI, and platform engineering roles. I typically respond within a day."
+        />
 
       <motion.div className="mb-8 flex flex-wrap justify-center gap-3" initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}>
         <a href={SITE.resumePath} download className="btn-primary inline-flex min-h-[44px] items-center gap-2 px-5 py-2.5 text-sm">
@@ -196,6 +198,7 @@ export default function Contact() {
             </form>
           </div>
         </motion.div>
+      </div>
       </div>
     </section>
   );

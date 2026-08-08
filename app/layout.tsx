@@ -47,12 +47,15 @@ export const metadata: Metadata = {
     url: SITE.url,
     siteName: `${SITE.name} Portfolio`,
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Rithish Murugan | AI Full Stack Software Engineer",
     description: SITE.summary,
+    creator: "@rithishmurugan",
   },
+  metadataBase: new URL(SITE.url),
 };
 
 export const viewport: Viewport = {

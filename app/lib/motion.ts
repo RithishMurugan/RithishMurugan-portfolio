@@ -22,7 +22,7 @@ export const springGentle: Transition = {
 };
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 16 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
@@ -83,7 +83,7 @@ export const badgeReveal: Variants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: springSnappy },
 };
 
-export const viewportOnce = { once: true, margin: "-80px" as const, amount: 0.15 as const };
+export const viewportOnce = { once: true, margin: "-40px" as const, amount: 0.08 as const };
 
 export const heroBlobTransition = {
   duration: 18,

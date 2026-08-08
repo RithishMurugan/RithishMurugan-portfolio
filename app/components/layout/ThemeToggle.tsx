@@ -23,12 +23,8 @@ export function ThemeToggle({ className, scrolled, onHero }: { className?: strin
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
-        "interactive flex h-10 w-10 items-center justify-center rounded-xl transition-colors",
-        scrolled
-          ? "text-foreground hover:bg-muted"
-          : onHero
-            ? "text-foreground hover:bg-muted dark:text-white/90 dark:hover:bg-white/10"
-            : "text-foreground hover:bg-muted",
+        "interactive flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground",
+        onHero && !scrolled && "dark:text-white/85",
         className
       )}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}

@@ -9,7 +9,7 @@ export const SITE = {
   github: "https://github.com/RithishMurugan",
   url: "https://www.rithishmurugan-portfolio.online",
   summary:
-    "AI Full Stack Software Engineer with 4+ years building healthcare AI platforms, backend services, and distributed enterprise systems — from Java and Spring Boot microservices at Hexaware, through Python ETL and REST APIs at Virtualan, to clinician-facing GenAI, RAG, React, FastAPI, and cloud-native healthcare integrations at Abridge.",
+    "AI Full Stack Software Engineer with 4+ years building production AI platforms, backend services, and distributed enterprise systems — from Java and Spring Boot microservices at Hexaware, through Python ETL and REST APIs at Virtualan, to GenAI, RAG, React, FastAPI, and cloud-native platforms at Abridge.",
 } as const;
 
 export const HERO_KEYWORDS = [

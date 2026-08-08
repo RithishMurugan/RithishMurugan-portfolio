@@ -128,14 +128,14 @@ export const timeline: TimelineItem[] = [
   {
     id: "hexaware-timeline",
     period: "2021 – 2023",
-    heading: "Enterprise Java — Hexaware Technologies",
+    heading: "Java Developer",
     type: "work",
     experience: experiences[2],
   },
   {
     id: "iit-timeline",
     period: "2023 – 2025",
-    heading: "Graduate Studies — Illinois Institute of Technology",
+    heading: "Graduate Studies",
     type: "education",
     education: {
       degree: "Master of Science in Computer Science",
@@ -151,14 +151,14 @@ export const timeline: TimelineItem[] = [
   {
     id: "virtualan-timeline",
     period: "2024",
-    heading: "Cloud Data Engineering — Virtualan",
+    heading: "Software Engineer",
     type: "work",
     experience: experiences[1],
   },
   {
     id: "abridge-timeline",
     period: "2025 – Present",
-    heading: "Healthcare AI Platforms — Abridge",
+    heading: "AI Full Stack Software Engineer",
     type: "work",
     experience: experiences[0],
   },
