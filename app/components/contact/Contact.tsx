@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Linkedin, Phone, MapPin, MessageCircle, Clock, Send, CheckCircle, AlertCircle, FileText, Github } from "lucide-react";
+import { Mail, Linkedin, Phone, MapPin, MessageCircle, Clock, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 import { SITE } from "@/lib/data/site";
@@ -62,21 +62,6 @@ export default function Contact() {
           titleAccent="something remarkable"
           subtitle="Open to AI Full Stack, healthcare AI, and platform engineering roles. I typically respond within a day."
         />
-
-      <motion.div className="mb-8 flex flex-wrap justify-center gap-3" initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}>
-        <a href={SITE.resumePath} download className="btn-primary inline-flex min-h-[44px] items-center gap-2 px-5 py-2.5 text-sm">
-          <FileText className="h-4 w-4" />
-          Download resume
-        </a>
-        <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex min-h-[44px] items-center gap-2 px-5 py-2.5 text-sm">
-          <Linkedin className="h-4 w-4" />
-          LinkedIn
-        </a>
-        <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex min-h-[44px] items-center gap-2 px-5 py-2.5 text-sm">
-          <Github className="h-4 w-4" />
-          GitHub
-        </a>
-      </motion.div>
 
       <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
         <motion.div className="space-y-5" initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp}>
