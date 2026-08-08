@@ -17,9 +17,9 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Rithish Murugan | AI Full Stack Software Engineer — Healthcare, GenAI, React",
+  title: "Rithish Murugan | AI Full Stack Software Engineer",
   description:
-    "AI Full Stack Software Engineer with 4+ years building healthcare AI platforms, backend services, and distributed enterprise systems. Abridge, Virtualan, Hexaware — React, FastAPI, LangChain, RAG, FHIR/HL7, Java/Spring Boot, Kafka, AWS.",
+    "AI Full Stack Software Engineer building production AI, distributed systems, backend platforms, and full-stack applications with Python, React, FastAPI, AWS, and GenAI.",
   keywords: [
     "AI Full Stack Software Engineer",
     "Full Stack Engineer",

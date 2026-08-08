@@ -19,6 +19,7 @@ export interface CapabilityPillar {
   title: string;
   subtitle: string;
   description: string;
+  footnote: string;
   nodes: string[];
 }
 
@@ -30,6 +31,7 @@ export const CAPABILITY_PILLARS: CapabilityPillar[] = [
     subtitle: "Infrastructure that scales",
     description:
       "Event-driven microservices, API platforms, and cloud-native delivery — the backbone behind reliable, high-throughput production software.",
+    footnote: "Designed for reliability under real load.",
     nodes: ["FastAPI", "Spring Boot", "Kafka", "PostgreSQL", "AWS EKS", "Terraform"],
   },
   {
@@ -39,6 +41,7 @@ export const CAPABILITY_PILLARS: CapabilityPillar[] = [
     subtitle: "Intelligence with rigor",
     description:
       "LangGraph orchestration, multi-model RAG, and agentic workflows — production AI systems with evaluation, safety guardrails, and measurable impact.",
+    footnote: "Intelligence grounded in evaluation and control.",
     nodes: ["LangChain", "LangGraph", "RAG", "GPT-4o", "Claude", "Llama 3"],
   },
   {
@@ -48,6 +51,7 @@ export const CAPABILITY_PILLARS: CapabilityPillar[] = [
     subtitle: "End-to-end ownership",
     description:
       "From API contracts and data pipelines to React interfaces — shipping complete product loops, not isolated components.",
+    footnote: "From backend contracts to usable interfaces.",
     nodes: ["React", "TypeScript", "Python", "FastAPI", "CI/CD", "Observability"],
   },
 ];

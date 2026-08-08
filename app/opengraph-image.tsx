@@ -53,7 +53,7 @@ export default async function OgImage() {
             width: 320,
             height: 320,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%)",
           }}
         />
 
@@ -64,7 +64,7 @@ export default async function OgImage() {
               width: 44,
               height: 44,
               borderRadius: 12,
-              background: "linear-gradient(135deg, #2563eb, #06b6d4)",
+              background: "linear-gradient(135deg, #2563eb, #3b82f6)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -84,7 +84,7 @@ export default async function OgImage() {
               textTransform: "uppercase",
             }}
           >
-            Intelligent Systems · Built for Production
+            Intelligent Systems · Production Engineering
           </span>
         </div>
 
@@ -115,7 +115,7 @@ export default async function OgImage() {
             {SITE.title}
           </div>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            {["Healthcare AI", "GenAI & RAG", "React · FastAPI", "AWS EKS"].map((tag) => (
+            {["Applied AI", "Distributed Systems", "React · FastAPI", "AWS · Kubernetes"].map((tag) => (
               <span
                 key={tag}
                 style={{

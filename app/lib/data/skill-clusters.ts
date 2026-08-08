@@ -82,6 +82,7 @@ export const skillOrbitClusters: SkillCluster[] = [
     chipGroups: [
       { chips: ["System Design", "LLD", "API Contracts"] },
       { chips: ["JUnit", "Mockito", "Postman", "Integration Testing"] },
+      { chips: ["FHIR", "HL7", "EHR Interoperability"] },
     ],
   },
 ];
@@ -94,18 +95,15 @@ export function getClusterChips(cluster: SkillCluster): string[] {
 /** High-signal skills for the quick-scan row */
 export const FEATURED_QUICK_SCAN = [
   "Python",
-  "Java",
-  "React",
   "TypeScript",
+  "React",
   "FastAPI",
+  "Java",
   "Spring Boot",
   "AWS",
   "Kubernetes",
   "Kafka",
+  "PostgreSQL",
   "RAG",
-  "LangChain",
   "LangGraph",
-  "FHIR",
-  "HL7",
-  "EHR",
 ] as const;

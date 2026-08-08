@@ -40,7 +40,7 @@ export function SectionHeader({
       <motion.h2
         variants={fadeUp}
         custom={0}
-        className="font-heading mb-2 text-balance text-[clamp(1.75rem,4vw+1rem,3rem)] font-extrabold tracking-tight text-foreground sm:mb-3"
+        className="font-heading mb-2 overflow-visible text-balance text-[clamp(1.75rem,4vw+1rem,3rem)] font-extrabold tracking-tight text-foreground sm:mb-3"
       >
         {title}
         {titleAccent && (

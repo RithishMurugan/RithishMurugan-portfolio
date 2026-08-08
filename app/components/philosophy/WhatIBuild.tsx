@@ -11,7 +11,7 @@ export default function WhatIBuild() {
   return (
     <section id="build" className="section-shell relative">
       <SectionHeader
-        badge="What I build"
+        badge="Expertise"
         title="Intelligent"
         titleAccent="systems"
         subtitle="Three interconnected layers — distributed infrastructure, applied AI, and full-stack delivery — that power production software at scale."

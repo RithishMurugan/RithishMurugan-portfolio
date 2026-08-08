@@ -10,8 +10,8 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { name: "Expertise", href: "#build", id: "build" },
-  { name: "Flagship", href: "#flagship", id: "flagship" },
-  { name: "Work", href: "#work", id: "work" },
+  { name: "Case Study", href: "#flagship", id: "flagship" },
+  { name: "Projects", href: "#work", id: "work" },
   { name: "Experience", href: "#experience", id: "experience" },
   { name: "Skills", href: "#skills", id: "skills" },
   { name: "About", href: "#about", id: "about" },
@@ -70,19 +70,19 @@ export default function Navbar() {
         className={cn(
           "fixed inset-x-0 top-0 z-50 safe-top transition-all duration-500",
           scrolled
-            ? "border-b border-border/30 bg-background/80 shadow-sm shadow-black/[0.03] backdrop-blur-xl dark:border-white/[0.06] dark:bg-[#0f1219]/85"
-            : "border-b border-border/0 bg-background/30 backdrop-blur-md dark:bg-[#0f1219]/25"
+            ? "border-b border-border/30 bg-background/85 shadow-sm shadow-black/[0.03] backdrop-blur-xl dark:border-white/[0.06] dark:bg-background/90"
+            : "border-b border-border/0 bg-background/40 backdrop-blur-md dark:bg-background/50"
         )}
       >
         {/* Subtle full-width bottom accent line */}
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent dark:via-cyan-400/15"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent dark:via-cta/15"
           aria-hidden
         />
 
         {scrolled && (
           <motion.div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left bg-gradient-to-r from-cta/70 via-cyan-400/50 to-transparent"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px origin-left bg-gradient-to-r from-cta/70 via-cta/40 to-transparent"
             style={{ scaleX: scrollProgress }}
             aria-hidden
           />
@@ -127,7 +127,7 @@ export default function Navbar() {
                 {activeSection === link.id && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-gradient-to-r from-cta to-cyan-400"
+                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-cta"
                     transition={springSnappy}
                   />
                 )}
@@ -167,7 +167,7 @@ export default function Navbar() {
           <motion.div className="fixed inset-0 z-40 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setOpen(false)} aria-hidden />
             <motion.nav
-              className="absolute inset-x-0 top-0 max-h-[100dvh] overflow-y-auto border-b border-border/40 bg-background/95 backdrop-blur-xl safe-top dark:bg-[#0f1219]/95"
+              className="absolute inset-x-0 top-0 max-h-[100dvh] overflow-y-auto border-b border-border/40 bg-background/95 backdrop-blur-xl safe-top"
               initial={{ y: -16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -12, opacity: 0 }}

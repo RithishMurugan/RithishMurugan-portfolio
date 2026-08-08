@@ -25,13 +25,13 @@ export default function AboutBrief() {
         >
           <SectionBadge>About</SectionBadge>
 
-          <h2 className="mt-4 font-heading text-balance text-[clamp(1.65rem,3vw,2.25rem)] font-semibold leading-[1.28] tracking-tight text-foreground sm:mt-5">
-            Building systems where{" "}
-            <span className="gradient-text">intelligence meets production.</span>
+          <h2 className="mt-4 font-heading text-balance text-[clamp(1.85rem,3.4vw,2.5rem)] font-bold leading-[1.18] tracking-tight text-foreground sm:mt-5">
+            Engineer who ships.
           </h2>
 
-          <p className="mt-3 max-w-md text-base font-medium leading-snug text-muted-foreground sm:mt-4 sm:text-lg">
-            Engineer who ships
+          <p className="mt-3 max-w-md text-[clamp(0.95rem,1.5vw,1.1rem)] font-medium leading-[1.5] text-muted-foreground sm:mt-4">
+            Building systems where{" "}
+            <span className="gradient-text">intelligence meets production.</span>
           </p>
         </motion.div>
 
@@ -43,26 +43,25 @@ export default function AboutBrief() {
           variants={fadeUp}
           custom={1}
         >
-          <p className="max-w-[32rem] text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
-            AI Full Stack Software Engineer with 4+ years building production AI platforms, backend services, and
-            distributed systems — from enterprise Java at Hexaware and data engineering at Virtualan to GenAI and
-            cloud-native delivery at Abridge.
+          <p className="max-w-prose text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
+            I enjoy problems where backend architecture, applied AI, and product delivery have to work
+            together — not as separate phases, but as one coherent system.
           </p>
 
-          <p className="max-w-[32rem] text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
-            Based in the {SITE.location}, I work where backend engineering, applied AI, and distributed systems meet —
-            shipping software that scales in production.
+          <p className="max-w-prose text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
+            Based in the {SITE.location}, I lean toward end-to-end ownership: clear contracts, reliable
+            pipelines, and interfaces people can actually use.
           </p>
 
-          <p className="max-w-[32rem] pt-0.5 text-xs font-medium tracking-wide text-muted-foreground/75 sm:text-[0.8125rem]">
+          <p className="max-w-prose pt-0.5 text-xs font-medium tracking-wide text-muted-foreground/75 sm:text-[0.8125rem]">
             4+ years · AI · Backend · Distributed Systems
           </p>
 
-          <div className="flex max-w-[32rem] flex-wrap gap-2 pt-1">
+          <div className="flex max-w-prose flex-wrap gap-2 pt-1">
             {expertiseTags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex h-8 items-center rounded-full border border-border/60 bg-muted/35 px-3 text-xs font-medium text-foreground/90 transition-colors duration-200 hover:border-cta/25 hover:bg-muted/55 hover:text-foreground dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-cyan-400/20 dark:hover:bg-white/[0.07]"
+                className="inline-flex h-8 items-center rounded-full border border-border/60 bg-muted/35 px-3 text-xs font-medium text-foreground/90 transition-colors duration-200 hover:border-cta/25 hover:bg-muted/55 hover:text-foreground dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-cta/20 dark:hover:bg-white/[0.07]"
               >
                 {tag}
               </span>

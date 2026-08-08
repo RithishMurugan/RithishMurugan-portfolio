@@ -10,12 +10,15 @@ import type { Project } from "@/lib/data/projects";
 import { cn } from "@/lib/utils";
 
 function ProjectPanel({ project, index, isActive }: { project: Project; index: number; isActive: boolean }) {
+  const layout = index % 3;
+
   return (
     <article
       data-project-index={index}
       className={cn(
-        "project-card relative flex h-full min-h-[480px] w-[calc(100vw-2rem)] shrink-0 snap-center flex-col overflow-hidden rounded-3xl border transition-all duration-500 sm:min-h-[520px] sm:w-[min(72vw,640px)] lg:w-[640px]",
-        isActive ? "border-cta/40 bg-card shadow-2xl shadow-cta/5 scale-100" : "border-border bg-card/60 opacity-75 scale-[0.98]"
+        "project-card relative flex h-full min-h-[480px] w-[calc(100vw-2rem)] shrink-0 snap-center flex-col overflow-hidden rounded-3xl transition-all duration-500 sm:min-h-[520px] sm:w-[min(72vw,640px)] lg:w-[640px]",
+        "ring-1 ring-inset ring-border/50 bg-card/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.2)]",
+        isActive ? "ring-cta/25 scale-100 shadow-[0_16px_48px_rgba(37,99,235,0.08)]" : "scale-[0.98] opacity-75"
       )}
       aria-labelledby={`project-${project.id}`}
     >
@@ -39,24 +42,37 @@ function ProjectPanel({ project, index, isActive }: { project: Project; index: n
         <p className="mb-6 text-sm leading-relaxed text-muted-foreground sm:text-base">{project.description}</p>
 
         <div className="mb-6 space-y-4">
-          <div>
-            <p className="mb-1 text-xs font-bold uppercase tracking-wider text-cta">Problem</p>
-            <p className="text-sm text-foreground">{project.problem}</p>
-          </div>
-          <div>
-            <p className="mb-1 text-xs font-bold uppercase tracking-wider text-cta">Architecture</p>
-            <p className="text-sm text-muted-foreground">{project.approach}</p>
-          </div>
+          {layout !== 2 && (
+            <div>
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-cta">
+                {layout === 1 ? "Challenge" : "Problem"}
+              </p>
+              <p className="text-sm text-foreground">{project.problem}</p>
+            </div>
+          )}
+          {layout !== 1 && (
+            <div>
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-cta">
+                {layout === 2 ? "Approach" : "Architecture"}
+              </p>
+              <p className="text-sm text-muted-foreground">{project.approach}</p>
+            </div>
+          )}
         </div>
 
-        <ul className="mb-6 space-y-2">
+        <div className="mb-6">
+          <p className="mb-2 text-xs font-bold uppercase tracking-wider text-cta">
+            {layout === 1 ? "What shipped" : "Impact"}
+          </p>
+          <ul className="space-y-2">
           {project.impact.map((item) => (
             <li key={item} className="flex items-start gap-2 text-sm text-foreground">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cta" />
               {item}
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
 
         <div className="mt-auto flex flex-wrap gap-2">
           {project.tech.slice(0, 8).map((t) => (

@@ -16,6 +16,13 @@
     --color-muted-foreground: #3f3f46;
     --color-card: #ffffff;
     --color-border: #e4e4e7;
+    --color-surface: #f4f4f6;
+    --color-surface-elevated: #ffffff;
+    --text-primary: #09090b;
+    --text-secondary: #3f3f46;
+    --text-muted: #71717a;
+    --accent-secondary: #38bdf8;
+    --border-subtle: rgba(0, 0, 0, 0.08);
     --bg-start: #fafafa;
     --bg-end: #f4f4f5;
     --hero-gradient: linear-gradient(165deg, #f0f5ff 0%, #e8f0fe 38%, #f1f5f9 62%, #f8fafc 100%);
@@ -59,19 +66,26 @@
     --color-secondary: #a1a1aa;
     --color-cta: #3b82f6;
     --color-cta-hover: #2563eb;
-    --color-background: #0f1219;
-    --color-foreground: #f4f4f5;
-    --color-muted: #1a1f2e;
-    --color-muted-foreground: #94a3b8;
-    --color-card: #161b26;
-    --color-border: #2a3142;
-    --bg-start: #0f1219;
-    --bg-end: #161b26;
+    --color-background: #0f1621;
+    --color-foreground: #eef2f7;
+    --color-muted: #171e2b;
+    --color-muted-foreground: #8b9cb3;
+    --color-card: #141c29;
+    --color-border: #2a3548;
+    --color-surface: #141c29;
+    --color-surface-elevated: #1a2332;
+    --text-primary: #eef2f7;
+    --text-secondary: #b8c4d6;
+    --text-muted: #8b9cb3;
+    --accent-secondary: #38bdf8;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --bg-start: #0f1621;
+    --bg-end: #141c29;
     --hero-gradient: linear-gradient(165deg, #0c1018 0%, #111827 38%, #1a2332 62%, #0f141f 100%);
     --hero-overlay: radial-gradient(ellipse 90% 55% at 50% -5%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
       radial-gradient(ellipse 45% 35% at 92% 18%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
       radial-gradient(ellipse 40% 40% at 8% 72%, rgba(37, 99, 235, 0.14) 0%, transparent 50%);
-    --hero-bottom-fade: #0f1219;
+    --hero-bottom-fade: #0f1621;
     --hero-network-stroke: rgba(96, 165, 250, 0.35);
     --hero-network-node: rgba(96, 165, 250, 0.8);
     --hero-foreground: #fafafa;
@@ -109,9 +123,14 @@
     color-scheme: dark;
   }
 
-  *,
-  *::before,
-  *::after {
+  html,
+  body,
+  .theme-transition,
+  button,
+  a,
+  input,
+  textarea,
+  select {
     transition-property: background-color, border-color, color, fill, stroke, box-shadow;
     transition-duration: 0.25s;
     transition-timing-function: ease-out;

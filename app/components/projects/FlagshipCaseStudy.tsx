@@ -92,7 +92,7 @@ export default function FlagshipCaseStudy() {
   if (reducedMotion) {
     return (
       <section id="flagship" className="section-shell border-y border-border bg-muted/20">
-        <SectionHeader badge="Flagship" title="Healthcare AI" titleAccent="copilot" subtitle={flagship.description} />
+        <SectionHeader badge="Selected professional impact" title="Healthcare AI" titleAccent="copilot" subtitle={flagship.description} />
         <div className="grid gap-8 lg:grid-cols-2">
           <HealthcareArchitectureDiagram />
           <ClinicianReviewMockup />
@@ -114,7 +114,7 @@ export default function FlagshipCaseStudy() {
         <div className="section-shell flex h-screen flex-col py-8 sm:py-12">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-cta">Flagship case study</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-cta">Selected professional impact</p>
               <h2 className="font-heading text-[clamp(1.5rem,4vw,2.75rem)] font-bold text-foreground">{flagship.title}</h2>
             </div>
             <div className="flex gap-4">
@@ -192,7 +192,12 @@ export default function FlagshipCaseStudy() {
             ))}
           </div>
 
-          <p className="text-center text-xs text-muted-foreground">Continue through the project story</p>
+          <a
+            href="#work"
+            className="mt-2 block text-center text-xs text-muted-foreground transition hover:text-cta"
+          >
+            Explore more of what I&apos;ve built →
+          </a>
         </div>
       </div>
     </section>

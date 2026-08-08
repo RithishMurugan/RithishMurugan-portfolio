@@ -17,7 +17,7 @@ function CardAtmosphere({ variant }: { variant: string }) {
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#network-grid)" />
-        <line x1="10%" y1="70%" x2="90%" y2="30%" stroke="currentColor" strokeWidth="0.5" className="text-cyan-400/40" />
+        <line x1="10%" y1="70%" x2="90%" y2="30%" stroke="currentColor" strokeWidth="0.5" className="text-cta/35" />
         <line x1="20%" y1="40%" x2="75%" y2="65%" stroke="currentColor" strokeWidth="0.5" className="text-cta/30" />
         <line x1="60%" y1="15%" x2="40%" y2="85%" stroke="currentColor" strokeWidth="0.5" className="text-cta/25" />
       </svg>
@@ -32,7 +32,7 @@ function CardAtmosphere({ variant }: { variant: string }) {
           fill="none"
           stroke="currentColor"
           strokeWidth="1"
-          className="text-cyan-400/50"
+          className="text-cta/40"
         />
         <path
           d="M 0 75 Q 50 55, 100 70 T 200 62 T 300 68"
@@ -41,8 +41,8 @@ function CardAtmosphere({ variant }: { variant: string }) {
           strokeWidth="0.6"
           className="text-cta/35"
         />
-        <circle cx="75%" cy="35%" r="3" fill="currentColor" className="text-cyan-400/40" />
-        <circle cx="45%" cy="55%" r="2" fill="currentColor" className="text-cta/30" />
+        <circle cx="75%" cy="35%" r="3" fill="currentColor" className="text-cta/35" />
+        <circle cx="45%" cy="55%" r="2" fill="currentColor" className="text-cta/25" />
       </svg>
     );
   }
@@ -51,7 +51,7 @@ function CardAtmosphere({ variant }: { variant: string }) {
     <svg className="absolute inset-0 h-full w-full opacity-[0.07] transition-opacity duration-500 group-hover:opacity-[0.13]" aria-hidden>
       <rect x="12%" y="68%" width="76%" height="6%" rx="2" fill="currentColor" className="text-cta/25" />
       <rect x="18%" y="52%" width="64%" height="6%" rx="2" fill="currentColor" className="text-cta/20" />
-      <rect x="24%" y="36%" width="52%" height="6%" rx="2" fill="currentColor" className="text-cyan-400/25" />
+      <rect x="24%" y="36%" width="52%" height="6%" rx="2" fill="currentColor" className="text-cta/22" />
       <line x1="50%" y1="36%" x2="50%" y2="74%" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 3" className="text-cta/20" />
     </svg>
   );
@@ -110,21 +110,20 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
         transformPerspective: 1000,
         backgroundImage: `radial-gradient(circle at ${spotlight.x}% ${spotlight.y}%, color-mix(in srgb, var(--color-cta) 14%, transparent) 0%, transparent 58%)`,
       }}
-      whileHover={{ y: -6, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
+      whileHover={{ y: -3, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
       whileTap={{ scale: 0.995 }}
       className={cn(
         "group relative cursor-default overflow-hidden rounded-3xl p-6 outline-none transition-shadow duration-500 sm:p-8",
         "bg-gradient-to-br from-card/70 via-muted/20 to-card/50",
-        "shadow-[0_8px_32px_rgba(15,23,42,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.22)]",
-        "ring-1 ring-inset ring-cta/[0.08] hover:shadow-[0_20px_50px_rgba(37,99,235,0.1)] dark:hover:shadow-[0_20px_50px_rgba(34,211,238,0.08)]",
-        "hover:ring-cyan-400/20 focus-visible:ring-2 focus-visible:ring-cta",
-        active && "ring-cyan-400/25 shadow-[0_20px_50px_rgba(34,211,238,0.1)]"
+        "ring-1 ring-inset ring-border/40 hover:shadow-[0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.22)]",
+        "hover:ring-cta/20 focus-visible:ring-2 focus-visible:ring-cta",
+        active && "ring-cta/25 shadow-[0_16px_40px_rgba(37,99,235,0.1)]"
       )}
     >
       <CardAtmosphere variant={pillar.id} />
 
       <div
-        className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-cyan-400/5 blur-3xl transition-all duration-500 group-hover:bg-cyan-400/10"
+        className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-cta/5 blur-3xl transition-all duration-500 group-hover:bg-cta/10"
         aria-hidden
       />
       <div
@@ -138,15 +137,15 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
       <div className="relative z-10">
         <div
           className={cn(
-            "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/15 bg-cyan-500/10 text-cta transition-all duration-400",
-            "group-hover:border-cyan-400/30 group-hover:bg-cyan-500/15 group-hover:text-cyan-400 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.15)]",
-            active && "border-cyan-400/35 bg-cyan-500/18 text-cyan-400"
+            "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cta/15 bg-cta/10 text-cta transition-all duration-400",
+            "group-hover:border-cta/30 group-hover:bg-cta/15 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.15)]",
+            active && "border-cta/35 bg-cta/18"
           )}
         >
           <Icon size={22} aria-hidden />
         </div>
 
-        <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-cta/90 transition-colors group-hover:text-cyan-400">
+        <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-cta/90 transition-colors group-hover:text-cta">
           {pillar.subtitle}
         </p>
         <h3 className="font-heading mb-3 text-xl font-bold text-foreground transition-colors group-hover:text-foreground sm:text-2xl">
@@ -155,6 +154,7 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
         <p className="mb-6 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/90 sm:text-base">
           {pillar.description}
         </p>
+        <p className="mb-5 text-xs font-medium text-cta/75">{pillar.footnote}</p>
 
         <div className="flex flex-wrap gap-2">
           {pillar.nodes.map((node) => (
@@ -162,8 +162,8 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
               key={node}
               className={cn(
                 "rounded-full border border-cta/10 bg-cta/[0.05] px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-all duration-300",
-                "group-hover:border-cyan-400/20 group-hover:bg-cyan-500/[0.07] group-hover:text-foreground/90",
-                active && "border-cyan-400/25 bg-cyan-500/10 text-foreground/90"
+                "group-hover:border-cta/20 group-hover:bg-cta/[0.08] group-hover:text-foreground/90",
+                active && "border-cta/25 bg-cta/10 text-foreground/90"
               )}
             >
               {node}
@@ -171,13 +171,6 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
           ))}
         </div>
 
-        <motion.p
-          initial={false}
-          animate={{ opacity: active ? 1 : 0, height: active ? "auto" : 0 }}
-          className="mt-4 overflow-hidden text-xs text-cyan-400/80"
-        >
-          Focused on production-scale delivery
-        </motion.p>
       </div>
     </motion.article>
   );

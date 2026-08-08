@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Linkedin, Phone, MapPin, MessageCircle, Clock, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Linkedin, Phone, MapPin, MessageCircle, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { fadeUp, viewportOnce } from "@/lib/motion";
 import { SITE } from "@/lib/data/site";
 import { submitContactForm } from "@/lib/contact-form";
+import { cn } from "@/lib/utils";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
@@ -35,7 +36,7 @@ export default function Contact() {
 
     try {
       await submitContactForm(formData);
-      setStatus({ type: "success", message: "Thank you! Your message was saved successfully." });
+      setStatus({ type: "success", message: "Thank you! Your message was sent successfully." });
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again later.";
@@ -46,10 +47,10 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
-    { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\D/g, "")}` },
-    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/rithishmurugan", href: SITE.linkedin },
-    { icon: MapPin, label: "Location", value: SITE.location, href: null },
+    { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, primary: true },
+    { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/rithishmurugan", href: SITE.linkedin, primary: true },
+    { icon: MapPin, label: "Location", value: SITE.location, href: null, primary: true },
+    { icon: Phone, label: "Phone", value: SITE.phone, href: `tel:${SITE.phone.replace(/\D/g, "")}`, primary: false },
   ];
 
   return (
@@ -60,7 +61,7 @@ export default function Contact() {
           badge="Connect"
           title="Let's build"
           titleAccent="something remarkable"
-          subtitle="Open to AI Full Stack, healthcare AI, and platform engineering roles. I typically respond within a day."
+          subtitle="Open to AI Full Stack, applied AI, and platform engineering opportunities."
         />
 
       <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
@@ -74,12 +75,20 @@ export default function Contact() {
               {contactInfo.map((info) => {
                 const Icon = info.icon;
                 return (
-                  <div key={info.label} className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 shrink-0 text-muted-foreground" />
+                  <div key={info.label} className={cn("flex items-center gap-3", !info.primary && "opacity-80")}>
+                    <Icon className={cn("shrink-0 text-muted-foreground", info.primary ? "h-5 w-5" : "h-4 w-4")} />
                     <div className="min-w-0">
                       <p className="text-sm text-muted-foreground">{info.label}</p>
                       {info.href ? (
-                        <a href={info.href} target={info.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="break-all font-medium text-foreground transition hover:text-cta">
+                        <a
+                          href={info.href}
+                          target={info.href.startsWith("http") ? "_blank" : undefined}
+                          rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className={cn(
+                            "break-all font-medium transition hover:text-cta",
+                            info.primary ? "text-foreground" : "text-sm text-muted-foreground"
+                          )}
+                        >
                           {info.value}
                         </a>
                       ) : (
@@ -90,28 +99,17 @@ export default function Contact() {
                 );
               })}
             </div>
-          </div>
-
-          <div className="card p-6">
-            <div className="mb-4 flex items-center gap-2">
-              <Clock className="h-5 w-5 text-cta" />
-              <h3 className="text-lg font-bold text-foreground">Availability</h3>
-            </div>
-            <div className="space-y-3 text-sm">
-              <div>
-                <p className="font-medium text-foreground">Monday – Friday</p>
-                <p className="text-muted-foreground">9:00 AM – 6:00 PM CST</p>
-              </div>
-              <p className="border-t border-border pt-3 text-muted-foreground">Usually responds within 24 hours</p>
-            </div>
+            <p className="mt-5 border-t border-border/60 pt-4 text-sm text-muted-foreground">
+              Usually responds within 24 hours.
+            </p>
           </div>
         </motion.div>
 
         <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp} custom={0.1}>
           <div className="card p-6 sm:p-7">
             <h3 className="mb-1 text-xl font-bold text-foreground">Send me a message</h3>
-            <p className="mb-5 text-sm text-muted-foreground">
-              Have a role or project in mind? Send a message — it&apos;s saved directly to my spreadsheet.
+              <p className="mb-5 max-w-prose text-sm text-muted-foreground">
+              Have a role, idea, or project in mind? I&apos;d love to hear about it.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -166,7 +164,7 @@ export default function Contact() {
                 disabled={isLoading}
                 whileHover={{ scale: isLoading ? 1 : 1.01 }}
                 whileTap={{ scale: isLoading ? 1 : 0.99 }}
-                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cta to-cyan-600 px-6 py-3 font-semibold text-white shadow-lg shadow-cta/25 disabled:opacity-50"
+                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3 font-semibold text-white shadow-md shadow-cta/20 transition hover:bg-cta-hover disabled:opacity-50"
               >
                 {isLoading ? (
                   <>

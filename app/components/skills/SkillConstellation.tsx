@@ -95,8 +95,8 @@ export default function SkillConstellation() {
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
               <defs>
                 <linearGradient id="orbit-active-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgb(34, 211, 238)" stopOpacity="0.9" />
-                  <stop offset="100%" stopColor="rgb(59, 130, 246)" stopOpacity="0.7" />
+                  <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="rgb(37, 99, 235)" stopOpacity="0.75" />
                 </linearGradient>
               </defs>
 
@@ -137,7 +137,7 @@ export default function SkillConstellation() {
                     fill="currentColor"
                     className={cn(
                       "transition-all duration-500",
-                      isSelected ? "text-cyan-400/80" : "text-cta/20"
+                      isSelected ? "text-cta/90" : "text-cta/20"
                     )}
                   />
                 );
@@ -166,7 +166,7 @@ export default function SkillConstellation() {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="0.3"
-                  className="text-cyan-400/35"
+                  className="text-cta/30"
                 />
               )}
 
@@ -186,14 +186,14 @@ export default function SkillConstellation() {
                     strokeWidth={isSelected ? 0.22 : isFocused ? 0.16 : 0.08}
                     className={cn(
                       "transition-all duration-400",
-                      isSelected ? "text-cyan-400/45" : isFocused ? "text-cyan-400/25" : "text-cta/8"
+                      isSelected ? "text-cta/50" : isFocused ? "text-cta/28" : "text-cta/8"
                     )}
                   />
                 );
               })}
 
               {/* Traveling signal pulse */}
-              <circle cx={pulseX} cy={pulseY} r="0.7" fill="rgb(34, 211, 238)" opacity={reducedMotion ? 0.5 : 0.85}>
+              <circle cx={pulseX} cy={pulseY} r="0.7" fill="rgb(59, 130, 246)" opacity={reducedMotion ? 0.5 : 0.85}>
                 {!reducedMotion && (
                   <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
                 )}
@@ -211,7 +211,7 @@ export default function SkillConstellation() {
                     cy={py}
                     r="0.25"
                     fill="currentColor"
-                    className="text-cyan-400/40"
+                    className="text-cta/35"
                   />
                 );
               })}
@@ -235,10 +235,10 @@ export default function SkillConstellation() {
                   className={cn(
                     "interactive group absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl px-2 py-1.5 backdrop-blur-sm transition-all duration-300 sm:px-2.5 sm:py-2",
                     isActive
-                      ? "scale-105 border border-cyan-400/40 bg-cyan-500/12 shadow-[0_0_28px_rgba(34,211,238,0.22)]"
+                      ? "scale-105 border border-cta/35 bg-cta/12 shadow-[0_0_28px_rgba(37,99,235,0.22)]"
                       : isHovered
-                        ? "-translate-y-[calc(50%+2px)] border border-cyan-400/25 bg-cta/10 shadow-[0_0_18px_rgba(59,130,246,0.15)]"
-                        : "border border-border/25 bg-card/25 hover:border-cyan-400/20 hover:bg-card/40"
+                        ? "-translate-y-[calc(50%+2px)] border border-cta/25 bg-cta/10 shadow-[0_0_18px_rgba(59,130,246,0.15)]"
+                        : "border border-border/25 bg-card/25 hover:border-cta/20 hover:bg-card/40"
                   )}
                   style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
                   aria-pressed={isActive}
@@ -249,7 +249,7 @@ export default function SkillConstellation() {
                     className={cn(
                       "block rounded-full transition-all duration-300",
                       isActive
-                        ? "h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.6)]"
+                        ? "h-2.5 w-2.5 bg-cta shadow-[0_0_10px_rgba(37,99,235,0.55)]"
                         : isHovered
                           ? "h-2 w-2 bg-cta/70"
                           : "h-2 w-2 bg-cta/45 group-hover:bg-cta/65"
@@ -259,7 +259,7 @@ export default function SkillConstellation() {
                     className={cn(
                       "max-w-[76px] text-center text-[9px] font-semibold leading-tight transition-colors duration-300 sm:max-w-[88px] sm:text-[10px]",
                       isActive
-                        ? "text-cyan-300 dark:text-cyan-200"
+                        ? "text-blue-400 dark:text-blue-300"
                         : isHovered
                           ? "text-foreground"
                           : "text-muted-foreground"
@@ -311,7 +311,7 @@ export default function SkillConstellation() {
           {FEATURED_QUICK_SCAN.map((skill) => (
             <span
               key={skill}
-              className="rounded-md border border-cta/10 bg-cta/5 px-2.5 py-1 text-xs font-medium text-foreground/85 transition-all duration-200 hover:-translate-y-px hover:border-cyan-400/25 hover:bg-cyan-500/10 hover:text-foreground"
+              className="rounded-md border border-border/50 bg-cta/5 px-2.5 py-1 text-xs font-medium text-foreground/85 transition-all duration-200 hover:-translate-y-px hover:border-cta/25 hover:bg-cta/10 hover:text-foreground"
             >
               {skill}
             </span>
@@ -328,7 +328,7 @@ function SkillChip({ skill, index }: { skill: string; index: number }) {
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03, duration: 0.28 }}
-      className="inline-flex rounded-lg border border-cta/12 bg-cta/[0.06] px-3 py-1.5 text-sm font-medium text-foreground/90 backdrop-blur-[2px] transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-400/30 hover:bg-cyan-500/10 hover:text-foreground hover:shadow-[0_4px_14px_rgba(34,211,238,0.12)] dark:border-cyan-400/10 dark:bg-cyan-400/[0.06] dark:hover:border-cyan-400/35"
+      className="inline-flex rounded-lg border border-border/50 bg-cta/[0.06] px-3 py-1.5 text-sm font-medium text-foreground/90 backdrop-blur-[2px] transition-all duration-200 hover:-translate-y-0.5 hover:border-cta/30 hover:bg-cta/10 hover:text-foreground hover:shadow-[0_4px_14px_rgba(37,99,235,0.12)] dark:border-cta/12 dark:bg-cta/[0.06] dark:hover:border-cta/35"
     >
       {skill}
     </motion.span>
@@ -348,7 +348,7 @@ function SkillPanel({ cluster }: { cluster: SkillCluster | undefined }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -8 }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-muted/25 via-card/50 to-muted/15 p-6 shadow-[0_12px_48px_rgba(15,23,42,0.08)] ring-1 ring-inset ring-cta/8 sm:p-8 dark:from-slate-900/40 dark:via-slate-800/30 dark:to-slate-900/20 dark:shadow-[0_12px_48px_rgba(0,0,0,0.25)] dark:ring-cyan-400/10"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-muted/25 via-card/50 to-muted/15 p-6 shadow-[0_12px_48px_rgba(15,23,42,0.08)] ring-1 ring-inset ring-cta/8 sm:p-8 dark:from-slate-900/40 dark:via-slate-800/30 dark:to-slate-900/20 dark:shadow-[0_12px_48px_rgba(0,0,0,0.25)] dark:ring-cta/12"
       >
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-3xl"
@@ -368,7 +368,7 @@ function SkillPanel({ cluster }: { cluster: SkillCluster | undefined }) {
         />
 
         <div className="relative mb-6 flex items-start gap-3.5">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-400/20 bg-cyan-500/10 text-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.12)] dark:text-cyan-400">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cta/20 bg-cta/10 text-cta shadow-[0_0_20px_rgba(37,99,235,0.12)]">
             <Icon size={21} aria-hidden />
           </div>
           <div>
