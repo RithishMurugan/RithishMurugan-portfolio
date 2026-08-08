@@ -109,7 +109,7 @@ export default function Contact() {
           <div className="card p-6 sm:p-7">
             <h3 className="mb-1 text-xl font-bold text-foreground">Send me a message</h3>
               <p className="mb-5 max-w-prose text-sm text-muted-foreground">
-              Have a role, idea, or project in mind? I&apos;d love to hear about it.
+              Have a role, idea, or project in mind? Send me a message.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>

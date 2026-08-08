@@ -44,13 +44,13 @@ export default function AboutBrief() {
           custom={1}
         >
           <p className="max-w-prose text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
-            I enjoy problems where backend architecture, applied AI, and product delivery have to work
-            together — not as separate phases, but as one coherent system.
+            I like owning problems end to end — from API contracts and data pipelines to interfaces teams can
+            rely on. Curiosity drives how I learn; discipline drives what ships.
           </p>
 
           <p className="max-w-prose text-[0.9375rem] leading-[1.75] text-muted-foreground sm:text-base">
-            Based in the {SITE.location}, I lean toward end-to-end ownership: clear contracts, reliable
-            pipelines, and interfaces people can actually use.
+            Based in the {SITE.location}, I work best where engineering, product, and real-world constraints meet
+            in the same room.
           </p>
 
           <p className="max-w-prose pt-0.5 text-xs font-medium tracking-wide text-muted-foreground/75 sm:text-[0.8125rem]">

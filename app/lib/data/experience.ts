@@ -50,9 +50,9 @@ export const experiences: Experience[] = [
     ],
     details: [
       "Architect scalable healthcare microservices integrating five clinical domains through Python, FastAPI, FHIR, HL7, and PostgreSQL, centralizing 400K+ patient records while documenting APIs, security requirements, and compliance standards.",
-      "Orchestrate event-driven clinical data services with Apache Kafka, Redis, Amazon S3, and Snowflake, implementing retries, dead-letter handling, caching, and validation to improve reliability and data consistency.",
       "Deliver clinician-facing AI copilot APIs and review interfaces using FastAPI, React, TypeScript, LangChain, RAG, GPT-4o, Claude, and Llama 3, enabling citation review, feedback capture, and secure approval.",
       "Operationalize LangGraph workflows with function calling, asynchronous orchestration, and human review, validating retrieval quality, groundedness, citations, and PII safeguards across 50K+ monthly clinical interactions.",
+      "Orchestrate event-driven clinical data services with Apache Kafka, Redis, Amazon S3, and Snowflake, implementing retries, dead-letter handling, caching, and validation to improve reliability and data consistency.",
       "Coordinate with physicians, product leaders, and compliance teams to validate XGBoost and Scikit-learn risk-prioritization models, defining performance thresholds, clinician-review criteria, deployment controls, and production decision boundaries.",
       "Optimize cloud-native delivery with AWS EKS, Docker, Kubernetes, Terraform, CI/CD, and CloudWatch, establishing health checks, audit logging, and controls while sustaining 99.99% uptime and reducing costs 25%.",
     ],
@@ -113,10 +113,10 @@ export const experiences: Experience[] = [
       { label: "Stack", value: "Java + Kafka" },
     ],
     details: [
-      "Analyzed inventory, order, and shipment requirements with product owners and operations stakeholders, translating user stories into API contracts and delivery plans that reduced development rework.",
-      "Designed low-level architecture for Java microservices using Spring Boot, Hibernate, PostgreSQL, and Factory patterns, defining service boundaries and database schemas supporting eight regional warehouses.",
       "Developed secure REST APIs and event-driven business logic with Java, Spring Boot, Kafka, Redis, JPA, and PostgreSQL for inventory updates, improving average service response time by 18%.",
+      "Designed low-level architecture for Java microservices using Spring Boot, Hibernate, PostgreSQL, and Factory patterns, defining service boundaries and database schemas supporting eight regional warehouses.",
       "Strengthened code quality through JUnit, Mockito, integration testing, API validation, and structured exception handling, increasing critical-service test coverage from 62% to 78% before releases.",
+      "Analyzed inventory, order, and shipment requirements with product owners and operations stakeholders, translating user stories into API contracts and delivery plans that reduced development rework.",
       "Reviewed peer code through Git, enforced Java coding standards, and integrated Jenkins CI/CD pipelines with automated builds, tests, and security checks, improving release consistency across shared services.",
       "Containerized Spring Boot services with Docker, deployed them through Kubernetes on AWS, and monitored logs with CloudWatch, resolving production issues while maintaining reliable warehouse operations.",
     ],
