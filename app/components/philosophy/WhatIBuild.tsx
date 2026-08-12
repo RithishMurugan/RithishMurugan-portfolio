@@ -18,40 +18,65 @@ export default function WhatIBuild() {
     if (reducedMotion || !cardsRef.current) return;
     registerGsapPlugins();
 
-    const cards = gsap.utils.toArray<HTMLElement>("[data-expertise-card]", cardsRef.current);
-    const routes = gsap.utils.toArray<HTMLElement>("[data-expertise-route]", cardsRef.current);
+    const root = cardsRef.current;
+    const mm = gsap.matchMedia();
 
-    const ctx = gsap.context(() => {
-      gsap.set(cards, { opacity: 0, y: 10 });
-      gsap.set(routes, { scaleX: 0, opacity: 0, transformOrigin: "left center" });
+    mm.add(
+      {
+        isDesktop: "(min-width: 1024px)",
+        isCompact: "(max-width: 1023px)",
+      },
+      (context) => {
+        const { isDesktop } = context.conditions as { isDesktop: boolean };
+        const cards = gsap.utils.toArray<HTMLElement>("[data-expertise-card]", root);
+        const hRoutes = gsap.utils.toArray<HTMLElement>("[data-expertise-route-h]", root);
+        const vRoutes = gsap.utils.toArray<HTMLElement>("[data-expertise-route-v]", root);
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: cardsRef.current,
-          start: "top 85%",
-          once: true,
-          invalidateOnRefresh: true,
-        },
-      });
+        gsap.set(cards, { opacity: 0, y: 10 });
 
-      cards.forEach((card, i) => {
-        const at = i * 0.1;
-        tl.to(
-          card,
-          { opacity: 1, y: 0, duration: TIME.reveal, ease: EASE.reveal, clearProps: "transform" },
-          at
-        );
-        if (routes[i]) {
-          tl.to(
-            routes[i],
-            { scaleX: 1, opacity: 0.7, duration: TIME.reveal * 0.85, ease: EASE.structure },
-            at + 0.06
-          );
+        if (isDesktop) {
+          gsap.set(hRoutes, { scaleX: 0, opacity: 0, transformOrigin: "left center" });
+          gsap.set(vRoutes, { clearProps: "all" });
+        } else {
+          gsap.set(vRoutes, { scaleY: 0, opacity: 0, transformOrigin: "top center" });
+          gsap.set(hRoutes, { clearProps: "all" });
         }
-      });
-    }, cardsRef);
 
-    return () => ctx.revert();
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: root,
+            start: "top 85%",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        cards.forEach((card, i) => {
+          const at = i * 0.12;
+          tl.to(
+            card,
+            { opacity: 1, y: 0, duration: TIME.reveal, ease: EASE.reveal, clearProps: "transform" },
+            at
+          );
+
+          if (isDesktop && hRoutes[i]) {
+            tl.to(
+              hRoutes[i],
+              { scaleX: 1, opacity: 0.7, duration: TIME.reveal * 0.85, ease: EASE.structure },
+              at + 0.06
+            );
+          } else if (!isDesktop && vRoutes[i]) {
+            tl.to(
+              vRoutes[i],
+              { scaleY: 1, opacity: 0.75, duration: TIME.reveal * 0.85, ease: EASE.structure },
+              at + 0.06
+            );
+          }
+        });
+      }
+    );
+
+    return () => mm.revert();
   }, [reducedMotion]);
 
   return (
@@ -66,20 +91,33 @@ export default function WhatIBuild() {
           className="text-left md:text-center"
         />
 
-        <div ref={cardsRef} className="mb-16">
-          <div className="grid gap-6 lg:grid-cols-3">
+        <div ref={cardsRef} className="mb-14 sm:mb-16">
+          <div className="grid gap-5 sm:gap-6 lg:grid-cols-3 lg:gap-6">
             {CAPABILITY_PILLARS.map((pillar, i) => (
               <div key={pillar.id} className="relative">
+                {/* Desktop horizontal signal route */}
                 {i < CAPABILITY_PILLARS.length - 1 && (
                   <div
-                    data-expertise-route
+                    data-expertise-route-h
                     aria-hidden
                     className="pointer-events-none absolute left-[calc(100%+0.25rem)] top-12 z-20 hidden h-px w-6 origin-left bg-cta/40 lg:block"
                   />
                 )}
+
                 <div data-expertise-card>
                   <CapabilityCard pillar={pillar} index={i} />
                 </div>
+
+                {/* Mobile / tablet vertical signal route */}
+                {i < CAPABILITY_PILLARS.length - 1 && (
+                  <div
+                    data-expertise-route-v
+                    aria-hidden
+                    className="relative mx-auto mt-4 flex h-8 w-px origin-top justify-center bg-gradient-to-b from-cta/50 via-cta/25 to-transparent md:mt-5 lg:hidden"
+                  >
+                    <span className="absolute bottom-0 h-1.5 w-1.5 translate-y-1/2 rounded-full bg-cta/60" />
+                  </div>
+                )}
               </div>
             ))}
           </div>

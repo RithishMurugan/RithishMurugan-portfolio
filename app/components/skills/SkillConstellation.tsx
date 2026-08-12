@@ -81,7 +81,32 @@ export default function SkillConstellation() {
         variants={staggerContainer}
       >
         <motion.div variants={fadeUp} custom={0} className="lg:col-span-5">
-          <div className="relative mx-auto aspect-square w-full max-w-[340px] sm:max-w-[400px]">
+          {/* Mobile / tablet category navigator — swipeable */}
+          <div className="mb-5 -mx-1 overflow-x-auto px-1 pb-1 scrollbar-hide lg:hidden">
+            <div className="flex w-max gap-2">
+              {skillOrbitClusters.map((cat) => {
+                const selected = activeId === cat.id;
+                return (
+                  <button
+                    key={`nav-${cat.id}`}
+                    type="button"
+                    onClick={() => setActiveId(cat.id)}
+                    className={cn(
+                      "interactive min-h-[40px] shrink-0 rounded-full border px-3.5 text-xs font-semibold transition",
+                      selected
+                        ? "border-cta/40 bg-cta/12 text-cta"
+                        : "border-border/50 bg-card/50 text-muted-foreground"
+                    )}
+                    aria-pressed={selected}
+                  >
+                    {cat.shortLabel}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="relative mx-auto aspect-square w-full max-w-[min(100%,300px)] sm:max-w-[360px] lg:max-w-[400px]">
             {/* Center atmosphere */}
             <div
               className="pointer-events-none absolute inset-[18%] rounded-full blur-3xl transition-all duration-700"

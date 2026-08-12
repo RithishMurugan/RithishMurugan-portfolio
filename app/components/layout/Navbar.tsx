@@ -9,13 +9,13 @@ import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { name: "Expertise", href: "#build", id: "build" },
-  { name: "Case Study", href: "#flagship", id: "flagship" },
-  { name: "Projects", href: "#work", id: "work" },
-  { name: "Experience", href: "#experience", id: "experience" },
-  { name: "Skills", href: "#skills", id: "skills" },
-  { name: "About", href: "#about", id: "about" },
-  { name: "Contact", href: "#contact", id: "contact" },
+  { name: "Expertise", href: "#build", id: "build", index: "01" },
+  { name: "Case Study", href: "#flagship", id: "flagship", index: "02" },
+  { name: "Projects", href: "#work", id: "work", index: "03" },
+  { name: "Experience", href: "#experience", id: "experience", index: "04" },
+  { name: "Skills", href: "#skills", id: "skills", index: "05" },
+  { name: "About", href: "#about", id: "about", index: "06" },
+  { name: "Contact", href: "#contact", id: "contact", index: "07" },
 ];
 
 export default function Navbar() {
@@ -74,7 +74,6 @@ export default function Navbar() {
             : "border-b border-border/0 bg-background/40 backdrop-blur-md dark:bg-background/50"
         )}
       >
-        {/* Subtle full-width bottom accent line */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent dark:via-cta/15"
           aria-hidden
@@ -90,13 +89,13 @@ export default function Navbar() {
 
         <nav
           aria-label="Main navigation"
-          className="relative mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[3.75rem] sm:px-6"
+          className="page-container relative flex h-14 items-center justify-between gap-3 sm:h-[3.75rem]"
         >
-          {/* Brand */}
           <motion.a
             href="#home"
             className="interactive relative z-10 flex min-h-[44px] min-w-0 shrink-0 items-center gap-2.5"
             whileTap={{ scale: 0.98 }}
+            onClick={() => setOpen(false)}
           >
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cta sm:h-9 sm:w-9 sm:rounded-xl">
               <span className="font-heading text-xs font-bold text-white sm:text-sm">RM</span>
@@ -111,7 +110,6 @@ export default function Navbar() {
             </div>
           </motion.a>
 
-          {/* Center navigation — desktop */}
           <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-0.5 lg:flex xl:gap-1">
             {links.map((link) => (
               <motion.a
@@ -135,7 +133,6 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right controls */}
           <div className="relative z-10 flex shrink-0 items-center gap-1 sm:gap-1.5">
             <ThemeToggle scrolled={scrolled} onHero={onHero} />
             <motion.a
@@ -150,13 +147,27 @@ export default function Navbar() {
             </motion.a>
             <motion.button
               type="button"
-              className="touch-target flex items-center justify-center rounded-lg p-2 text-xl text-foreground lg:hidden"
+              className="touch-target relative flex items-center justify-center rounded-lg p-2 text-foreground lg:hidden"
               onClick={() => setOpen(!open)}
               aria-expanded={open}
-              aria-label="Toggle menu"
+              aria-label={open ? "Close menu" : "Open menu"}
               whileTap={{ scale: 0.92 }}
             >
-              {open ? "\u2715" : "\u2630"}
+              <span className="flex h-5 w-5 flex-col items-center justify-center gap-[5px]">
+                <span
+                  className={cn(
+                    "h-px w-5 bg-current transition-transform duration-300",
+                    open && "translate-y-[6px] rotate-45"
+                  )}
+                />
+                <span className={cn("h-px w-5 bg-current transition-opacity duration-200", open && "opacity-0")} />
+                <span
+                  className={cn(
+                    "h-px w-5 bg-current transition-transform duration-300",
+                    open && "-translate-y-[6px] -rotate-45"
+                  )}
+                />
+              </span>
             </motion.button>
           </div>
         </nav>
@@ -164,32 +175,71 @@ export default function Navbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div className="fixed inset-0 z-40 lg:hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setOpen(false)} aria-hidden />
+          <motion.div
+            className="fixed inset-0 z-40 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <div className="absolute inset-0 bg-black/55 backdrop-blur-md" onClick={() => setOpen(false)} aria-hidden />
             <motion.nav
-              className="absolute inset-x-0 top-0 max-h-[100dvh] overflow-y-auto border-b border-border/40 bg-background/95 backdrop-blur-xl safe-top"
-              initial={{ y: -16, opacity: 0 }}
+              className="absolute inset-x-0 top-0 max-h-[100dvh] overflow-y-auto border-b border-border/50 bg-background/95 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-2xl safe-top"
+              initial={{ y: "-8%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -12, opacity: 0 }}
-              transition={springSnappy}
+              exit={{ y: "-6%", opacity: 0 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               aria-label="Mobile navigation"
             >
-              <ul className="px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[calc(4.5rem+env(safe-area-inset-top))]">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cta/40 to-transparent" />
+
+              <ul className="page-container pb-4 pt-[calc(4.75rem+env(safe-area-inset-top))]">
                 {links.map((link, i) => (
-                  <motion.li key={link.id} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
+                  <motion.li
+                    key={link.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.04 + i * 0.035, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <a
                       href={link.href}
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "flex min-h-[48px] items-center border-b border-border/40 text-base font-medium",
+                        "group flex min-h-[52px] items-center gap-4 border-b border-border/35 py-1",
                         activeSection === link.id ? "text-cta" : "text-foreground"
                       )}
                     >
-                      {link.name}
+                      <span className="font-mono-stamp w-7 shrink-0 text-[11px] text-meta transition group-hover:text-cta">
+                        {link.index}
+                      </span>
+                      <span className="font-heading text-lg font-semibold tracking-tight sm:text-xl">{link.name}</span>
+                      <span
+                        className={cn(
+                          "ml-auto h-1.5 w-1.5 rounded-full bg-cta transition-opacity",
+                          activeSection === link.id ? "opacity-100" : "opacity-0"
+                        )}
+                      />
                     </a>
                   </motion.li>
                 ))}
               </ul>
+
+              <motion.div
+                className="page-container pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.28 }}
+              >
+                <a
+                  href={SITE.resumePath}
+                  download
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-cta px-4 text-sm font-medium text-white transition hover:bg-cta-hover"
+                >
+                  <FileText size={16} />
+                  Download resume
+                </a>
+              </motion.div>
             </motion.nav>
           </motion.div>
         )}

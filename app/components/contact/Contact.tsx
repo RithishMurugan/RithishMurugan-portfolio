@@ -141,7 +141,7 @@ export default function Contact() {
                     value={formData[field]}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cta"
+                    className="w-full min-h-[44px] rounded-xl border border-border bg-background px-4 py-3 text-base text-foreground transition focus:border-transparent focus:outline-none focus:ring-2 focus:ring-cta"
                   />
                 </div>
               ))}

@@ -48,6 +48,9 @@
     --hero-pill-border: rgba(23, 26, 32, 0.1);
     --hero-pill-bg: rgba(246, 245, 241, 0.88);
     --hero-social-border: rgba(23, 26, 32, 0.12);
+    /* Shared layout architecture — header, hero, and primary sections */
+    --page-gutter: clamp(1.125rem, 4vw, 4rem); /* ~18px → 64px */
+    --page-max: 80rem; /* 1280px */
     --hero-social-bg: rgba(246, 245, 241, 0.8);
     --hero-social-text: #4e5663;
     --footer-gradient: linear-gradient(to bottom, #f4f3ef, #f0f0ed, #ececeb);
@@ -506,10 +509,33 @@
     background-color: color-mix(in srgb, var(--color-card) 82%, transparent);
   }
 
+  .page-container {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  }
+
+  /* Alias — same architecture as page-container */
+  .site-container {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  }
+
   .section-shell {
-    @apply scroll-mt-20 mx-auto w-full max-w-6xl px-4 py-14 sm:scroll-mt-24 sm:px-6 sm:py-20 md:py-24;
-    padding-left: max(1rem, env(safe-area-inset-left, 0px));
-    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    @apply scroll-mt-20 sm:scroll-mt-24;
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+    /* Fluid section rhythm: ~56–80 mobile → 80–110 tablet → 100–140 desktop */
+    padding-top: clamp(3.5rem, 6vw + 1.5rem, 8.5rem);
+    padding-bottom: clamp(3.5rem, 6vw + 1.5rem, 8.5rem);
   }
 
   .safe-bottom {
@@ -663,5 +689,18 @@
 
   .hover\:bg-cta-hover:hover {
     background-color: var(--color-cta-hover);
+  }
+
+  /* Pointer-aware polish — hover-only effects stay off on touch */
+  @media (hover: none) {
+    .hover-only {
+      display: none !important;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .touch-only {
+      display: none !important;
+    }
   }
 }

@@ -18,7 +18,7 @@ export default function HeroName({ firstName, lastName, parallaxX, parallaxY }: 
   return (
     <motion.h1
       data-hero-name
-      className="font-heading relative mb-5 text-balance text-[clamp(2.25rem,7vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.035em] text-foreground"
+      className="font-heading relative mb-3 text-[clamp(2.75rem,11vw,7.5rem)] font-semibold leading-[0.92] tracking-[-0.035em] text-foreground sm:mb-5 sm:text-[clamp(3.5rem,8vw,7.5rem)]"
       style={parallaxX && parallaxY ? { x: parallaxX, y: parallaxY } : undefined}
     >
       <span data-name-line="first" className="relative block">

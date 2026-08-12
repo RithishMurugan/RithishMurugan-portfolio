@@ -22,7 +22,7 @@ export default function Footer() {
         className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-cta/[0.04] via-transparent to-transparent"
         aria-hidden
       />
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="page-container relative">
         <motion.div
           className="mx-auto mb-14 max-w-2xl text-center sm:mb-16"
           initial={{ opacity: 0, y: 12 }}
@@ -74,10 +74,16 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-1 lg:space-y-2 lg:gap-0">
+              {quickLinks.map((link, i) => (
                 <li key={link.name}>
-                  <a href={link.href} className="signal-underline text-sm text-muted-foreground transition hover:text-cta">
+                  <a
+                    href={link.href}
+                    className="signal-underline inline-flex min-h-[40px] items-center gap-2 text-sm text-muted-foreground transition hover:text-cta"
+                  >
+                    <span className="font-mono-stamp text-[10px] text-meta">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     {link.name}
                   </a>
                 </li>

@@ -113,7 +113,7 @@ export function SectionHeader({
 
       <h2
         data-heading
-        className="font-heading text-balance text-[clamp(1.75rem,4vw+1rem,3rem)] font-semibold leading-[1.15] tracking-tight text-foreground"
+        className="font-heading text-balance text-[clamp(1.85rem,4.5vw+0.5rem,3.25rem)] font-semibold leading-[1.12] tracking-tight text-foreground"
       >
         {title}
         {titleAccent && (
@@ -128,7 +128,7 @@ export function SectionHeader({
         <p
           data-copy
           className={cn(
-            "mt-3 max-w-2xl text-balance text-sm leading-relaxed text-secondary sm:text-base md:text-lg",
+            "mt-3 max-w-2xl text-balance text-[clamp(0.9375rem,1.2vw,1.125rem)] leading-relaxed text-secondary",
             align === "center" && "mx-auto"
           )}
         >

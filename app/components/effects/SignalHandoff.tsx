@@ -49,14 +49,15 @@ export default function SignalHandoff({ fromId = "home", toId = "build" }: { fro
   return (
     <div
       ref={ref}
-      className="pointer-events-none absolute left-1/2 z-10 hidden h-16 w-px -translate-x-1/2 md:block"
-      style={{ top: "100%", marginTop: "-0.75rem" }}
+      className="pointer-events-none absolute left-1/2 z-10 h-12 w-px -translate-x-1/2 md:h-16"
+      style={{ top: "100%", marginTop: "-0.5rem" }}
       aria-hidden
     >
       <div
         data-handoff-line
-        className="absolute inset-0 origin-top bg-gradient-to-b from-cta/30 via-cta/10 to-transparent"
+        className="absolute inset-0 origin-top bg-gradient-to-b from-cta/40 via-cta/15 to-transparent"
       />
+      <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cta/50" />
     </div>
   );
 }

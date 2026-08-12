@@ -39,10 +39,10 @@ function getGraphicColors(isDark: boolean) {
   const b = parseInt(hex.slice(4, 6), 16);
   return {
     accent: [r, g, b] as [number, number, number],
-    signal: isDark ? 0.95 : 0.85,
-    node: isDark ? 0.9 : 0.8,
-    line: isDark ? 0.4 : 0.5,
-    glow: isDark ? 0.18 : 0.12,
+    signal: isDark ? 0.95 : 0.95,
+    node: isDark ? 0.9 : 0.92,
+    line: isDark ? 0.4 : 0.62,
+    glow: isDark ? 0.15 : 0.22,
   };
 }
 
@@ -120,7 +120,6 @@ export default function EvolvingIntelligence({ className = "" }: { className?: s
     if (!ctx) return;
 
     const isMobile = window.innerWidth < 768;
-    const nodeCount = reducedMotion ? 24 : isMobile ? 32 : 48;
     const formations: Formation[] = ["network", "ring", "grid", "orbital", "lattice", "wave"];
 
     let w = 0, h = 0;
@@ -132,19 +131,29 @@ export default function EvolvingIntelligence({ className = "" }: { className?: s
     let rotation = 0;
     let wordFlash: { text: string; opacity: number; x: number; y: number } | null = null;
     let wordTimer = 0;
+    let mobileMode = isMobile;
+
+    const currentNodeCount = () =>
+      reducedMotion ? 24 : mobileMode ? 28 : window.innerWidth < 1024 ? 36 : 48;
 
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
       w = parent.clientWidth;
       h = parent.clientHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
+      mobileMode = window.innerWidth < 768;
+      const targetCount = currentNodeCount();
+      const dpr = Math.min(window.devicePixelRatio || 1, mobileMode ? 1.5 : 2);
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      nodes = getFormationPositions(formations[formationIndex]!, nodeCount, w, h);
+      if (nodes.length !== targetCount) {
+        nodes = getFormationPositions(formations[formationIndex]!, targetCount, w, h);
+      } else {
+        nodes = getFormationPositions(formations[formationIndex]!, nodes.length, w, h);
+      }
     };
 
     const onMove = (e: MouseEvent) => {
@@ -180,7 +189,7 @@ export default function EvolvingIntelligence({ className = "" }: { className?: s
         if (formationTimer > 420 + Math.random() * 200) {
           formationTimer = 0;
           const next = (formationIndex + 1) % formations.length;
-          const targets = getFormationPositions(formations[next]!, nodeCount, w, h);
+          const targets = getFormationPositions(formations[next]!, nodes.length, w, h);
           nodes.forEach((node, i) => {
             node.tx = targets[i]!.tx;
             node.ty = targets[i]!.ty;
@@ -318,7 +327,7 @@ export default function EvolvingIntelligence({ className = "" }: { className?: s
   }, [reducedMotion, coarsePointer, getFormationPositions]);
 
   return (
-    <div className={`relative h-full min-h-[280px] w-full sm:min-h-[360px] lg:min-h-[420px] ${className}`} aria-hidden>
+    <div className={`relative h-full min-h-[clamp(17.5rem,52vw,22.5rem)] w-full md:min-h-[360px] lg:min-h-[420px] ${className}`} aria-hidden>
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
       <div
         className="pointer-events-none absolute inset-0"

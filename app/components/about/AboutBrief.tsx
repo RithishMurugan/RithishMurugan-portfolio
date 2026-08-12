@@ -24,12 +24,14 @@ export default function AboutBrief() {
     const meta = root.querySelector("[data-about-meta]");
     const chips = root.querySelectorAll("[data-about-chip]");
     const seam = root.querySelector("[data-about-seam]");
+    const seamMobile = root.querySelector("[data-about-seam-mobile]");
 
     const ctx = gsap.context(() => {
       gsap.set([stamp, support, meta, heading], { opacity: 0, y: 6 });
       gsap.set(bio, { opacity: 0, y: 6 });
       gsap.set(chips, { opacity: 0, y: 4 });
       gsap.set(seam, { scaleY: 0, transformOrigin: "top center" });
+      gsap.set(seamMobile, { scaleY: 0, transformOrigin: "top center" });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -44,6 +46,7 @@ export default function AboutBrief() {
         .to(heading, { opacity: 1, y: 0, duration: TIME.reveal, ease: EASE.reveal, clearProps: "transform" }, "-=0.04")
         .to(support, { opacity: 1, y: 0, duration: TIME.reveal * 0.9, ease: EASE.reveal, clearProps: "transform" }, "-=0.22")
         .to(seam, { scaleY: 1, duration: TIME.component * 0.85, ease: EASE.structure }, "-=0.3")
+        .to(seamMobile, { scaleY: 1, duration: TIME.component * 0.85, ease: EASE.structure }, "<")
         .to(bio, { opacity: 1, y: 0, duration: TIME.reveal * 0.9, stagger: TIME.staggerTiny, ease: EASE.reveal, clearProps: "transform" }, "-=0.28")
         .to(meta, { opacity: 1, y: 0, duration: TIME.micro, ease: EASE.ui, clearProps: "transform" }, "-=0.12")
         .to(chips, { opacity: 1, y: 0, duration: TIME.micro, stagger: TIME.staggerTiny, ease: EASE.ui, clearProps: "transform" }, "-=0.08");
@@ -55,13 +58,20 @@ export default function AboutBrief() {
   return (
     <section id="about" ref={ref} className="section-shell">
       <div className="relative grid items-start gap-8 md:gap-10 lg:grid-cols-2 lg:gap-x-14 xl:gap-x-16">
+        {/* Desktop center seam */}
         <div
           data-about-seam
-          className="pointer-events-none absolute bottom-6 top-6 hidden w-px -translate-x-1/2 bg-gradient-to-b from-cta/40 via-border/35 to-transparent lg:left-1/2 lg:block"
+          className="pointer-events-none absolute bottom-6 left-1/2 top-6 hidden w-px -translate-x-1/2 origin-top scale-y-0 bg-gradient-to-b from-cta/40 via-border/35 to-transparent lg:block"
+          aria-hidden
+        />
+        {/* Mobile / tablet vertical seam */}
+        <div
+          data-about-seam-mobile
+          className="pointer-events-none absolute bottom-4 left-0 top-4 w-px origin-top scale-y-0 bg-gradient-to-b from-cta/40 via-border/35 to-transparent lg:hidden"
           aria-hidden
         />
 
-        <div className="lg:pr-4 xl:pr-8">
+        <div className="pl-5 lg:pl-0 lg:pr-4 xl:pr-8">
           <div data-about-stamp>
             <SectionBadge>
               <span className="stamp-index">06</span>
@@ -85,7 +95,7 @@ export default function AboutBrief() {
           </p>
         </div>
 
-        <div className="space-y-4 lg:pl-4 xl:pl-8">
+        <div className="space-y-4 pl-5 lg:pl-4 xl:pl-8">
           <p data-about-bio className="max-w-prose text-[0.9375rem] leading-[1.75] text-secondary sm:text-base">
             Most interesting problems sit between layers—where an API boundary, a data path, and a UI decision
             have to agree. That&apos;s where I like to work.

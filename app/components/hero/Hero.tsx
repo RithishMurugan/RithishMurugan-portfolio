@@ -18,24 +18,53 @@ import Magnetic from "@/components/ui/Magnetic";
 
 function HeroMetrics() {
   return (
-    <div data-hero-metrics className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 sm:flex sm:items-start sm:justify-between sm:gap-0">
+    <div
+      data-hero-metrics
+      className="mt-5 grid grid-cols-2 gap-x-4 gap-y-4 border-t border-border/40 pt-5 sm:mt-6 sm:gap-y-5 sm:pt-6 lg:grid-cols-4 lg:gap-0 lg:border-0 lg:pt-0"
+    >
       {HERO_METRICS.map((metric, i) => (
-        <div key={metric.label} data-hero-metric className="flex items-stretch sm:flex-1">
+        <div key={metric.label} data-hero-metric className="flex min-w-0 items-stretch lg:flex-1">
           {i > 0 && (
             <div
-              className="mr-4 hidden w-px self-stretch bg-gradient-to-b from-transparent via-border/25 to-transparent sm:block lg:mr-6"
+              className="mr-4 hidden w-px self-stretch bg-gradient-to-b from-transparent via-border/25 to-transparent lg:mr-5 lg:block xl:mr-6"
               aria-hidden
             />
           )}
-          <div className="min-w-0 flex-1 sm:text-left">
-            <p className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem] lg:text-3xl">
+          <div className="min-w-0 flex-1">
+            <p className="font-heading text-[clamp(1.35rem,3.5vw,1.875rem)] font-semibold tracking-tight text-foreground">
               {metric.value}
             </p>
-            <p className="mt-1 max-w-[9rem] text-[10px] leading-snug text-meta sm:max-w-none sm:text-xs">
+            <p className="mt-1 max-w-[10rem] text-[10px] leading-snug text-meta sm:text-xs lg:max-w-none">
               {metric.label}
             </p>
           </div>
         </div>
+      ))}
+    </div>
+  );
+}
+
+function HeroSocials() {
+  return (
+    <div data-hero-socials className="flex items-center gap-3">
+      {[
+        { href: SITE.linkedin, Icon: Linkedin, label: "LinkedIn" },
+        { href: SITE.github, Icon: Github, label: "GitHub" },
+        { href: `mailto:${SITE.email}`, Icon: Mail, label: "Email" },
+      ].map(({ href, Icon, label }) => (
+        <motion.a
+          key={label}
+          href={href}
+          target={href.startsWith("http") ? "_blank" : undefined}
+          rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+          className="interactive flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground backdrop-blur-sm transition hover:border-cta/40 hover:text-cta"
+          aria-label={label}
+          whileHover={{ scale: 1.08, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          transition={springSmooth}
+        >
+          <Icon size={17} />
+        </motion.a>
       ))}
     </div>
   );
@@ -133,7 +162,7 @@ export default function Hero() {
     const title = root.querySelector<HTMLElement>("[data-hero-title]");
     const tagline = root.querySelector<HTMLElement>("[data-hero-tagline]");
     const ctas = root.querySelector("[data-hero-ctas]");
-    const socials = root.querySelector("[data-hero-socials]");
+    const socials = root.querySelectorAll("[data-hero-socials]");
     const visual = root.querySelector<HTMLElement>("[data-hero-visual]");
     const systemPulse = root.querySelector<HTMLElement>("[data-system-pulse]");
     const metrics = root.querySelectorAll("[data-hero-metric]");
@@ -278,7 +307,7 @@ export default function Hero() {
     <section
       id="home"
       ref={rootRef}
-      className="hero-section relative flex min-h-[100dvh] flex-col justify-end overflow-hidden safe-top"
+      className="hero-section relative flex min-h-[100svh] flex-col justify-center overflow-x-hidden safe-top lg:min-h-[100dvh] lg:justify-end"
       aria-label="Introduction"
       onPointerMove={handlePointerMove}
       onPointerLeave={resetParallax}
@@ -286,14 +315,15 @@ export default function Hero() {
       <motion.div className="hero-bg-base absolute inset-0" style={{ x: visualX, y: visualY }} />
       <motion.div className="hero-bg-overlay absolute inset-0" style={{ x: visualX, y: visualY }} />
       <motion.div className="absolute inset-0" style={{ x: visualX, y: visualY }}>
-        <NetworkCanvas focalSide="right" className="opacity-90 dark:opacity-75" />
+        <NetworkCanvas focalSide="right" className="opacity-35 md:opacity-70 lg:opacity-90 dark:opacity-55 md:dark:opacity-70 lg:dark:opacity-75" />
       </motion.div>
-      <div className="hero-bg-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 h-56" />
+      <div className="hero-bg-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 h-40 sm:h-56" />
       <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.025]" aria-hidden />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-[calc(6rem+env(safe-area-inset-top))] sm:px-6 sm:pb-28 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
+      <div className="page-container relative z-10 pb-16 pt-[calc(4.75rem+env(safe-area-inset-top))] sm:pb-20 sm:pt-[calc(5.25rem+env(safe-area-inset-top))] lg:pb-24 lg:pt-[calc(5.75rem+env(safe-area-inset-top))]">
+        <div className="grid items-center gap-7 md:grid-cols-12 md:gap-6 lg:gap-10 xl:gap-12">
+          {/* Copy column */}
+          <div className="md:col-span-5">
             <HeroName
               firstName={firstName}
               lastName={lastName}
@@ -303,16 +333,16 @@ export default function Hero() {
 
             <p
               data-hero-title
-              className="mb-4 overflow-hidden text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-secondary"
+              className="mb-3 overflow-hidden text-[clamp(1.05rem,2.4vw,1.75rem)] font-medium leading-snug text-secondary sm:mb-4"
             >
               {SITE.title}
             </p>
 
-            <p data-hero-tagline className="mb-8 max-w-lg text-sm leading-relaxed text-secondary sm:text-base">
+            <p data-hero-tagline className="mb-5 max-w-lg text-[clamp(0.9375rem,1.4vw,1.0625rem)] leading-relaxed text-secondary sm:mb-8">
               {HERO_TAGLINE}
             </p>
 
-            <div data-hero-ctas className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div data-hero-ctas className="mb-1 flex flex-col gap-3 sm:mb-0 sm:flex-row sm:flex-wrap">
               <Magnetic className="w-full sm:w-auto">
                 <ButtonLink href="#flagship" variant="primary" size="lg" className="group w-full sm:w-auto">
                   Explore work
@@ -326,33 +356,18 @@ export default function Hero() {
               </Magnetic>
             </div>
 
-            <div data-hero-socials className="mt-7 flex items-center gap-3">
-              {[
-                { href: SITE.linkedin, Icon: Linkedin, label: "LinkedIn" },
-                { href: SITE.github, Icon: Github, label: "GitHub" },
-                { href: `mailto:${SITE.email}`, Icon: Mail, label: "Email" },
-              ].map(({ href, Icon, label }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="interactive flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground backdrop-blur-sm transition hover:border-cta/40 hover:text-cta"
-                  aria-label={label}
-                  whileHover={{ scale: 1.08, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={springSmooth}
-                >
-                  <Icon size={17} />
-                </motion.a>
-              ))}
+            {/* Desktop / tablet socials under CTAs */}
+            <div className="mt-7 hidden md:block">
+              <HeroSocials />
             </div>
           </div>
 
-          <motion.div data-hero-visual className="lg:col-span-7" style={{ x: visualX, y: visualY }}>
+          {/* System visual + metrics — always present */}
+          <motion.div data-hero-visual className="md:col-span-7" style={{ x: visualX, y: visualY }}>
             <div className="relative">
-              <EvolvingIntelligence />
-              {/* Signal handoff pulse into the system graphic */}
+              <div className="h-[clamp(17.5rem,52vw,22.5rem)] w-full md:h-[min(20rem,42vw)] lg:h-auto lg:min-h-[420px]">
+                <EvolvingIntelligence className="!min-h-0 h-full" />
+              </div>
               <span
                 data-system-pulse
                 aria-hidden
@@ -364,13 +379,18 @@ export default function Hero() {
             </div>
             <HeroMetrics />
           </motion.div>
+
+          {/* Phone socials after metrics */}
+          <div className="md:hidden">
+            <HeroSocials />
+          </div>
         </div>
       </div>
 
       <a
         data-hero-scroll
         href="#build"
-        className="interactive absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-xs text-muted-foreground hover:text-cta"
+        className="interactive absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-xs text-muted-foreground hover:text-cta sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))]"
         aria-label="Scroll to explore"
       >
         <span className="tracking-widest uppercase">Scroll</span>

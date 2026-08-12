@@ -16,7 +16,7 @@ function ProjectPanel({ project, index, isActive }: { project: Project; index: n
     <article
       data-project-index={index}
       className={cn(
-        "project-card relative flex h-full min-h-[480px] w-[calc(100vw-2rem)] shrink-0 snap-center flex-col overflow-hidden rounded-3xl transition-all duration-500 sm:min-h-[520px] sm:w-[min(72vw,640px)] lg:w-[640px]",
+        "project-card relative flex h-full min-h-[min(70svh,420px)] w-[calc(100vw-2rem)] shrink-0 snap-center flex-col overflow-hidden rounded-3xl transition-all duration-500 sm:min-h-[480px] sm:w-[min(72vw,640px)] lg:min-h-[520px] lg:w-[640px]",
         "ring-1 ring-inset ring-border/50 bg-card/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.2)]",
         isActive ? "ring-cta/25 scale-100 shadow-[0_16px_48px_rgba(108,99,255,0.1)]" : "scale-[0.98] opacity-75"
       )}
@@ -168,7 +168,7 @@ export default function ProjectShowcase() {
           ))}
         </div>
 
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+        <div className="page-container mx-auto flex items-center justify-between gap-4 pb-8 pt-2">
           <motion.button
             type="button"
             onClick={() => scrollTo(Math.max(activeIndex - 1, 0))}

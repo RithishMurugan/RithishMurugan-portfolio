@@ -73,7 +73,7 @@ export default function CareerNetwork() {
       <div className="relative">
         <div
           ref={timelineLineRef}
-          className="absolute left-4 top-0 hidden h-full w-px origin-top scale-y-0 bg-gradient-to-b from-cta/50 via-cta/25 to-transparent md:left-1/2 md:block md:-translate-x-px"
+          className="absolute left-4 top-0 h-full w-px origin-top scale-y-0 bg-gradient-to-b from-cta/50 via-cta/25 to-transparent md:left-1/2 md:-translate-x-px"
         />
 
         <motion.div
@@ -94,7 +94,7 @@ export default function CareerNetwork() {
                 key={item.id}
                 variants={fadeUp}
                 custom={i}
-                className={cn("relative md:grid md:grid-cols-2 md:gap-8")}
+                className={cn("relative pl-10 md:grid md:grid-cols-2 md:gap-8 md:pl-0")}
               >
                 <div className={cn("md:col-start-1", !isLeft && "md:col-start-2")}>
                   <button
@@ -227,7 +227,7 @@ export default function CareerNetwork() {
                   )}
                 </AnimatePresence>
 
-                <div className="absolute left-4 top-8 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-cta bg-background md:left-1/2 md:block" />
+                <div className="absolute left-4 top-8 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-cta bg-background md:left-1/2" />
               </motion.div>
             );
           })}
