@@ -13,19 +13,17 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        // PRIMARY — Inter Tight (also aliased as heading for existing classNames)
+        // PRIMARY — General Sans
         sans: [
           "var(--font-primary)",
-          "Inter Tight",
-          "Inter",
+          "General Sans",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
         ],
         heading: [
           "var(--font-primary)",
-          "Inter Tight",
-          "Inter",
+          "General Sans",
           "ui-sans-serif",
           "system-ui",
           "sans-serif",
@@ -43,7 +41,6 @@ module.exports = {
         display: ["var(--font-editorial)", "Instrument Serif", "Georgia", "serif"],
       },
       fontWeight: {
-        // Only 400–700 are loaded; map heavier utility names to 700
         extrabold: "700",
         black: "700",
       },

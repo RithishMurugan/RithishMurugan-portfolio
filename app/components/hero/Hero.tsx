@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { motion, useSpring } from "framer-motion";
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { springSmooth } from "@/lib/motion";
@@ -28,7 +28,7 @@ function HeroMetrics() {
             />
           )}
           <div className="min-w-0 flex-1 sm:text-left">
-            <p className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-[1.75rem] lg:text-3xl">
+            <p className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem] lg:text-3xl">
               {metric.value}
             </p>
             <p className="mt-1 max-w-[9rem] text-[10px] leading-snug text-meta sm:max-w-none sm:text-xs">
@@ -39,6 +39,54 @@ function HeroMetrics() {
       ))}
     </div>
   );
+}
+
+/** Reveal a word via clip-path while the signal tracks the leading edge. */
+function revealWordWithSignal(
+  tl: gsap.core.Timeline,
+  opts: {
+    word: HTMLElement;
+    signal: HTMLElement;
+    nameRoot: HTMLElement;
+    at: number;
+    duration: number;
+    ease?: string;
+  }
+) {
+  const { word, signal, nameRoot, at, duration, ease = "power2.inOut" } = opts;
+  const nameBox = nameRoot.getBoundingClientRect();
+  const wordBox = word.getBoundingClientRect();
+  const y = wordBox.top - nameBox.top + wordBox.height * 0.52;
+  const startX = wordBox.left - nameBox.left;
+  const endX = startX + wordBox.width;
+  const proxy = { t: 0 };
+
+  tl.set(word, { clipPath: "inset(0 100% 0 0)", opacity: 0.92, x: -4 }, at);
+  tl.set(signal, { top: y, left: startX, opacity: 1 }, at);
+
+  tl.to(
+    proxy,
+    {
+      t: 1,
+      duration,
+      ease,
+      onUpdate: () => {
+        const p = proxy.t;
+        word.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+        gsap.set(signal, { left: startX + (endX - startX) * p });
+      },
+    },
+    at
+  );
+
+  // Micro settle as the word finishes
+  tl.to(
+    word,
+    { opacity: 1, x: 0, duration: 0.22, ease: EASE.ui, clearProps: "transform" },
+    at + duration - 0.12
+  );
+
+  return { endX, y, startX };
 }
 
 export default function Hero() {
@@ -73,42 +121,154 @@ export default function Hero() {
   const [firstName, ...rest] = SITE.name.split(" ");
   const lastName = rest.join(" ");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!rootRef.current) return;
     registerGsapPlugins();
     const root = rootRef.current;
 
-    const title = root.querySelector("[data-hero-title]");
-    const tagline = root.querySelector("[data-hero-tagline]");
+    const nameRoot = root.querySelector<HTMLElement>("[data-hero-name]");
+    const firstWord = root.querySelector<HTMLElement>('[data-name-word="first"]');
+    const lastWord = root.querySelector<HTMLElement>('[data-name-word="last"]');
+    const signal = root.querySelector<HTMLElement>("[data-name-signal]");
+    const title = root.querySelector<HTMLElement>("[data-hero-title]");
+    const tagline = root.querySelector<HTMLElement>("[data-hero-tagline]");
     const ctas = root.querySelector("[data-hero-ctas]");
     const socials = root.querySelector("[data-hero-socials]");
-    const visual = root.querySelector("[data-hero-visual]");
+    const visual = root.querySelector<HTMLElement>("[data-hero-visual]");
+    const systemPulse = root.querySelector<HTMLElement>("[data-system-pulse]");
     const metrics = root.querySelectorAll("[data-hero-metric]");
     const scrollCue = root.querySelector("[data-hero-scroll]");
 
-    if (reducedMotion) {
-      gsap.set([title, tagline, ctas, socials, visual, metrics, scrollCue], { clearProps: "all", opacity: 1 });
+    const reduceMotion =
+      reducedMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion) {
+      gsap.set([firstWord, lastWord, title, tagline, ctas, socials, visual, metrics, scrollCue], {
+        clearProps: "all",
+        opacity: 1,
+        clipPath: "none",
+      });
+      gsap.set([signal, systemPulse], { clearProps: "all", opacity: 0 });
       return;
     }
 
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+
     const ctx = gsap.context(() => {
+      if (!nameRoot || !firstWord || !lastWord || !signal) return;
+
+      // Initial: words hidden by clip; signal dormant
+      gsap.set([firstWord, lastWord], { clipPath: "inset(0 100% 0 0)", opacity: 0.9, x: -4 });
+      gsap.set(signal, { opacity: 0, left: 0, top: 0 });
+      if (systemPulse) gsap.set(systemPulse, { opacity: 0, scale: 0.4 });
+
       gsap.set([title, tagline, ctas, socials, visual, scrollCue], { opacity: 0 });
       gsap.set(metrics, { opacity: 0, y: 6 });
-      gsap.set(title, { y: 5 });
-      gsap.set(tagline, { y: 5 });
+      gsap.set(title, { y: 8, clipPath: "inset(0 0 100% 0)" });
+      gsap.set(tagline, { y: 6 });
       gsap.set(ctas, { y: 5 });
       gsap.set(visual, { y: 10, scale: 0.99 });
 
       const tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
 
-      // Name (HeroName) leads; supporting copy follows — no hero stamp/eyebrow
-      tl.to(title, { opacity: 1, y: 0, duration: 0.35, clearProps: "transform" }, 0.28)
-        .to(tagline, { opacity: 1, y: 0, duration: 0.35, clearProps: "transform" }, 0.4)
-        .to(visual, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: EASE.cinematic, clearProps: "transform" }, 0.48)
-        .to(metrics, { opacity: 1, y: 0, duration: 0.3, stagger: TIME.staggerTiny, ease: EASE.ui, clearProps: "transform" }, 0.68)
-        .to(ctas, { opacity: 1, y: 0, duration: 0.3, ease: EASE.ui, clearProps: "transform" }, 0.78)
-        .to(socials, { opacity: 1, duration: 0.25, ease: EASE.ui }, 0.88)
-        .to(scrollCue, { opacity: 1, duration: 0.25, ease: EASE.ui }, 0.98);
+      // 0ms — signal appears at left of Rithish
+      const firstBox = firstWord.getBoundingClientRect();
+      const nameBox = nameRoot.getBoundingClientRect();
+      const firstY = firstBox.top - nameBox.top + firstBox.height * 0.52;
+      const firstStartX = firstBox.left - nameBox.left;
+
+      tl.set(signal, { opacity: 0, left: firstStartX, top: firstY }, 0)
+        .to(signal, { opacity: 1, duration: 0.08, ease: EASE.ui }, 0);
+
+      // 80–650ms — Rithish signal trace reveal
+      revealWordWithSignal(tl, {
+        word: firstWord,
+        signal,
+        nameRoot,
+        at: 0.08,
+        duration: mobile ? 0.5 : 0.55,
+      });
+
+      const afterFirst = 0.08 + (mobile ? 0.5 : 0.55);
+
+      // Route handoff to Murugan (simplified on mobile)
+      const lastBox = lastWord.getBoundingClientRect();
+      const lastY = lastBox.top - nameBox.top + lastBox.height * 0.52;
+      const lastStartX = lastBox.left - nameBox.left;
+      const routeAt = afterFirst - 0.04;
+
+      if (mobile) {
+        tl.to(signal, { top: lastY, left: lastStartX, duration: 0.14, ease: EASE.structure }, routeAt);
+      } else {
+        const midX = Math.max(firstStartX + firstBox.width * 0.72, lastStartX + 8);
+        tl.to(signal, { left: midX, duration: 0.1, ease: EASE.none }, routeAt)
+          .to(signal, { top: lastY, left: lastStartX, duration: 0.16, ease: EASE.structure }, routeAt + 0.08);
+      }
+
+      // Murugan reveal
+      const muruganAt = mobile ? routeAt + 0.14 : routeAt + 0.22;
+      revealWordWithSignal(tl, {
+        word: lastWord,
+        signal,
+        nameRoot,
+        at: muruganAt,
+        duration: mobile ? 0.5 : 0.55,
+      });
+
+      const muruganEnd = muruganAt + (mobile ? 0.5 : 0.55);
+
+      // Signal exits beyond last letter and dissolves
+      const lastEndX = lastStartX + lastBox.width + 18;
+      tl.to(signal, { left: lastEndX, duration: 0.14, ease: EASE.none }, muruganEnd - 0.02).to(
+        signal,
+        { opacity: 0, duration: 0.16, ease: EASE.ui },
+        muruganEnd + 0.1
+      );
+
+      // Hand off into Evolving Intelligence — brief system pulse
+      if (systemPulse) {
+        tl.to(
+          systemPulse,
+          { opacity: 0.85, scale: 1, duration: 0.22, ease: EASE.ui },
+          muruganEnd + 0.18
+        ).to(systemPulse, { opacity: 0, scale: 1.6, duration: 0.45, ease: EASE.ui }, muruganEnd + 0.4);
+      }
+
+      // Title — quieter complementary mask (not signal-trace)
+      const titleAt = Math.max(muruganEnd + 0.18, 1.28);
+      tl.to(
+        title,
+        {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.42,
+          ease: EASE.reveal,
+          clearProps: "transform,clipPath",
+        },
+        titleAt
+      )
+        .to(tagline, { opacity: 1, y: 0, duration: 0.36, ease: EASE.ui, clearProps: "transform" }, titleAt + 0.14)
+        .to(
+          visual,
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: EASE.cinematic, clearProps: "transform" },
+          titleAt + 0.2
+        )
+        .to(
+          metrics,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.3,
+            stagger: TIME.staggerTiny,
+            ease: EASE.ui,
+            clearProps: "transform",
+          },
+          titleAt + 0.4
+        )
+        .to(ctas, { opacity: 1, y: 0, duration: 0.3, ease: EASE.ui, clearProps: "transform" }, titleAt + 0.5)
+        .to(socials, { opacity: 1, duration: 0.26, ease: EASE.ui }, titleAt + 0.58)
+        .to(scrollCue, { opacity: 1, duration: 0.26, ease: EASE.ui }, titleAt + 0.66);
     }, root);
 
     return () => ctx.revert();
@@ -143,7 +303,7 @@ export default function Hero() {
 
             <p
               data-hero-title
-              className="mb-4 text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-secondary"
+              className="mb-4 overflow-hidden text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-secondary"
             >
               {SITE.title}
             </p>
@@ -192,6 +352,12 @@ export default function Hero() {
           <motion.div data-hero-visual className="lg:col-span-7" style={{ x: visualX, y: visualY }}>
             <div className="relative">
               <EvolvingIntelligence />
+              {/* Signal handoff pulse into the system graphic */}
+              <span
+                data-system-pulse
+                aria-hidden
+                className="pointer-events-none absolute left-1/2 top-[42%] h-3 w-3 -translate-x-1/2 rounded-full bg-cta opacity-0"
+              />
               <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 font-mono-stamp text-[9px] text-meta">
                 Evolving Intelligence
               </p>

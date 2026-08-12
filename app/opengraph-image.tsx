@@ -18,7 +18,7 @@ export default async function OgImage() {
           justifyContent: "space-between",
           padding: "64px 72px",
           background: "linear-gradient(145deg, #0a0e14 0%, #0c1017 42%, #161c26 100%)",
-          fontFamily: '"Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif',
+          fontFamily: '"General Sans", ui-sans-serif, system-ui, sans-serif',
           position: "relative",
           overflow: "hidden",
         }}

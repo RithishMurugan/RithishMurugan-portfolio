@@ -1,17 +1,8 @@
 import "./globals.css";
-import { IBM_Plex_Mono, Instrument_Serif, Inter_Tight } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SITE } from "@/lib/data/site";
-
-/** PRIMARY SANS — hero, headings, body, nav, buttons, UI */
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-primary",
-  display: "swap",
-  preload: true,
-});
 
 /** TECHNICAL MONO — section stamps, metadata, system labels */
 const plexMono = IBM_Plex_Mono({
@@ -22,7 +13,7 @@ const plexMono = IBM_Plex_Mono({
   preload: true,
 });
 
-/** EDITORIAL ACCENT — Instrument Serif italic only, used rarely */
+/** EDITORIAL ACCENT — Instrument Serif italic, rare use only */
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -31,6 +22,10 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
   preload: true,
 });
+
+/** Fontshare General Sans — primary portfolio voice (400/500/600/700) */
+const GENERAL_SANS_CSS =
+  "https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap";
 
 export const metadata: Metadata = {
   title: "Rithish Murugan | AI Full Stack Software Engineer",
@@ -97,15 +92,14 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${interTight.variable} ${plexMono.variable} ${instrumentSerif.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${plexMono.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href={GENERAL_SANS_CSS} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className={`${interTight.className} body-grain font-sans antialiased`} suppressHydrationWarning>
+      <body className="body-grain font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

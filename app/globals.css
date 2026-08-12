@@ -6,7 +6,8 @@
 
 @layer base {
   :root {
-    /* Light — warm stone canvas + deeper indigo signal + clear type hierarchy */
+    /* Primary voice — General Sans (loaded via Fontshare in layout) */
+    --font-primary: "General Sans", ui-sans-serif, system-ui, sans-serif;
     --color-primary: #171a20;
     --color-secondary: #4e5663;
     --color-cta: #5148e5;
@@ -178,7 +179,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-primary), "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-primary), "General Sans", ui-sans-serif, system-ui, sans-serif;
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -213,7 +214,7 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-primary), "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-primary), "General Sans", ui-sans-serif, system-ui, sans-serif;
     font-synthesis: none;
   }
 
@@ -258,6 +259,14 @@
 
   .signal-text {
     color: var(--color-mist);
+  }
+
+  .hero-name-word {
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    will-change: clip-path;
   }
 
   .font-mono-stamp {
