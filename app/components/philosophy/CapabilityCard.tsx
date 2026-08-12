@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 import type { CapabilityPillar } from "@/lib/data/narrative";
-import { fadeUp } from "@/lib/motion";
 import { useCoarsePointer } from "@/lib/hooks/useCoarsePointer";
 import { cn } from "@/lib/utils";
 
@@ -59,10 +58,10 @@ function CardAtmosphere({ variant }: { variant: string }) {
 
 interface CapabilityCardProps {
   pillar: CapabilityPillar;
-  index: number;
+  index?: number;
 }
 
-export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
+export default function CapabilityCard({ pillar }: CapabilityCardProps) {
   const Icon = pillar.icon;
   const cardRef = useRef<HTMLElement>(null);
   const coarse = useCoarsePointer();
@@ -90,8 +89,6 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
   return (
     <motion.article
       ref={cardRef}
-      variants={fadeUp}
-      custom={index}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       onClick={() => setActive((v) => !v)}
@@ -115,9 +112,9 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
       className={cn(
         "group relative cursor-default overflow-hidden rounded-3xl p-6 outline-none transition-shadow duration-500 sm:p-8",
         "bg-gradient-to-br from-card/70 via-muted/20 to-card/50",
-        "ring-1 ring-inset ring-border/40 hover:shadow-[0_16px_40px_rgba(37,99,235,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.22)]",
+        "ring-1 ring-inset ring-[color-mix(in_srgb,var(--color-foreground)_8%,transparent)] hover:shadow-[0_16px_40px_rgba(108,99,255,0.12)] dark:shadow-none",
         "hover:ring-cta/20 focus-visible:ring-2 focus-visible:ring-cta",
-        active && "ring-cta/25 shadow-[0_16px_40px_rgba(37,99,235,0.1)]"
+        active && "ring-cta/25 shadow-[0_16px_40px_rgba(108,99,255,0.14)]"
       )}
     >
       <CardAtmosphere variant={pillar.id} />
@@ -138,7 +135,7 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
         <div
           className={cn(
             "mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cta/15 bg-cta/10 text-cta transition-all duration-400",
-            "group-hover:border-cta/30 group-hover:bg-cta/15 group-hover:shadow-[0_0_20px_rgba(37,99,235,0.15)]",
+            "group-hover:border-cta/30 group-hover:bg-cta/15 group-hover:shadow-[0_0_18px_rgba(108,99,255,0.14)]",
             active && "border-cta/35 bg-cta/18"
           )}
         >
@@ -148,10 +145,10 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
         <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-cta/90 transition-colors group-hover:text-cta">
           {pillar.subtitle}
         </p>
-        <h3 className="font-heading mb-3 text-xl font-bold text-foreground transition-colors group-hover:text-foreground sm:text-2xl">
+        <h3 className="font-heading mb-3 text-xl font-semibold text-foreground transition-colors group-hover:text-foreground sm:text-2xl">
           {pillar.title}
         </h3>
-        <p className="mb-6 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-muted-foreground/90 sm:text-base">
+        <p className="mb-6 text-sm leading-relaxed text-secondary transition-colors sm:text-base">
           {pillar.description}
         </p>
         <p className="mb-5 text-xs font-medium text-cta/75">{pillar.footnote}</p>
@@ -162,8 +159,8 @@ export default function CapabilityCard({ pillar, index }: CapabilityCardProps) {
               key={node}
               className={cn(
                 "rounded-full border border-cta/10 bg-cta/[0.05] px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-all duration-300",
-                "group-hover:border-cta/20 group-hover:bg-cta/[0.08] group-hover:text-foreground/90",
-                active && "border-cta/25 bg-cta/10 text-foreground/90"
+                "group-hover:border-cta/20 group-hover:bg-cta/[0.08] group-hover:text-foreground",
+                active && "border-cta/25 bg-cta/10 text-foreground"
               )}
             >
               {node}

@@ -1,45 +1,42 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef } from "react";
 import { EASE, TIME, gsap, registerGsapPlugins } from "@/lib/gsap";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 
-interface ScrollRevealProps {
-  children: ReactNode;
+export function SectionReveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
   className?: string;
-  y?: number;
   delay?: number;
-}
-
-/** Soft resolve on scroll — not a generic large fade-up. */
-export default function ScrollReveal({ children, className = "", y = 8, delay = 0 }: ScrollRevealProps) {
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (reducedMotion || !ref.current) return;
-
     registerGsapPlugins();
     const ctx = gsap.context(() => {
       gsap.from(ref.current, {
         scrollTrigger: {
           trigger: ref.current,
           start: "top 88%",
-          toggleActions: "play none none none",
           once: true,
           invalidateOnRefresh: true,
         },
         opacity: 0,
-        y,
+        y: 8,
         duration: TIME.reveal,
         delay,
         ease: EASE.reveal,
         clearProps: "transform",
       });
     }, ref);
-
     return () => ctx.revert();
-  }, [reducedMotion, y, delay]);
+  }, [reducedMotion, delay]);
 
   return (
     <div ref={ref} className={className}>

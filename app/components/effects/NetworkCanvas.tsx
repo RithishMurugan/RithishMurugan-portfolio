@@ -189,7 +189,7 @@ export default function NetworkCanvas({
         ctx.fill();
 
         if (node.label && i < 6) {
-          ctx.font = `600 ${themeRef.current ? 10 : 11}px system-ui, sans-serif`;
+          ctx.font = `500 ${themeRef.current ? 10 : 11}px "IBM Plex Mono", ui-monospace, monospace`;
           ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${mult.label})`;
           ctx.textAlign = "center";
           ctx.fillText(node.label, node.x, node.y - radius - 8);

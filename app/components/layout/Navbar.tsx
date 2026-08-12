@@ -98,7 +98,7 @@ export default function Navbar() {
             className="interactive relative z-10 flex min-h-[44px] min-w-0 shrink-0 items-center gap-2.5"
             whileTap={{ scale: 0.98 }}
           >
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-cta to-blue-600 sm:h-9 sm:w-9 sm:rounded-xl">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cta sm:h-9 sm:w-9 sm:rounded-xl">
               <span className="font-heading text-xs font-bold text-white sm:text-sm">RM</span>
             </div>
             <div className="hidden min-w-0 sm:block">
@@ -141,7 +141,7 @@ export default function Navbar() {
             <motion.a
               href={SITE.resumePath}
               download
-              className="hidden h-9 items-center gap-1.5 rounded-lg bg-cta px-3 text-xs font-semibold text-white shadow-sm shadow-cta/20 transition-shadow hover:shadow-md hover:shadow-cta/25 sm:inline-flex sm:text-sm"
+              className="hidden h-9 items-center gap-1.5 rounded-lg bg-cta px-3 text-xs font-medium text-white transition hover:bg-cta-hover sm:inline-flex sm:text-sm"
               whileHover={{ y: -1 }}
               whileTap={{ scale: 0.97 }}
             >

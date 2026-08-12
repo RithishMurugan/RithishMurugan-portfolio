@@ -1,16 +1,14 @@
 import type { LucideIcon } from "lucide-react";
-import { Cpu, Brain, Cloud, GitBranch, Sparkles, Layers } from "lucide-react";
-
-export const HERO_EYEBROW = "Intelligent Systems · Built for Production";
+import { Cpu, Brain, GitBranch, Sparkles, Layers } from "lucide-react";
 
 export const HERO_TAGLINE =
-  "Engineering production-grade AI platforms, distributed systems, and full-stack applications — from backend infrastructure to intelligent interfaces.";
+  "From event streams to user-facing decisions, I engineer the whole path.";
 
 export const HERO_METRICS = [
-  { value: "400K+", label: "Records processed at scale" },
-  { value: "50K+", label: "Monthly production interactions" },
+  { value: "400K+", label: "Records moved at scale" },
+  { value: "50K+", label: "Monthly live interactions" },
   { value: "99.99%", label: "Platform uptime" },
-  { value: "4+", label: "Years shipping software" },
+  { value: "4+", label: "Years building software" },
 ] as const;
 
 export interface CapabilityPillar {
@@ -28,30 +26,30 @@ export const CAPABILITY_PILLARS: CapabilityPillar[] = [
     id: "systems",
     icon: Layers,
     title: "Distributed Systems",
-    subtitle: "Infrastructure that scales",
+    subtitle: "Services under pressure",
     description:
-      "Event-driven microservices, API platforms, and cloud-native delivery — the backbone behind reliable, high-throughput production software.",
-    footnote: "Designed for reliability under real load.",
+      "Event-driven services, API platforms, and cloud delivery—the paths data takes when traffic, retries, and failure are real.",
+    footnote: "Services that keep moving when traffic, data, and failure get messy.",
     nodes: ["FastAPI", "Spring Boot", "Kafka", "PostgreSQL", "AWS EKS", "Terraform"],
   },
   {
     id: "intelligence",
     icon: Brain,
     title: "Applied AI",
-    subtitle: "Intelligence with rigor",
+    subtitle: "Useful after the demo",
     description:
-      "LangGraph orchestration, multi-model RAG, and agentic workflows — production AI systems with evaluation, safety guardrails, and measurable impact.",
-    footnote: "Intelligence grounded in evaluation and control.",
+      "LangGraph workflows, grounded RAG, and review loops—AI wired into product behavior with evaluation and guardrails.",
+    footnote: "AI that earns its place in the product—not just the demo.",
     nodes: ["LangChain", "LangGraph", "RAG", "GPT-4o", "Claude", "Llama 3"],
   },
   {
     id: "fullstack",
     icon: Cpu,
     title: "Full-Stack Delivery",
-    subtitle: "End-to-end ownership",
+    subtitle: "Contract to screen",
     description:
-      "From API contracts and data pipelines to React interfaces — shipping complete product loops, not isolated components.",
-    footnote: "From backend contracts to usable interfaces.",
+      "API contracts, data pipelines, and React interfaces as one ownership loop—not a handoff between layers.",
+    footnote: "From API contract to the screen someone actually uses.",
     nodes: ["React", "TypeScript", "Python", "FastAPI", "CI/CD", "Observability"],
   },
 ];
@@ -59,19 +57,19 @@ export const CAPABILITY_PILLARS: CapabilityPillar[] = [
 export const PHILOSOPHY_STATEMENTS = [
   {
     icon: GitBranch,
-    title: "Production before polish",
-    text: "I learned distributed systems and event-driven architecture at Hexaware and Virtualan before applying those instincts to AI platforms at Abridge.",
+    title: "Clear contracts",
+    text: "I like hard boundaries, clear contracts, and systems that fail in ways you can diagnose.",
   },
   {
     icon: Layers,
-    title: "End-to-end ownership",
-    text: "From API contracts and Kafka pipelines to React interfaces — I ship the full loop, not just the model wrapper.",
+    title: "Own the path",
+    text: "From Kafka pipelines to the interface—someone has to own the whole route. I prefer that someone to be me.",
   },
   {
     icon: Sparkles,
-    title: "Intelligence with accountability",
-    text: "Every AI feature ships with evaluation, feedback capture, and production guardrails baked into the architecture.",
+    title: "After the demo",
+    text: "I care about what happens after the demo: evaluation, feedback, and the boring controls that keep AI honest.",
   },
 ] as const;
 
-export const EVOLVING_WORDS = ["BUILD", "AI", "SYSTEMS", "SCALE", "SHIP", "ENGINEER"] as const;
+export const EVOLVING_WORDS = ["SIGNAL", "ROUTE", "SYSTEM", "BUILD", "BOUND", "SHIP"] as const;

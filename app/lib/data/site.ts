@@ -9,7 +9,7 @@ export const SITE = {
   github: "https://github.com/RithishMurugan",
   url: "https://www.rithishmurugan-portfolio.online",
   summary:
-    "AI Full Stack Software Engineer building production AI platforms, distributed systems, backend services, and full-stack applications — Python, React, FastAPI, AWS, and GenAI in production.",
+    "AI Full Stack Software Engineer designing services, data flows, and AI workflows that stay reliable after launch — Python, React, FastAPI, AWS, and GenAI.",
 } as const;
 
 export const HERO_KEYWORDS = [
@@ -23,7 +23,7 @@ export const HERO_KEYWORDS = [
 export const TERMINAL_LINES = [
   { prompt: "role", text: "AI Full Stack Software Engineer" },
   { prompt: "stack", text: "React · FastAPI · LangGraph · Kafka · AWS EKS" },
-  { prompt: "focus", text: "Building clinician-facing AI copilots at Abridge..." },
-  { prompt: "deploy", text: "50K+ monthly clinical interactions validated ✓" },
-  { prompt: "status", text: "Delivering secure, reliable production systems" },
+  { prompt: "focus", text: "Clinician-facing AI copilots — contract to screen" },
+  { prompt: "route", text: "Event streams → review loops → live decisions" },
+  { prompt: "status", text: "50K+ monthly interactions under evaluation ✓" },
 ] as const;

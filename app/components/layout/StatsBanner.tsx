@@ -18,7 +18,7 @@ export default function StatsBanner() {
       >
         {STATS.map((stat, i) => (
           <motion.div key={stat.label} variants={fadeUp} custom={i} className="text-center">
-            <p className="font-heading text-[clamp(1.5rem,4vw+0.5rem,2.25rem)] font-extrabold text-foreground">
+            <p className="font-heading text-[clamp(1.5rem,4vw+0.5rem,2.25rem)] font-bold text-foreground">
               <AnimatedCounter
                 value={stat.value}
                 suffix={stat.suffix}

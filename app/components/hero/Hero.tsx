@@ -1,23 +1,26 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion, useSpring } from "framer-motion";
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { fadeUp, staggerContainer, springSmooth } from "@/lib/motion";
+import { springSmooth } from "@/lib/motion";
 import { SITE } from "@/lib/data/site";
-import { HERO_EYEBROW, HERO_METRICS, HERO_TAGLINE } from "@/lib/data/narrative";
+import { HERO_METRICS, HERO_TAGLINE } from "@/lib/data/narrative";
 import { useCoarsePointer } from "@/lib/hooks/useCoarsePointer";
 import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
+import { EASE, TIME, gsap, registerGsapPlugins } from "@/lib/gsap";
 import NetworkCanvas from "@/components/effects/NetworkCanvas";
 import EvolvingIntelligence from "@/components/effects/EvolvingIntelligence";
 import HeroName from "@/components/hero/HeroName";
+import SignalHandoff from "@/components/effects/SignalHandoff";
 import { ButtonLink } from "@/components/ui/Button";
 import Magnetic from "@/components/ui/Magnetic";
 
 function HeroMetrics() {
   return (
-    <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 sm:flex sm:items-start sm:justify-between sm:gap-0">
+    <div data-hero-metrics className="mt-6 grid grid-cols-2 gap-x-4 gap-y-5 sm:flex sm:items-start sm:justify-between sm:gap-0">
       {HERO_METRICS.map((metric, i) => (
-        <div key={metric.label} className="flex items-stretch sm:flex-1">
+        <div key={metric.label} data-hero-metric className="flex items-stretch sm:flex-1">
           {i > 0 && (
             <div
               className="mr-4 hidden w-px self-stretch bg-gradient-to-b from-transparent via-border/25 to-transparent sm:block lg:mr-6"
@@ -28,7 +31,7 @@ function HeroMetrics() {
             <p className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-[1.75rem] lg:text-3xl">
               {metric.value}
             </p>
-            <p className="mt-1 max-w-[9rem] text-[10px] leading-snug text-muted-foreground sm:max-w-none sm:text-xs">
+            <p className="mt-1 max-w-[9rem] text-[10px] leading-snug text-meta sm:max-w-none sm:text-xs">
               {metric.label}
             </p>
           </div>
@@ -39,6 +42,7 @@ function HeroMetrics() {
 }
 
 export default function Hero() {
+  const rootRef = useRef<HTMLElement>(null);
   const reducedMotion = usePrefersReducedMotion();
   const coarsePointer = useCoarsePointer();
   const parallaxEnabled = !reducedMotion && !coarsePointer;
@@ -69,9 +73,51 @@ export default function Hero() {
   const [firstName, ...rest] = SITE.name.split(" ");
   const lastName = rest.join(" ");
 
+  useEffect(() => {
+    if (!rootRef.current) return;
+    registerGsapPlugins();
+    const root = rootRef.current;
+
+    const title = root.querySelector("[data-hero-title]");
+    const tagline = root.querySelector("[data-hero-tagline]");
+    const ctas = root.querySelector("[data-hero-ctas]");
+    const socials = root.querySelector("[data-hero-socials]");
+    const visual = root.querySelector("[data-hero-visual]");
+    const metrics = root.querySelectorAll("[data-hero-metric]");
+    const scrollCue = root.querySelector("[data-hero-scroll]");
+
+    if (reducedMotion) {
+      gsap.set([title, tagline, ctas, socials, visual, metrics, scrollCue], { clearProps: "all", opacity: 1 });
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.set([title, tagline, ctas, socials, visual, scrollCue], { opacity: 0 });
+      gsap.set(metrics, { opacity: 0, y: 6 });
+      gsap.set(title, { y: 5 });
+      gsap.set(tagline, { y: 5 });
+      gsap.set(ctas, { y: 5 });
+      gsap.set(visual, { y: 10, scale: 0.99 });
+
+      const tl = gsap.timeline({ defaults: { ease: EASE.reveal } });
+
+      // Name (HeroName) leads; supporting copy follows — no hero stamp/eyebrow
+      tl.to(title, { opacity: 1, y: 0, duration: 0.35, clearProps: "transform" }, 0.28)
+        .to(tagline, { opacity: 1, y: 0, duration: 0.35, clearProps: "transform" }, 0.4)
+        .to(visual, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: EASE.cinematic, clearProps: "transform" }, 0.48)
+        .to(metrics, { opacity: 1, y: 0, duration: 0.3, stagger: TIME.staggerTiny, ease: EASE.ui, clearProps: "transform" }, 0.68)
+        .to(ctas, { opacity: 1, y: 0, duration: 0.3, ease: EASE.ui, clearProps: "transform" }, 0.78)
+        .to(socials, { opacity: 1, duration: 0.25, ease: EASE.ui }, 0.88)
+        .to(scrollCue, { opacity: 1, duration: 0.25, ease: EASE.ui }, 0.98);
+    }, root);
+
+    return () => ctx.revert();
+  }, [reducedMotion]);
+
   return (
     <section
       id="home"
+      ref={rootRef}
       className="hero-section relative flex min-h-[100dvh] flex-col justify-end overflow-hidden safe-top"
       aria-label="Introduction"
       onPointerMove={handlePointerMove}
@@ -85,19 +131,9 @@ export default function Hero() {
       <div className="hero-bg-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 h-56" />
       <div className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.025]" aria-hidden />
 
-      <motion.div
-        className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-[calc(6rem+env(safe-area-inset-top))] sm:px-6 sm:pb-28 lg:px-8"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 pt-[calc(6rem+env(safe-area-inset-top))] sm:px-6 sm:pb-28 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
-          {/* Left — identity */}
           <div className="lg:col-span-5">
-            <motion.p variants={fadeUp} custom={0} className="mb-5 text-[10px] font-semibold uppercase tracking-[0.35em] text-cta sm:text-xs">
-              {HERO_EYEBROW}
-            </motion.p>
-
             <HeroName
               firstName={firstName}
               lastName={lastName}
@@ -105,19 +141,18 @@ export default function Hero() {
               parallaxY={parallaxEnabled ? nameY : undefined}
             />
 
-            <motion.p
-              variants={fadeUp}
-              custom={2}
-              className="mb-4 text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-muted-foreground"
+            <p
+              data-hero-title
+              className="mb-4 text-[clamp(1.125rem,2.5vw,1.75rem)] font-medium leading-snug text-secondary"
             >
               {SITE.title}
-            </motion.p>
+            </p>
 
-            <motion.p variants={fadeUp} custom={3} className="mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p data-hero-tagline className="mb-8 max-w-lg text-sm leading-relaxed text-secondary sm:text-base">
               {HERO_TAGLINE}
-            </motion.p>
+            </p>
 
-            <motion.div variants={fadeUp} custom={4} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div data-hero-ctas className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Magnetic className="w-full sm:w-auto">
                 <ButtonLink href="#flagship" variant="primary" size="lg" className="group w-full sm:w-auto">
                   Explore work
@@ -129,9 +164,9 @@ export default function Hero() {
                   Get in touch
                 </ButtonLink>
               </Magnetic>
-            </motion.div>
+            </div>
 
-            <motion.div variants={fadeUp} custom={5} className="mt-7 flex items-center gap-3">
+            <div data-hero-socials className="mt-7 flex items-center gap-3">
               {[
                 { href: SITE.linkedin, Icon: Linkedin, label: "LinkedIn" },
                 { href: SITE.github, Icon: Github, label: "GitHub" },
@@ -151,35 +186,38 @@ export default function Hero() {
                   <Icon size={17} />
                 </motion.a>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Right — Evolving Intelligence + metrics */}
-          <motion.div variants={fadeUp} custom={2} className="lg:col-span-7" style={{ x: visualX, y: visualY }}>
+          <motion.div data-hero-visual className="lg:col-span-7" style={{ x: visualX, y: visualY }}>
             <div className="relative">
               <EvolvingIntelligence />
-              <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50">
+              <p className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 font-mono-stamp text-[9px] text-meta">
                 Evolving Intelligence
               </p>
             </div>
             <HeroMetrics />
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      <motion.a
+      <a
+        data-hero-scroll
         href="#build"
         className="interactive absolute bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-xs text-muted-foreground hover:text-cta"
         aria-label="Scroll to explore"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
       >
         <span className="tracking-widest uppercase">Scroll</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
+        {!reducedMotion ? (
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
+            <ArrowDown size={18} />
+          </motion.div>
+        ) : (
           <ArrowDown size={18} />
-        </motion.div>
-      </motion.a>
+        )}
+      </a>
+
+      <SignalHandoff fromId="home" toId="build" />
     </section>
   );
 }

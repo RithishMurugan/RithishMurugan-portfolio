@@ -60,7 +60,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
             )}
           >
             <div className="sticky top-0 flex items-center justify-between border-b border-border bg-card/95 px-5 py-4 backdrop-blur-md sm:px-6">
-              <h2 id="modal-title" className="font-heading text-lg font-bold text-foreground sm:text-xl">
+              <h2 id="modal-title" className="font-heading text-lg font-semibold text-foreground sm:text-xl">
                 {title}
               </h2>
               <button

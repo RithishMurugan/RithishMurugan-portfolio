@@ -13,8 +13,39 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-body)", "Noto Sans", "system-ui", "sans-serif"],
-        heading: ["var(--font-heading)", "Figtree", "system-ui", "sans-serif"],
+        // PRIMARY — Inter Tight (also aliased as heading for existing classNames)
+        sans: [
+          "var(--font-primary)",
+          "Inter Tight",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        heading: [
+          "var(--font-primary)",
+          "Inter Tight",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        // TECHNICAL — IBM Plex Mono
+        mono: [
+          "var(--font-mono)",
+          "IBM Plex Mono",
+          "SFMono-Regular",
+          "Consolas",
+          "monospace",
+        ],
+        // EDITORIAL — Instrument Serif (rare accent)
+        editorial: ["var(--font-editorial)", "Instrument Serif", "Georgia", "serif"],
+        display: ["var(--font-editorial)", "Instrument Serif", "Georgia", "serif"],
+      },
+      fontWeight: {
+        // Only 400–700 are loaded; map heavier utility names to 700
+        extrabold: "700",
+        black: "700",
       },
       colors: {
         primary: {

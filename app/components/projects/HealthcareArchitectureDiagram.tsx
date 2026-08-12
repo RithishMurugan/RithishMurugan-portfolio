@@ -80,10 +80,10 @@ export default function HealthcareArchitectureDiagram({ className = "", animated
             <g key={node.id} filter="url(#arch-glow)">
               <circle cx={cx} cy={cy} r="22" fill="var(--color-card)" stroke="var(--color-cta)" strokeWidth="1.5" opacity="0.95" />
               <circle cx={cx} cy={cy} r="6" fill="var(--color-cta)" />
-              <text x={cx} y={cy + 36} textAnchor="middle" fill="var(--color-foreground)" fontSize="9" fontWeight="600" style={{ fontFamily: "system-ui" }}>
+              <text x={cx} y={cy + 36} textAnchor="middle" fill="var(--color-foreground)" fontSize="9" fontWeight="500" style={{ fontFamily: "var(--font-mono), 'IBM Plex Mono', monospace" }}>
                 {node.label}
               </text>
-              <text x={cx} y={cy + 48} textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="7" style={{ fontFamily: "system-ui" }}>
+              <text x={cx} y={cy + 48} textAnchor="middle" fill="var(--color-muted-foreground)" fontSize="7" style={{ fontFamily: "var(--font-mono), 'IBM Plex Mono', monospace" }}>
                 {node.sub}
               </text>
             </g>
@@ -115,7 +115,7 @@ export function ClinicianReviewMockup({ className = "" }: { className?: string }
         </div>
         <div className="flex gap-2">
           <span className="rounded-md bg-emerald-500/10 px-2 py-1 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">✓ Grounded</span>
-          <span className="rounded-md bg-blue-500/10 px-2 py-1 text-[10px] font-medium text-blue-600 dark:text-blue-400">3 Citations</span>
+          <span className="rounded-md bg-cta/10 px-2 py-1 text-[10px] font-medium text-cta">3 Citations</span>
           <span className="rounded-md bg-amber-500/10 px-2 py-1 text-[10px] font-medium text-amber-600 dark:text-amber-400">HITL Review</span>
         </div>
         <div className="flex gap-2">

@@ -58,9 +58,10 @@ export default function Contact() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cta/5 to-cta/10" />
       <div className="section-shell relative">
         <SectionHeader
-          badge="Connect"
-          title="Let's build"
-          titleAccent="something remarkable"
+          index="07"
+          badge="Contact"
+          title="Start a"
+          titleAccent="conversation"
           subtitle="Open to AI Full Stack, applied AI, and platform engineering opportunities."
         />
 
@@ -69,7 +70,7 @@ export default function Contact() {
           <div className="card p-6">
             <div className="mb-4 flex items-center gap-2">
               <MessageCircle className="h-5 w-5 text-cta" />
-              <h3 className="text-lg font-bold text-foreground">Contact Information</h3>
+              <h3 className="text-lg font-semibold text-foreground">Contact Information</h3>
             </div>
             <div className="space-y-4">
               {contactInfo.map((info) => {
@@ -107,7 +108,7 @@ export default function Contact() {
 
         <motion.div initial="hidden" whileInView="visible" viewport={viewportOnce} variants={fadeUp} custom={0.1}>
           <div className="card p-6 sm:p-7">
-            <h3 className="mb-1 text-xl font-bold text-foreground">Send me a message</h3>
+            <h3 className="mb-1 text-xl font-semibold text-foreground">Send me a message</h3>
               <p className="mb-5 max-w-prose text-sm text-muted-foreground">
               Have a role, idea, or project in mind? Send me a message.
             </p>
@@ -164,7 +165,7 @@ export default function Contact() {
                 disabled={isLoading}
                 whileHover={{ scale: isLoading ? 1 : 1.01 }}
                 whileTap={{ scale: isLoading ? 1 : 0.99 }}
-                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3 font-semibold text-white shadow-md shadow-cta/20 transition hover:bg-cta-hover disabled:opacity-50"
+                className="flex w-full min-h-[48px] items-center justify-center gap-2 rounded-xl bg-cta px-6 py-3 font-medium text-white shadow-md shadow-cta/20 transition hover:bg-cta-hover disabled:opacity-50"
               >
                 {isLoading ? (
                   <>

@@ -43,12 +43,13 @@ export default function HeroBackground() {
       {!prefersReducedMotion && (
         <div className="hidden dark:contents">
           <motion.div
-            className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-blue-600/20 blur-[100px]"
+            className="absolute -left-32 top-1/4 h-72 w-72 rounded-full bg-cta/[0.08] blur-[110px]"
             animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
             transition={heroBlobTransition}
           />
           <motion.div
-            className="absolute -right-24 bottom-1/4 h-80 w-80 rounded-full bg-cyan-500/15 blur-[90px]"
+            className="absolute -right-24 bottom-1/4 h-64 w-64 rounded-full opacity-50 blur-[100px]"
+            style={{ background: "color-mix(in srgb, var(--color-mist) 14%, transparent)" }}
             animate={{ x: [0, -30, 0], y: [0, 20, 0] }}
             transition={{ ...heroBlobTransition, delay: 2 }}
           />

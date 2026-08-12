@@ -56,8 +56,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "FastAPI", "React", "TypeScript", "FHIR", "LangChain", "LangGraph", "RAG", "Kafka", "PostgreSQL", "Snowflake", "AWS EKS"],
     categories: ["ai-ml", "agentic", "backend"],
-    gradient: "from-cyan-600 to-blue-600",
-    techColor: "bg-cyan-50 text-cyan-900 ring-cyan-100 dark:bg-cyan-950/50 dark:text-cyan-200 dark:ring-cyan-800",
+    gradient: "from-indigo-600 to-violet-500",
+    techColor: "bg-indigo-50 text-indigo-900 ring-indigo-100 dark:bg-indigo-950/40 dark:text-indigo-200 dark:ring-indigo-800",
     featured: true,
   },
   {
@@ -79,8 +79,8 @@ export const projects: Project[] = [
     ],
     tech: ["React", "TypeScript", "Express.js", "Gemini 2.5", "Tailwind", "Recharts", "Node.js"],
     categories: ["ai-ml", "full-stack", "web"],
-    gradient: "from-orange-500 to-red-500",
-    techColor: "bg-orange-50 text-orange-800 ring-orange-100 dark:bg-orange-950/50 dark:text-orange-200 dark:ring-orange-800",
+    gradient: "from-amber-700 to-stone-600",
+    techColor: "bg-amber-50 text-amber-900 ring-amber-100 dark:bg-amber-950/40 dark:text-amber-200 dark:ring-amber-900",
     githubUrl: "https://github.com/RithishMurugan/plaibook-call-center-dashboard.git",
   },
   {
@@ -102,8 +102,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "AWS Bedrock", "AgentCore", "Embeddings", "Retrieval Pipelines"],
     categories: ["ai-ml", "agentic", "backend"],
-    gradient: "from-indigo-500 to-purple-500",
-    techColor: "bg-indigo-50 text-indigo-800 ring-indigo-100 dark:bg-indigo-950/50 dark:text-indigo-200 dark:ring-indigo-800",
+    gradient: "from-violet-700 to-indigo-500",
+    techColor: "bg-slate-50 text-slate-800 ring-slate-100 dark:bg-slate-950/50 dark:text-slate-200 dark:ring-slate-800",
     githubUrl: "https://github.com/RithishMurugan/RAG-Based-Chatbot-with-AgentCore.git",
   },
   {
@@ -125,8 +125,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "RAG", "Pinecone", "Supabase", "n8n", "REST APIs"],
     categories: ["ai-ml", "agentic", "backend"],
-    gradient: "from-green-500 to-teal-500",
-    techColor: "bg-green-50 text-green-800 ring-green-100 dark:bg-green-950/50 dark:text-green-200 dark:ring-green-800",
+    gradient: "from-slate-700 to-indigo-600",
+    techColor: "bg-slate-50 text-slate-800 ring-slate-100 dark:bg-slate-950/50 dark:text-slate-200 dark:ring-slate-800",
     githubUrl: "https://github.com/RithishMurugan/AI-Guest-Concierge-Agent.git",
   },
   {
@@ -148,8 +148,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "TensorFlow", "MediaPipe", "OpenCV"],
     categories: ["ai-ml", "backend"],
-    gradient: "from-blue-500 to-purple-600",
-    techColor: "bg-blue-50 text-blue-800 ring-blue-100 dark:bg-blue-950/50 dark:text-blue-200 dark:ring-blue-800",
+    gradient: "from-slate-600 to-indigo-600",
+    techColor: "bg-stone-50 text-stone-800 ring-stone-100 dark:bg-stone-950/50 dark:text-stone-200 dark:ring-stone-800",
     githubUrl: "https://github.com/RithishMurugan/Real-Time-Hand-Sign-Detection-System.git",
   },
   {
@@ -171,8 +171,8 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "SQL", "Data Modeling"],
     categories: ["backend"],
-    gradient: "from-purple-500 to-pink-500",
-    techColor: "bg-purple-50 text-purple-800 ring-purple-100 dark:bg-purple-950/50 dark:text-purple-200 dark:ring-purple-800",
+    gradient: "from-stone-700 to-zinc-600",
+    techColor: "bg-zinc-50 text-zinc-800 ring-zinc-100 dark:bg-zinc-950/50 dark:text-zinc-200 dark:ring-zinc-800",
   },
 ];
 

@@ -18,7 +18,7 @@ function ProjectPanel({ project, index, isActive }: { project: Project; index: n
       className={cn(
         "project-card relative flex h-full min-h-[480px] w-[calc(100vw-2rem)] shrink-0 snap-center flex-col overflow-hidden rounded-3xl transition-all duration-500 sm:min-h-[520px] sm:w-[min(72vw,640px)] lg:w-[640px]",
         "ring-1 ring-inset ring-border/50 bg-card/80 shadow-[0_12px_40px_rgba(15,23,42,0.06)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.2)]",
-        isActive ? "ring-cta/25 scale-100 shadow-[0_16px_48px_rgba(37,99,235,0.08)]" : "scale-[0.98] opacity-75"
+        isActive ? "ring-cta/25 scale-100 shadow-[0_16px_48px_rgba(108,99,255,0.1)]" : "scale-[0.98] opacity-75"
       )}
       aria-labelledby={`project-${project.id}`}
     >
@@ -30,11 +30,11 @@ function ProjectPanel({ project, index, isActive }: { project: Project; index: n
             <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
               {project.tier === "featured" ? "Featured" : "Lab"} · {project.date}
             </p>
-            <h3 id={`project-${project.id}`} className="font-heading text-xl font-bold text-foreground sm:text-2xl">
+            <h3 id={`project-${project.id}`} className="font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
               {project.title}
             </h3>
           </div>
-          <span className="font-heading text-4xl font-extrabold text-muted/80 sm:text-5xl">
+          <span className="font-heading text-4xl font-bold text-muted/80 sm:text-5xl">
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
@@ -147,10 +147,11 @@ export default function ProjectShowcase() {
     <section id="work" className="relative overflow-hidden py-14 sm:py-20 md:py-24">
       <div className="section-shell !pb-0">
         <SectionHeader
-          badge="Selected builds"
-          title="More"
-          titleAccent="projects"
-          subtitle="Additional engineering work across AI systems, full-stack applications, and data platforms."
+          index="03"
+          badge="Projects"
+          title="Beyond"
+          titleAccent="the main story"
+          subtitle="Additional systems across AI workflows, full-stack apps, and data platforms."
           className="text-left md:text-center"
         />
       </div>

@@ -19,7 +19,7 @@ export default function Icon() {
           color: "white",
           fontSize: 18,
           fontWeight: 800,
-          fontFamily: "system-ui",
+          fontFamily: '"Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif',
         }}
       >
         RM

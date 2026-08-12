@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, GraduationCap, Briefcase } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { fadeUp, staggerContainer, viewportOnce, springSnappy } from "@/lib/motion";
+import { EASE, gsap, registerGsapPlugins } from "@/lib/gsap";
+import { usePrefersReducedMotion } from "@/lib/hooks/usePrefersReducedMotion";
 import { timeline } from "@/lib/data/experience";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +15,32 @@ const PREVIEW_BULLET_COUNT = 3;
 export default function CareerNetwork() {
   const [activeId, setActiveId] = useState(timeline[timeline.length - 1]?.id ?? "");
   const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
+  const sectionRef = useRef<HTMLElement>(null);
+  const timelineLineRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (reducedMotion || !sectionRef.current || !timelineLineRef.current) return;
+    registerGsapPlugins();
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        timelineLineRef.current,
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: EASE.none,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+            end: "bottom 45%",
+            scrub: 0.3,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, [reducedMotion]);
 
   const toggleActive = (id: string) => {
     setActiveId((current) => {
@@ -33,16 +61,20 @@ export default function CareerNetwork() {
   };
 
   return (
-    <section id="experience" className="section-shell relative">
+    <section id="experience" ref={sectionRef} className="section-shell relative">
       <SectionHeader
-        badge="Career path"
+        index="04"
+        badge="Experience"
         title="Engineering"
         titleAccent="evolution"
-        subtitle="From enterprise Java and cloud data platforms to production AI — a progression through systems that ship."
+        subtitle="From enterprise Java and cloud data platforms to production AI — owning more of the path each step."
       />
 
       <div className="relative">
-        <div className="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-transparent via-cta/40 to-transparent md:left-1/2 md:block md:-translate-x-px" />
+        <div
+          ref={timelineLineRef}
+          className="absolute left-4 top-0 hidden h-full w-px origin-top scale-y-0 bg-gradient-to-b from-cta/50 via-cta/25 to-transparent md:left-1/2 md:block md:-translate-x-px"
+        />
 
         <motion.div
           className="space-y-6"
@@ -71,7 +103,7 @@ export default function CareerNetwork() {
                     className={cn(
                       "interactive w-full rounded-2xl p-5 text-left transition-all duration-300 sm:p-6",
                       "ring-1 ring-inset ring-border/50 bg-card/60 hover:ring-cta/15",
-                      isActive && "ring-cta/25 bg-card shadow-[0_12px_40px_rgba(37,99,235,0.08)]"
+                      isActive && "ring-cta/25 bg-card shadow-[0_12px_40px_rgba(108,99,255,0.1)]"
                     )}
                     aria-expanded={isActive}
                   >
@@ -87,22 +119,22 @@ export default function CareerNetwork() {
                       <div className="min-w-0 flex-1">
                         {isWork && item.experience ? (
                           <>
-                            <h3 className="font-heading text-lg font-bold leading-snug text-foreground">
+                            <h3 className="font-heading text-lg font-semibold leading-snug text-foreground">
                               {item.experience.title}
                             </h3>
-                            <p className="mt-0.5 text-sm font-medium text-foreground/90">{item.experience.company}</p>
-                            <p className="mt-0.5 text-xs text-muted-foreground">{item.experience.date}</p>
+                            <p className="mt-0.5 text-sm font-medium text-secondary">{item.experience.company}</p>
+                            <p className="mt-0.5 font-mono text-xs text-meta">{item.experience.date}</p>
                           </>
                         ) : item.education ? (
                           <>
-                            <h3 className="font-heading text-lg font-bold leading-snug text-foreground">
+                            <h3 className="font-heading text-lg font-semibold leading-snug text-foreground">
                               {item.education.degree}
                             </h3>
-                            <p className="mt-0.5 text-sm font-medium text-foreground/90">{item.education.school}</p>
-                            <p className="mt-0.5 text-xs text-muted-foreground">{item.education.date}</p>
+                            <p className="mt-0.5 text-sm font-medium text-secondary">{item.education.school}</p>
+                            <p className="mt-0.5 font-mono text-xs text-meta">{item.education.date}</p>
                           </>
                         ) : (
-                          <h3 className="font-heading text-lg font-bold text-foreground">{item.heading}</h3>
+                          <h3 className="font-heading text-lg font-semibold text-foreground">{item.heading}</h3>
                         )}
                       </div>
                       <ChevronDown

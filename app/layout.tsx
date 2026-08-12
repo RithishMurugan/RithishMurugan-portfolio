@@ -1,25 +1,41 @@
 import "./globals.css";
-import { Figtree, Noto_Sans } from "next/font/google";
+import { IBM_Plex_Mono, Instrument_Serif, Inter_Tight } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SITE } from "@/lib/data/site";
 
-const figtree = Figtree({
+/** PRIMARY SANS — hero, headings, body, nav, buttons, UI */
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-primary",
   display: "swap",
+  preload: true,
 });
 
-const notoSans = Noto_Sans({
+/** TECHNICAL MONO — section stamps, metadata, system labels */
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-body",
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
+  preload: true,
+});
+
+/** EDITORIAL ACCENT — Instrument Serif italic only, used rarely */
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-editorial",
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
   title: "Rithish Murugan | AI Full Stack Software Engineer",
   description:
-    "AI Full Stack Software Engineer building production AI, distributed systems, backend platforms, and full-stack applications with Python, React, FastAPI, AWS, and GenAI.",
+    "AI Full Stack Software Engineer designing services, data flows, and AI workflows that stay reliable after launch — Python, React, FastAPI, AWS, and GenAI.",
   keywords: [
     "AI Full Stack Software Engineer",
     "Full Stack Engineer",
@@ -64,8 +80,8 @@ export const viewport: Viewport = {
   maximumScale: 5,
   viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f3ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c1017" },
   ],
 };
 
@@ -81,11 +97,15 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${figtree.variable} ${notoSans.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${interTight.variable} ${plexMono.variable} ${instrumentSerif.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className={`${notoSans.className} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${interTight.className} body-grain font-sans antialiased`} suppressHydrationWarning>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

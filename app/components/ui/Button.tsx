@@ -7,10 +7,10 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "glass";
 type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-cta text-white hover:bg-cta-hover shadow-md",
+  primary: "bg-cta text-white hover:bg-cta-hover shadow-sm",
   secondary: "border-2 border-border bg-card text-foreground hover:border-cta hover:bg-muted",
   ghost: "text-foreground hover:bg-muted",
-  glass: "glass-btn text-white font-semibold",
+  glass: "glass-btn text-white font-medium",
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -38,7 +38,7 @@ export function Button({ className, variant = "primary", size = "md", children, 
       whileHover={{ scale: 1.02, y: -1 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "interactive inline-flex items-center justify-center rounded-xl font-semibold transition-colors duration-200",
+        "interactive inline-flex items-center justify-center rounded-xl font-medium transition-colors duration-200",
         variants[variant],
         sizes[size],
         className
@@ -64,7 +64,7 @@ export function ButtonLink({ href, children, className, variant = "primary", siz
       href={href}
       download={download}
       className={cn(
-        "interactive inline-flex items-center justify-center rounded-xl font-semibold transition-colors duration-200",
+        "interactive inline-flex items-center justify-center rounded-xl font-medium transition-colors duration-200",
         variants[variant],
         sizes[size],
         className

@@ -66,10 +66,11 @@ export default function SkillConstellation() {
   return (
     <section id="skills" className="section-shell relative">
       <SectionHeader
-        badge="Engineering universe"
-        title="Technical"
-        titleAccent="ecosystem"
-        subtitle="Explore core engineering areas — select a cluster to see the technologies behind each domain."
+        index="05"
+        badge="Skills"
+        title="Engineering"
+        titleAccent="vocabulary"
+        subtitle="Select a cluster to see the technologies behind each domain."
       />
 
       <motion.div
@@ -95,8 +96,8 @@ export default function SkillConstellation() {
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden>
               <defs>
                 <linearGradient id="orbit-active-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="rgb(59, 130, 246)" stopOpacity="0.95" />
-                  <stop offset="100%" stopColor="rgb(37, 99, 235)" stopOpacity="0.75" />
+                  <stop offset="0%" stopColor="rgb(108, 99, 255)" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="rgb(158, 165, 255)" stopOpacity="0.7" />
                 </linearGradient>
               </defs>
 
@@ -193,7 +194,7 @@ export default function SkillConstellation() {
               })}
 
               {/* Traveling signal pulse */}
-              <circle cx={pulseX} cy={pulseY} r="0.7" fill="rgb(59, 130, 246)" opacity={reducedMotion ? 0.5 : 0.85}>
+              <circle cx={pulseX} cy={pulseY} r="0.7" fill="rgb(158, 165, 255)" opacity={reducedMotion ? 0.55 : 0.9}>
                 {!reducedMotion && (
                   <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
                 )}
@@ -235,10 +236,10 @@ export default function SkillConstellation() {
                   className={cn(
                     "interactive group absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl px-2 py-1.5 backdrop-blur-sm transition-all duration-300 sm:px-2.5 sm:py-2",
                     isActive
-                      ? "scale-105 border border-cta/35 bg-cta/12 shadow-[0_0_28px_rgba(37,99,235,0.22)]"
+                      ? "scale-105 border border-cta/40 bg-cta/12 shadow-[0_0_24px_rgba(108,99,255,0.18)]"
                       : isHovered
-                        ? "-translate-y-[calc(50%+2px)] border border-cta/25 bg-cta/10 shadow-[0_0_18px_rgba(59,130,246,0.15)]"
-                        : "border border-border/25 bg-card/25 hover:border-cta/20 hover:bg-card/40"
+                        ? "-translate-y-[calc(50%+2px)] border border-cta/25 bg-cta/10 shadow-[0_0_18px_rgba(108,99,255,0.12)]"
+                        : "border border-border/25 bg-card/40 hover:border-cta/20 hover:bg-card/55"
                   )}
                   style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
                   aria-pressed={isActive}
@@ -249,7 +250,7 @@ export default function SkillConstellation() {
                     className={cn(
                       "block rounded-full transition-all duration-300",
                       isActive
-                        ? "h-2.5 w-2.5 bg-cta shadow-[0_0_10px_rgba(37,99,235,0.55)]"
+                        ? "h-2.5 w-2.5 bg-cta shadow-[0_0_10px_rgba(108,99,255,0.5)]"
                         : isHovered
                           ? "h-2 w-2 bg-cta/70"
                           : "h-2 w-2 bg-cta/45 group-hover:bg-cta/65"
@@ -259,7 +260,7 @@ export default function SkillConstellation() {
                     className={cn(
                       "max-w-[76px] text-center text-[9px] font-semibold leading-tight transition-colors duration-300 sm:max-w-[88px] sm:text-[10px]",
                       isActive
-                        ? "text-blue-400 dark:text-blue-300"
+                        ? "text-cta"
                         : isHovered
                           ? "text-foreground"
                           : "text-muted-foreground"
@@ -281,7 +282,7 @@ export default function SkillConstellation() {
                   exit={{ opacity: 0, y: -6, scale: 0.98 }}
                   transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <p className="font-heading text-sm font-bold text-foreground sm:text-base">{active?.title}</p>
+                  <p className="font-heading text-sm font-semibold text-foreground sm:text-base">{active?.title}</p>
                   <p className="mt-0.5 text-[10px] text-muted-foreground">
                     {getClusterChips(active).length} technologies
                   </p>
@@ -311,7 +312,7 @@ export default function SkillConstellation() {
           {FEATURED_QUICK_SCAN.map((skill) => (
             <span
               key={skill}
-              className="rounded-md border border-border/50 bg-cta/5 px-2.5 py-1 text-xs font-medium text-foreground/85 transition-all duration-200 hover:-translate-y-px hover:border-cta/25 hover:bg-cta/10 hover:text-foreground"
+              className="rounded-md border border-border/50 bg-cta/5 px-2.5 py-1 text-xs font-medium text-secondary transition-all duration-200 hover:-translate-y-px hover:border-cta/25 hover:bg-cta/10 hover:text-foreground"
             >
               {skill}
             </span>
@@ -328,7 +329,7 @@ function SkillChip({ skill, index }: { skill: string; index: number }) {
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03, duration: 0.28 }}
-      className="inline-flex rounded-lg border border-border/50 bg-cta/[0.06] px-3 py-1.5 text-sm font-medium text-foreground/90 backdrop-blur-[2px] transition-all duration-200 hover:-translate-y-0.5 hover:border-cta/30 hover:bg-cta/10 hover:text-foreground hover:shadow-[0_4px_14px_rgba(37,99,235,0.12)] dark:border-cta/12 dark:bg-cta/[0.06] dark:hover:border-cta/35"
+      className="inline-flex rounded-lg border border-border/40 bg-cta/[0.07] px-3 py-1.5 text-sm font-medium text-foreground backdrop-blur-[2px] transition-all duration-200 hover:-translate-y-0.5 hover:border-cta/30 hover:bg-cta/10 hover:shadow-[0_4px_14px_rgba(108,99,255,0.12)] dark:border-cta/15 dark:bg-cta/[0.08] dark:hover:border-cta/35"
     >
       {skill}
     </motion.span>
@@ -368,11 +369,11 @@ function SkillPanel({ cluster }: { cluster: SkillCluster | undefined }) {
         />
 
         <div className="relative mb-6 flex items-start gap-3.5">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cta/20 bg-cta/10 text-cta shadow-[0_0_20px_rgba(37,99,235,0.12)]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cta/20 bg-cta/10 text-cta shadow-[0_0_16px_rgba(108,99,255,0.12)]">
             <Icon size={21} aria-hidden />
           </div>
           <div>
-            <h3 className="font-heading text-xl font-bold text-foreground sm:text-2xl">{cluster.title}</h3>
+            <h3 className="font-heading text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{cluster.title}</h3>
             <p className="mt-0.5 text-sm text-muted-foreground">Production technologies & capabilities</p>
           </div>
         </div>

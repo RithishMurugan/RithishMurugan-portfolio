@@ -32,8 +32,8 @@ function getGraphicColors(isDark: boolean) {
     return { accent: [37, 99, 235] as [number, number, number], signal: 0.9, node: 0.85, line: 0.35, glow: 0.15 };
   }
   const style = getComputedStyle(document.documentElement);
-  const accent = style.getPropertyValue("--graphic-accent").trim() || (isDark ? "#3b82f6" : "#2563eb");
-  const hex = accent.startsWith("#") ? accent.slice(1) : "2563eb";
+  const accent = style.getPropertyValue("--graphic-accent").trim() || (isDark ? "#6c63ff" : "#5b54ef");
+  const hex = accent.startsWith("#") ? accent.slice(1) : "6c63ff";
   const r = parseInt(hex.slice(0, 2), 16);
   const g = parseInt(hex.slice(2, 4), 16);
   const b = parseInt(hex.slice(4, 6), 16);
@@ -298,7 +298,7 @@ export default function EvolvingIntelligence({ className = "" }: { className?: s
         wordFlash.opacity -= 0.004;
         if (wordFlash.opacity <= 0) wordFlash = null;
         else {
-          ctx.font = `600 9px system-ui, sans-serif`;
+          ctx.font = `500 9px "IBM Plex Mono", ui-monospace, monospace`;
           ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${wordFlash.opacity * 0.5})`;
           ctx.textAlign = "center";
           ctx.fillText(wordFlash.text, wordFlash.x, wordFlash.y);

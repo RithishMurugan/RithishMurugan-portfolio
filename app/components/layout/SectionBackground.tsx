@@ -24,7 +24,8 @@ export default function SectionBackground({ children, className, variant = "defa
             aria-hidden
           />
           <motion.div
-            className="pointer-events-none absolute -right-24 bottom-1/4 h-64 w-64 rounded-full bg-cyan-500/5 blur-[90px]"
+            className="pointer-events-none absolute -right-24 bottom-1/4 h-64 w-64 rounded-full blur-[90px]"
+            style={{ background: "color-mix(in srgb, var(--color-mist) 6%, transparent)" }}
             animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
             transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             aria-hidden

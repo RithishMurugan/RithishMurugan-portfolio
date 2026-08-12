@@ -56,19 +56,21 @@ export default function FlagshipCaseStudy() {
     const labels = gsap.utils.toArray<HTMLElement>(".flagship-label", sectionRef.current);
 
     const ctx = gsap.context(() => {
+      // Opacity-only crossfades — y shifts jump awkwardly on reverse scrub
       panels.forEach((panel, i) => {
         if (i === 0) return;
-        gsap.set(panel, { opacity: 0, y: 40 });
+        gsap.set(panel, { opacity: 0 });
       });
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
-          end: `+=${panels.length * 100}%`,
+          end: `+=${panels.length * 80}%`,
           pin: true,
-          scrub: 0.8,
+          scrub: 0.35,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -78,10 +80,10 @@ export default function FlagshipCaseStudy() {
           return;
         }
         const prev = panels[i - 1];
-        tl.to(prev, { opacity: 0, y: -30, duration: 0.5 })
-          .to(panel, { opacity: 1, y: 0, duration: 0.5 }, "<0.2")
-          .to(labels, { opacity: 0.4, duration: 0.2 }, "<")
-          .to(labels[i], { opacity: 1, duration: 0.2 }, "<")
+        tl.to(prev, { opacity: 0, duration: 0.4, ease: "none" })
+          .to(panel, { opacity: 1, duration: 0.4, ease: "none" }, "<")
+          .to(labels, { opacity: 0.35, duration: 0.2, ease: "none" }, "<")
+          .to(labels[i], { opacity: 1, duration: 0.2, ease: "none" }, "<")
           .to(progressRef.current, { scaleX: (i + 1) / panels.length, ease: "none", duration: 1 }, "<");
       });
     }, sectionRef);
@@ -92,7 +94,7 @@ export default function FlagshipCaseStudy() {
   if (reducedMotion) {
     return (
       <section id="flagship" className="section-shell border-y border-border bg-muted/20">
-        <SectionHeader badge="Selected professional impact" title="Healthcare AI" titleAccent="copilot" subtitle={flagship.description} />
+        <SectionHeader badge="Selected professional impact" index="02" title="Healthcare AI" titleAccent="copilot" subtitle={flagship.description} />
         <div className="grid gap-8 lg:grid-cols-2">
           <HealthcareArchitectureDiagram />
           <ClinicianReviewMockup />
@@ -114,14 +116,16 @@ export default function FlagshipCaseStudy() {
         <div className="section-shell flex h-screen flex-col py-8 sm:py-12">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-cta">Selected professional impact</p>
-              <h2 className="font-heading text-[clamp(1.5rem,4vw,2.75rem)] font-bold text-foreground">{flagship.title}</h2>
+              <p className="mb-2 font-mono-stamp text-[11px] text-muted-foreground">
+                <span className="text-cta">02</span> / Case study
+              </p>
+              <h2 className="font-heading text-[clamp(1.5rem,4vw,2.75rem)] font-semibold tracking-tight text-foreground">{flagship.title}</h2>
             </div>
             <div className="flex gap-4">
               {STORY_STEPS.map((step, i) => (
                 <span
                   key={step.id}
-                  className="flagship-label text-xs font-medium text-muted-foreground"
+                  className="flagship-label font-mono-stamp text-[10px] text-muted-foreground"
                   style={{ opacity: i === 0 ? 1 : 0.4 }}
                 >
                   {step.label}
@@ -130,8 +134,8 @@ export default function FlagshipCaseStudy() {
             </div>
           </div>
 
-          <div className="mb-6 h-0.5 w-full overflow-hidden rounded-full bg-border">
-            <div ref={progressRef} className="h-full origin-left scale-x-[0.25] rounded-full bg-gradient-to-r from-cta to-cyan-400" />
+          <div className="mb-6 h-px w-full overflow-hidden bg-border/60">
+            <div ref={progressRef} className="h-full origin-left scale-x-[0.25] bg-cta" />
           </div>
 
           <div ref={stepsRef} className="relative flex flex-1 items-center">
@@ -141,8 +145,8 @@ export default function FlagshipCaseStudy() {
                 className="flagship-panel absolute inset-0 grid items-center gap-8 lg:grid-cols-2 lg:gap-12"
               >
                 <div>
-                  <p className="mb-2 text-sm font-semibold text-cta">{step.label}</p>
-                  <h3 className="font-heading mb-4 text-2xl font-bold text-foreground sm:text-3xl">{step.title}</h3>
+                  <p className="mb-2 font-mono-stamp text-[11px] text-cta">{step.label}</p>
+                  <h3 className="font-heading mb-4 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{step.title}</h3>
                   {step.body && <p className="max-w-lg text-base leading-relaxed text-muted-foreground">{step.body}</p>}
                   {step.visual === "metrics" && (
                     <ul className="mt-6 space-y-4">
@@ -196,7 +200,7 @@ export default function FlagshipCaseStudy() {
             href="#work"
             className="mt-2 block text-center text-xs text-muted-foreground transition hover:text-cta"
           >
-            Explore more of what I&apos;ve built →
+            From ingestion to interface →
           </a>
         </div>
       </div>

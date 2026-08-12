@@ -19,35 +19,33 @@ export default function Footer() {
   return (
     <footer className="relative overflow-x-hidden bg-background pb-10 pt-16 text-foreground transition-colors duration-300 safe-bottom sm:pb-12 sm:pt-20">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-cta/[0.04] via-transparent to-transparent dark:from-blue-950/20"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-cta/[0.04] via-transparent to-transparent"
         aria-hidden
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           className="mx-auto mb-14 max-w-2xl text-center sm:mb-16"
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
-          transition={{ duration: 0.85, ease: easeOutExpo }}
+          transition={{ duration: 0.9, ease: easeOutExpo }}
         >
-          <p className="font-heading text-balance text-[clamp(1.5rem,2.2vw,2rem)] font-medium leading-[1.45] tracking-tight text-foreground">
+          <p className="font-editorial text-balance text-[clamp(1.5rem,2.2vw,2rem)] leading-[1.45] tracking-tight text-foreground">
             Keep going. There are still so many{" "}
-            <span className="bg-gradient-to-r from-cta via-blue-500 to-cyan-500 bg-clip-text text-transparent">
-              good moments
-            </span>{" "}
+            <span className="gradient-text">good moments</span>{" "}
             you haven&apos;t met yet.
           </p>
-          <p className="mt-5 text-sm text-muted-foreground sm:mt-6">Thanks for stopping by :)</p>
+          <p className="mt-5 text-sm text-meta sm:mt-6">Thanks for stopping by :)</p>
         </motion.div>
 
         <div className="mb-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cta to-blue-600 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cta text-white">
                 <span className="font-heading text-sm font-bold">RM</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold">{SITE.name}</h3>
+                <h3 className="text-lg font-semibold">{SITE.name}</h3>
                 <p className="text-sm text-muted-foreground">{SITE.title}</p>
               </div>
             </div>
@@ -75,11 +73,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">Quick Links</h4>
+            <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">Quick Links</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-sm text-muted-foreground transition hover:text-cta">
+                  <a href={link.href} className="signal-underline text-sm text-muted-foreground transition hover:text-cta">
                     {link.name}
                   </a>
                 </li>
@@ -88,7 +86,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">Get in Touch</h4>
+            <h4 className="mb-4 text-sm font-medium uppercase tracking-wider text-muted-foreground">Get in Touch</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href={`mailto:${SITE.email}`} className="break-all transition hover:text-cta">
@@ -96,16 +94,16 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`tel:${SITE.phone.replace(/\D/g, "")}`} className="text-muted-foreground/70 transition hover:text-cta">
+                <a href={`tel:${SITE.phone.replace(/\D/g, "")}`} className="text-meta transition hover:text-cta">
                   {SITE.phone}
                 </a>
               </li>
-              <li className="text-muted-foreground">{SITE.location}</li>
+              <li className="text-secondary">{SITE.location}</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-border/40 pt-8 text-center text-xs text-muted-foreground/80">
+        <div className="border-t border-border/40 pt-8 text-center text-xs text-meta">
           © {new Date().getFullYear()} {SITE.name} · Crafted with code, curiosity, and care.
         </div>
       </div>

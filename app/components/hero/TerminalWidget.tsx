@@ -49,16 +49,16 @@ export default function TerminalWidget() {
       <div className="min-h-[200px] space-y-2 p-4 font-mono text-xs leading-relaxed text-muted-foreground sm:text-sm">
         {history.map((line, i) => (
           <div key={`${line.prompt}-${i}`}>
-            <span className="text-cyan-600 dark:text-cyan-400">$</span> {line.prompt}{" "}
+            <span className="text-cta">$</span> {line.prompt}{" "}
             <span className="text-foreground">{line.text}</span>
           </div>
         ))}
         <div>
-          <span className="text-cyan-600 dark:text-cyan-400">$</span> {currentLine.prompt}{" "}
-          <span className="text-emerald-600 dark:text-emerald-300">{displayed}</span>
+          <span className="text-cta">$</span> {currentLine.prompt}{" "}
+          <span className="text-foreground">{displayed}</span>
           {!prefersReducedMotion && (
             <motion.span
-              className="inline-block w-2 bg-emerald-500 dark:bg-emerald-400"
+              className="inline-block w-2 bg-cta"
               animate={{ opacity: [1, 0, 1] }}
               transition={{ duration: 0.8, repeat: Infinity }}
             >
